@@ -171,6 +171,7 @@
     <ClCompile Include="src\GameObject\Camera.cpp" />
     <ClCompile Include="src\GameObject\CMath.cpp" />
     <ClCompile Include="src\GameObject\MouseButton.cpp" />
+    <ClCompile Include="src\GameObject\Player.cpp" />
     <ClCompile Include="src\GameObject\Renderer.cpp" />
     <ClCompile Include="src\GameObject\Sound.cpp" />
     <ClCompile Include="src\GameObject\Sprite2D.cpp" />
@@ -178,11 +179,16 @@
     <ClCompile Include="src\GameObject\Text.cpp" />
     <ClCompile Include="src\GameObject\TextureManager.cpp" />
     <ClCompile Include="src\GameObject\Timer.cpp" />
+    <ClCompile Include="src\GameObject\Weapon.cpp" />
+    <ClCompile Include="src\GameStates\GameWindows.cpp" />
+    <ClCompile Include="src\GameStates\GameLoop.cpp" />
     <ClCompile Include="src\GameStates\GameStateBase.cpp" />
     <ClCompile Include="src\GameStates\GameStateMachine.cpp" />
     <ClCompile Include="src\GameStates\GSIntro.cpp" />
     <ClCompile Include="src\GameStates\GSMenu.cpp" />
     <ClCompile Include="src\GameStates\GSPlay.cpp" />
+    <ClCompile Include="src\GameStates\KeyEvents.cpp" />
+    <ClCompile Include="src\GameStates\LTexture.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +201,7 @@
     <ClInclude Include="src\GameObject\Define.h" />
     <ClInclude Include="src\GameObject\KeyState.h" />
     <ClInclude Include="src\GameObject\MouseButton.h" />
+    <ClInclude Include="src\GameObject\Player.h" />
     <ClInclude Include="src\GameObject\Renderer.h" />
     <ClInclude Include="src\GameObject\Sound.h" />
     <ClInclude Include="src\GameObject\Sprite2D.h" />
@@ -202,11 +209,16 @@
     <ClInclude Include="src\GameObject\Text.h" />
     <ClInclude Include="src\GameObject\TextureManager.h" />
     <ClInclude Include="src\GameObject\Timer.h" />
+    <ClInclude Include="src\GameObject\Weapon.h" />
+    <ClInclude Include="src\GameStates\GameWindows.h" />
+    <ClInclude Include="src\GameStates\GameLoop.h" />
     <ClInclude Include="src\GameStates\GameStateBase.h" />
     <ClInclude Include="src\GameStates\GameStateMachine.h" />
     <ClInclude Include="src\GameStates\GSIntro.h" />
     <ClInclude Include="src\GameStates\GSMenu.h" />
     <ClInclude Include="src\GameStates\GSPlay.h" />
+    <ClInclude Include="src\GameStates\KeyEvents.h" />
+    <ClInclude Include="src\GameStates\LTexture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

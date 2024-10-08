@@ -17,32 +17,33 @@ void Camera::SetTarget(std::shared_ptr<BaseObject> target) // Settarget for play
 
 void Camera::Update(float deltaTime)
 {
-	if (m_target != nullptr)
-	{
-		//Center the camera over the dot
-		m_ViewBox.x = (m_target->GetPosition().x - SCREEN_WIDTH / 2);
-		m_ViewBox.y = (m_target->GetPosition().y  - SCREEN_HEIDHT / 2) ;
-		
-		//Keep the camera in bounds
-		if (m_ViewBox.x < 0)
-		{
-			m_ViewBox.x = 0;
-		}
-		if (m_ViewBox.y < 0)
-		{
-			m_ViewBox.y = 0;
-		}
-		if (m_ViewBox.x > (GetLevelWidth() - m_ViewBox.w))
-		{
-			m_ViewBox.x = (GetLevelWidth() - m_ViewBox.w);
-		}
-		if (m_ViewBox.y > (GetLevelHeight() - m_ViewBox.h))
-		{
-			m_ViewBox.y = (GetLevelHeight() - m_ViewBox.h);
-		}
-		m_Position = Vector2(m_ViewBox.x, m_ViewBox.y);
-	}
+    if (m_target != nullptr)
+    {
+        // Apply zoom to the view box dimensions
+        m_ViewBox.w = SCREEN_WIDTH / m_ZoomFactor;
+        m_ViewBox.h = SCREEN_HEIDHT / m_ZoomFactor;
+
+        // Center the camera on the target
+        m_ViewBox.x = (m_target->GetPosition().x - m_ViewBox.w / 2);
+        m_ViewBox.y = (m_target->GetPosition().y - m_ViewBox.h / 2);
+
+        // Keep the camera in bounds
+        if (m_ViewBox.x < 0) m_ViewBox.x = 0;
+        if (m_ViewBox.y < 0) m_ViewBox.y = 0;
+        if (m_ViewBox.x > (GetLevelWidth() - m_ViewBox.w)) m_ViewBox.x = (GetLevelWidth() - m_ViewBox.w);
+        if (m_ViewBox.y > (GetLevelHeight() - m_ViewBox.h)) m_ViewBox.y = (GetLevelHeight() - m_ViewBox.h);
+
+        m_Position = Vector2(m_ViewBox.x, m_ViewBox.y);
+    }
 }
+
+void Camera::SetZoom(float zoom)
+{
+    m_ZoomFactor = zoom;
+    if (m_ZoomFactor < 0.1f) m_ZoomFactor = 0.1f;  // Prevent excessive zooming in
+    if (m_ZoomFactor > 10.0f) m_ZoomFactor = 10.0f; // Prevent excessive zooming out
+}
+
 
 void Camera::SetLevelDimension(int width, int height)
 {

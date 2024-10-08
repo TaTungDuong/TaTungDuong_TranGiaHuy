@@ -6,6 +6,7 @@
 #include "GameObject/Camera.h"
 #include "KeyState.h"
 #include "Sound.h"
+
 GSPlay::GSPlay()
 {
 }
@@ -15,9 +16,11 @@ GSPlay::~GSPlay()
 {
 }
 
-
 void GSPlay::Init()
 {
+	// Set the zoom factor to 2x
+	Camera::GetInstance()->SetZoom(2.0f);
+
 	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_play1.tga");
 
 	// background
@@ -36,13 +39,22 @@ void GSPlay::Init()
 	m_listButton.push_back(button);
 
    // Animation 
-	texture = ResourceManagers::GetInstance()->GetTexture("Actor1_2.tga");
-	obj = std::make_shared<SpriteAnimation>( texture, 2, 9, 6, 0.2f);
-	obj->SetFlip(SDL_FLIP_HORIZONTAL);
-	obj->SetSize(40, 50);
-	obj->Set2DPosition(240, 400);
+
+	texture = ResourceManagers::GetInstance()->GetTexture("player_idle.tga");
+	obj = std::make_shared<SpriteAnimation>( texture, 1, 6, 1, 0.1f);
+	obj->SetFlip(SDL_FLIP_NONE);
+	obj->SetSize(32, 32);
+	obj->Set2DPosition(SCREEN_WIDTH / 2, SCREEN_HEIDHT / 2);
 	m_listAnimation.push_back(obj);
-	
+	/*
+	texture = ResourceManagers::GetInstance()->GetTexture("player_walk.tga");
+	obj = std::make_shared<SpriteAnimation>(texture, 1, 6, 1, 0.1f);
+	obj->SetFlip(SDL_FLIP_NONE);
+	obj->SetSize(32, 32);
+	obj->Set2DPosition(SCREEN_WIDTH / 2, SCREEN_HEIDHT / 2);
+	m_listAnimation.push_back(obj);
+	*/
+
 	m_KeyPress = 0;
 }
 
@@ -131,6 +143,7 @@ void GSPlay::HandleMouseMoveEvents(int x, int y)
 
 void GSPlay::Update(float deltaTime)
 {
+	// Update the player
 	switch (m_KeyPress)//Handle Key event start
 	{
 	default:

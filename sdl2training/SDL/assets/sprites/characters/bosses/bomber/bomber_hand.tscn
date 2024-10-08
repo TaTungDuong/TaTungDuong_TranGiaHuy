@@ -1,0 +1,172 @@
+[gd_scene load_steps=12 format=3 uid="uid://b60t6egi4x2wl"]
+
+[ext_resource type="Script" path="res://assets/sprites/characters/bosses/bomber/bomber_hand.gd" id="1_0bnrr"]
+[ext_resource type="Shader" path="res://shaders/white.gdshader" id="1_1a72h"]
+[ext_resource type="Texture2D" uid="uid://b5mn2woumqm0w" path="res://assets/sprites/characters/bosses/bomber/weapon_bomber.png" id="1_q7d3d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikcr1"]
+size = Vector2(64, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_edbmn"]
+shader = ExtResource("1_1a72h")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="Animation" id="Animation_1o2bj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon/WeaponBomber:material:shader_parameter/flash_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon/WeaponBomber:material:shader_parameter/flash_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uahj8"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon/WeaponBomber:material:shader_parameter/flash_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon/WeaponBomber:material:shader_parameter/flash_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pask1"]
+_data = {
+"RESET": SubResource("Animation_1o2bj"),
+"hit": SubResource("Animation_uahj8")
+}
+
+[sub_resource type="Animation" id="Animation_gbg7f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n5mmw"]
+resource_name = "recoil"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-8, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fyvtt"]
+_data = {
+"RESET": SubResource("Animation_gbg7f"),
+"recoil": SubResource("Animation_n5mmw")
+}
+
+[node name="BomberHand" type="Area2D" groups=["enemy"]]
+texture_filter = 1
+script = ExtResource("1_0bnrr")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_ikcr1")
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="WeaponBomber" type="Sprite2D" parent="Weapon"]
+material = SubResource("ShaderMaterial_edbmn")
+scale = Vector2(3, 3)
+texture = ExtResource("1_q7d3d")
+
+[node name="Animations" type="Node2D" parent="."]
+
+[node name="Hit" type="AnimationPlayer" parent="Animations"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_pask1")
+}
+autoplay = "RESET"
+speed_scale = 5.0
+
+[node name="Recoil" type="AnimationPlayer" parent="Animations"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_fyvtt")
+}
+autoplay = "RESET"
+speed_scale = 5.0
+
+[node name="MuzzleLaser" type="Node2D" parent="."]
+position = Vector2(20, 0)
+
+[node name="Muzzles" type="Node2D" parent="."]
+position = Vector2(16, 0)
+
+[node name="Point" type="Node2D" parent="Muzzles"]
+position = Vector2(4, 0)
+
+[node name="1" type="Node2D" parent="Muzzles/Point"]
+position = Vector2(36, -8)
+
+[node name="2" type="Node2D" parent="Muzzles/Point"]
+position = Vector2(36, 0)
+
+[node name="3" type="Node2D" parent="Muzzles/Point"]
+position = Vector2(36, 8)
+
+[node name="Target" type="Node2D" parent="Muzzles"]
+position = Vector2(64, 0)
+
+[node name="1" type="Node2D" parent="Muzzles/Target"]
+position = Vector2(36, -8)
+
+[node name="2" type="Node2D" parent="Muzzles/Target"]
+position = Vector2(36, 0)
+
+[node name="3" type="Node2D" parent="Muzzles/Target"]
+position = Vector2(36, 8)
