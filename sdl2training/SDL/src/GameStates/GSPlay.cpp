@@ -39,7 +39,7 @@ void GSPlay::Init()
 	m_listButton.push_back(button);
 
    // Animation 
-
+	/*
 	texture = ResourceManagers::GetInstance()->GetTexture("player_idle.tga");
 	obj = std::make_shared<SpriteAnimation>( texture, 1, 6, 1, 0.1f);
 	obj->SetFlip(SDL_FLIP_NONE);
