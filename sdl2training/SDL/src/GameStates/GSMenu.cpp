@@ -50,7 +50,7 @@ void GSMenu::Init()
 	texture = ResourceManagers::GetInstance()->GetTexture("btn_settings.tga");
 	std::shared_ptr<MouseButton> btnOption = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE);
 	btnOption->SetSize(100, 100);
-	btnOption->Set2DPosition((SCREEN_WIDTH - btnOption->GetWidth()) / 2, SCREEN_HEIDHT / 2 + 170);
+	btnOption->Set2DPosition((SCREEN_WIDTH - btnOption->GetWidth()) / 2, (SCREEN_HEIDHT / 3) *2 );
 	btnOption->SetOnClick([]() {
 		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_OPTION);
 		});
@@ -59,7 +59,7 @@ void GSMenu::Init()
 	//CREDIT game
 	texture = ResourceManagers::GetInstance()->GetTexture("btn_help.tga");
 	btnCredit = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE);
-	btnCredit->Set2DPosition((SCREEN_WIDTH - btnCredit->GetWidth()) / 2, SCREEN_HEIDHT / 2 + 280);
+	btnCredit->Set2DPosition((SCREEN_WIDTH - btnCredit->GetWidth()) / 2, SCREEN_HEIDHT / 6 *5);
 	btnCredit->SetSize(100, 100);
 	btnCredit->SetOnClick([]() {
 		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_CREDIT);
@@ -68,10 +68,10 @@ void GSMenu::Init()
 
 	// game title
 	///Set Font
-	m_textColor= { 255,0,0 };
-	 auto font = ResourceManagers::GetInstance()->GetFont("Brightly Crush Shine.otf",28);
-	 auto textureText = ResourceManagers::GetInstance()->GetTextureText(font, m_textColor, "Game Name");
-	m_textGameName = std::make_shared<Text>( textureText, SDL_FLIP_NONE);
+
+	m_textColor = { 255,0,0 };
+	auto font = ResourceManagers::GetInstance()->GetFont("Brightly Crush Shine.otf", 28);
+	m_textGameName = std::make_shared<Text>("Your Game",font,  m_textColor);
 	m_textGameName->SetSize(300, 150);
 	m_textGameName->Set2DPosition((SCREEN_WIDTH - m_textGameName->GetWidth())/2, SCREEN_HEIDHT / 2 - 300);
 	

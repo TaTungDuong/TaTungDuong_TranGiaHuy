@@ -1,18 +1,17 @@
 #include"Text.h"
 
 #include "TextureManager.h"
-Text::Text(std::shared_ptr<TextureManager> texture, SDL_RendererFlip flip) : Sprite2D(texture, flip)
-
-	 
+#include "ResourceManagers.h"
+Text::Text( std::string text, TTF_Font* font, SDL_Color color) :m_text(text), m_font(font), m_color(color)
 {
-	
-	m_position = Vector3(-1.0f, 1.0f, 1.0f);
-	
-	
+	Init();
 }
 
 void Text::Init()
 {
+	m_position = Vector3(-1.0f, 1.0f, 1.0f);
+	m_pTexture = std::make_shared<TextureManager>();
+	GetTexture();
 }
 
 void Text::Draw(SDL_Renderer* renderer, SDL_Rect* clip)
@@ -31,6 +30,37 @@ void Text::Draw(SDL_Renderer* renderer, SDL_Rect* clip)
 
 void Text::Update(float deltatime)
 {
+
+}
+
+void Text::GetTexture()
+{
+	if (m_pTexture != nullptr)
+	{
+		m_pTexture->LoadTextureText(m_font, m_color, m_text);
+	}
+	else
+	{
+		printf("Error!!!Can not get texture!!!!");
+	}
+}
+
+void Text::SetText(std::string text)
+{
+	m_text = text;
+	GetTexture();
+}
+
+void Text::SetFont(TTF_Font* font)
+{
+	m_font = font;
+	GetTexture();
+}
+
+void Text::SetColor(SDL_Color color)
+{
+	m_color = color;
+	GetTexture();
 }
 
 
