@@ -26,9 +26,6 @@ public:
 	void		Draw(SDL_Renderer* renderer, SDL_Rect* clip = NULL) override;
 	void		Update(float deltatime) override;
 
-	// Add Render method to SpriteAnimation
-	void Render(SDL_Renderer* renderer, SDL_Rect* clip = NULL);
-
 	void		Set2DPosition(float x, float y);
 	void		SetRotation(double angle);
 	void SetFlip (SDL_RendererFlip flip);
@@ -38,4 +35,5 @@ public:
 	void		SetSize(int width, int height);
 	int GetWidth();
 	int GetHeight();
+
 };

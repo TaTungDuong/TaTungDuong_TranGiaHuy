@@ -63,10 +63,14 @@ void zombie::init()
 
 void zombie::move(gameObject target)
 {
-	currentState = zombieState::WALK;
-
 	calRotation(target.px, target.py);
 
+	if (calDistance(myPlayer) < attackRange + myPlayer.size || health <= 0)
+	{
+		return;
+	}
+
+	currentState = zombieState::WALK;
 	float dirX = 0;
 	float dirY = 0;
 
@@ -84,6 +88,8 @@ void zombie::move(gameObject target)
 
 bool zombie::attack(player& target)
 {
+	if (health <= 0) return false;
+
 	currentState = zombieState::ATTACK;
 
 	attackTimer += deltaTimer.getDeltaTime();
@@ -98,7 +104,14 @@ bool zombie::attack(player& target)
 
 void zombie::hurt()
 {
-	health -= myPlayer.myWeapon[myPlayer.currentWeapon].getDamage();
+	if (health > 0)
+	{
+		health -= myPlayer.myWeapon[myPlayer.currentWeapon].getDamage();
+	}
+	else
+	{
+		currentState = zombieState::DEAD;
+	}
 }
 
 void zombie::setAnimation(LTexture& targetTexture, SDL_Rect& targetClip)
@@ -124,5 +137,6 @@ void zombie::render(SDL_Rect& camera)
 		break;
 	}
 	*/
-	currentTexture->render(rx - camera.x, ry - camera.y, size, size, currentClip, 0, NULL, isFlipped == false? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
+	currentTexture->render(rx - camera.x, ry - camera.y, size, size,
+		currentClip, 0, NULL, isFlipped == false ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }

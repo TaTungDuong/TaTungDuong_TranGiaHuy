@@ -35,13 +35,13 @@ bool GameUI::loadMedia()
 		success = false;
 	}
 
-	if (!gPistolIconTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/pistol icon.png"))
+	if (!gPistolIconTexture.loadFromFile("assets-main/sprites/weapons/shotgun/icon_shotgun.png"))//_white.png"))
 	{
 		printf("Failed to load pistol icon texture!\n");
 		success = false;
 	}
 
-	if (!gRifleIconTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/rifle icon.png"))
+	if (!gRifleIconTexture.loadFromFile("assets-main/sprites/weapons/heavy_cannon/icon_heavy_cannon.png"))//_white.png"))
 	{
 		printf("Failed to load rifle icon texture!\n");
 		success = false;
@@ -50,8 +50,8 @@ bool GameUI::loadMedia()
 
 #pragma region Load_screen_effect_textures
 	//Load screen effect texture
-//	if (!gVignetteTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/vignette.png"))
-	if (!gVignetteTexture.loadFromFile("assets-main/sprites/ui/others/empty.png"))
+	if (!gVignetteTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/vignette.png"))
+//	if (!gVignetteTexture.loadFromFile("assets-main/sprites/ui/others/empty.png"))
 	{
 		printf("Failed to load vignette texture!\n");
 		success = false;
@@ -64,8 +64,8 @@ bool GameUI::loadMedia()
 		success = false;
 	}
 
-//		if (!gLensDirtTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/lens dirt.png"))
-	if (!gLensDirtTexture.loadFromFile("assets-main/sprites/ui/others/empty.png"))
+	if (!gLensDirtTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/lens dirt.png"))
+//	if (!gLensDirtTexture.loadFromFile("assets-main/sprites/ui/others/empty.png"))
 	{
 		printf("Failed to load len dirt texture!\n");
 		success = false;
@@ -206,8 +206,8 @@ void GameUI::updateObjective(
 			spawned = true;
 		}
 		break;
-	case 4: //objective 5: find 5 missing signels
-		m_GameObjective.objectiveText = "find the missing signel, " 
+	case 4: //objective 5: find 5 missing signals
+		m_GameObjective.objectiveText = "find the missing signals, " 
 			+ std::to_string(m_GameEnvironment.signalZones.size()) + "/" + std::to_string(TOTAL_SIGNAL_ZONE) + " left";
 		break;
 

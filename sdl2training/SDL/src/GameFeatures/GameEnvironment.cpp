@@ -37,6 +37,12 @@ bool GameEnvironment::loadMedia(SpriteSheet& m_SpriteSheet)
 		success = false;
 	}
 
+	if (!gBloodPoolTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/blood pool.png"))
+	{
+		printf("Failed to load white texture!\n");
+		success = false;
+	}
+
 	if (!gHealthPickUpTexture.loadFromFile("assets-main/sprites/objects/items/milk_128.png"))
 	{
 		printf("Failed to load health pickup texture!\n");
@@ -61,7 +67,8 @@ void GameEnvironment::renderBloodPool(SDL_Rect& camera)
 	//render blood pool
 	while (i < bloodpools.size())
 	{
-		gBloodPoolTexture.render(camera, bloodpools[i].px, bloodpools[i].py, bloodpools[i].size, bloodpools[i].size, NULL, bloodpools[i].rotation);
+		gBloodPoolTexture.render(camera, bloodpools[i].px, bloodpools[i].py, 
+			bloodpools[i].size, bloodpools[i].size, NULL, bloodpools[i].rotation);
 		i++;
 	}
 }
@@ -79,10 +86,24 @@ void GameEnvironment::spawnZombie()
 {
 	if (canSpawnZombie)
 	{
-		while (zombies.size() < MAX_ZOMBIE_NUM)
+		int zombieAliveCnt = 0;
+		for (auto z : zombies)
+		{
+			if (z.health > 0) zombieAliveCnt++;
+		}
+		while (zombies.size() - zombieAliveCnt > MAX_DEAD_ZOMBIE_NUM)
+		{
+			zombies.erase(zombies.begin());
+			zombieWeapons.erase(zombieWeapons.begin());
+		}
+//		while (zombies.size() < MAX_ZOMBIE_NUM)
+		while (zombieAliveCnt < MAX_ZOMBIE_NUM)
 		{
 			myZombie.init();
 			zombies.push_back(myZombie);
+			myZombieWeapon.init(myZombie);
+			zombieWeapons.push_back(myZombieWeapon);
+			zombieAliveCnt++;
 		}
 		printf("--- spawned zombies. total zombie = %i ---\n", zombies.size());
 		canSpawnZombie = false;
@@ -96,23 +117,23 @@ void GameEnvironment::updateZombie(SpriteSheet& m_SpriteSheet, player& myPlayer,
 	while (i < zombies.size())
 	{
 		//attack player if close
-		if (zombies[i].calDistance(myPlayer) < zombies[i].attackRange + myPlayer.size)
+		if (zombies[i].calDistance(myPlayer) <= zombies[i].attackRange + myPlayer.size)
 		{
 			if (zombies[i].attack(myPlayer))
 			{
+//				printf("HIT BY ZOMBIES\n");
 				myAudio.playZombieAttack(zombies[i]);
 				myAudio.playPlayerHurt(myPlayer);
 			}
 		}
-		//only move if its not attacking
-		else
-		{
-			zombies[i].move(myPlayer);
-		}
+		//move
+		zombies[i].move(myPlayer);
+		zombieWeapons[i].move(zombies[i], myPlayer);
 		//render zombie
-//		setZombieAnimation(zombies[i]);
 		m_SpriteSheet.setZombieAnimation(zombies[i]);
+		m_SpriteSheet.setZombieWeaponAnimation(zombieWeapons[i]);
 		zombies[i].render(camera);
+		zombieWeapons[i].render(camera, (zombies[i].health > 0));
 		i++;
 	}//
 }
@@ -151,16 +172,17 @@ void GameEnvironment::updateBullet(
 			{
 				if (bullets[i].checkCollision(zombies[j]))
 				{
-					collised = true;
+					collised = (zombies[j].health > 0);
 					zombies[j].hurt();
 					myAudio.playHitZombie(bullets[i]);
 
 					//remove zombie if it's health is below 0
-					if (zombies[j].health < 0)
+					if (zombies[j].health <= 0 && collised)
 					{
 						zombies[j].currentState = zombieState::DEAD;
 						bloodpools.push_back(zombies[j]);
-						zombies.erase(zombies.begin() + j);
+					//	zombies.erase(zombies.begin() + j);
+					//	zombieWeapons.erase(zombieWeapons.begin() + j);
 						canSpawnZombie = true;
 						m_GameObjective.totalZombieKilled++;
 
@@ -180,7 +202,8 @@ void GameEnvironment::updateBullet(
 				//update bullet position
 				bullets[i].updateRenderPosition();
 				//render bullet
-				gBulletTexture.render(camera, bullets[i].rx, bullets[i].ry, bullets[i].size, bullets[i].size, NULL, bullets[i].rotation);
+				gBulletTexture.render(camera, bullets[i].rx, bullets[i].ry, bullets[i].size, bullets[i].size, 
+					NULL, bullets[i].rotation);
 				i++;
 			}
 		}
@@ -193,6 +216,7 @@ void GameEnvironment::init()
 	trees.clear();
 	harmZones.clear();
 	zombies.clear();
+	zombieWeapons.clear();
 	bloodpools.clear();
 	bullets.clear();
 	signalZones.clear();
@@ -210,6 +234,7 @@ void GameEnvironment::close()
 	trees.clear();
 	harmZones.clear();
 	zombies.clear();
+	zombieWeapons.clear();
 	bloodpools.clear();
 	bullets.clear();
 	signalZones.clear();

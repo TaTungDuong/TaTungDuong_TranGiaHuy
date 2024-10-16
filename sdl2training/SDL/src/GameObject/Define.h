@@ -1,5 +1,7 @@
 #pragma once
 #include"Singleton.h"
-#define SCREEN_WIDTH 1152
-#define SCREEN_HEIDHT 640
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIDHT 720
+#define SCREEN_HEIGHT 720
 #define LIMIT_FPS 60
+

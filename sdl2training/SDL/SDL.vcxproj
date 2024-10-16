@@ -18,6 +18,87 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\GameManager\ResourceManagers.h" />
+    <ClInclude Include="src\GameManager\Singleton.h" />
+    <ClInclude Include="src\GameObject\BaseObject.h" />
+    <ClInclude Include="src\GameObject\Camera.h" />
+    <ClInclude Include="src\GameObject\CMath.h" />
+    <ClInclude Include="src\GameObject\Define.h" />
+    <ClInclude Include="src\GameObject\KeyState.h" />
+    <ClInclude Include="src\GameObject\MouseButton.h" />
+    <ClInclude Include="src\GameObject\Renderer.h" />
+    <ClInclude Include="src\GameObject\Sound.h" />
+    <ClInclude Include="src\GameObject\Sprite2D.h" />
+    <ClInclude Include="src\GameObject\SpriteAnimation.h" />
+    <ClInclude Include="src\GameObject\Text.h" />
+    <ClInclude Include="src\GameObject\TextureManager.h" />
+    <ClInclude Include="src\GameStates\GameStateBase.h" />
+    <ClInclude Include="src\GameStates\GameStateMachine.h" />
+    <ClInclude Include="src\GameStates\GSIntro.h" />
+    <ClInclude Include="src\GameStates\GSMenu.h" />
+    <ClInclude Include="src\GameStates\GSPlay.h" />
+    <ClInclude Include="src\Game\Game.h" />
+    <ClInclude Include="src\Include\Audio.h" />
+    <ClInclude Include="src\Include\Button.h" />
+    <ClInclude Include="src\Include\GameDialogue.h" />
+    <ClInclude Include="src\Include\GameEnvironment.h" />
+    <ClInclude Include="src\Include\GameObject.h" />
+    <ClInclude Include="src\Include\GameObjective.h" />
+    <ClInclude Include="src\Include\GameResource.h" />
+    <ClInclude Include="src\Include\GameUI.h" />
+    <ClInclude Include="src\Include\GameWindows.h" />
+    <ClInclude Include="src\Include\Global.h" />
+    <ClInclude Include="src\Include\Graphics.h" />
+    <ClInclude Include="src\Include\Player.h" />
+    <ClInclude Include="src\Include\PlayerAnimation.h" />
+    <ClInclude Include="src\Include\PlayerEffect.h" />
+    <ClInclude Include="src\Include\PopUpText.h" />
+    <ClInclude Include="src\Include\SpriteSheet.h" />
+    <ClInclude Include="src\Include\Timer.h" />
+    <ClInclude Include="src\Include\Weapon.h" />
+    <ClInclude Include="src\Include\Zombie.h" />
+    <ClInclude Include="src\Include\ZombieWeapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GameFeatures\Audio.cpp" />
+    <ClCompile Include="src\GameFeatures\Button.cpp" />
+    <ClCompile Include="src\GameFeatures\GameDialogue.cpp" />
+    <ClCompile Include="src\GameFeatures\GameEnvironment.cpp" />
+    <ClCompile Include="src\GameFeatures\GameObject.cpp" />
+    <ClCompile Include="src\GameFeatures\GameObjective.cpp" />
+    <ClCompile Include="src\GameFeatures\GameResource.cpp" />
+    <ClCompile Include="src\GameFeatures\GameUI.cpp" />
+    <ClCompile Include="src\GameFeatures\GameWindows.cpp" />
+    <ClCompile Include="src\GameFeatures\Global.cpp" />
+    <ClCompile Include="src\GameFeatures\Graphics.cpp" />
+    <ClCompile Include="src\GameFeatures\Player.cpp" />
+    <ClCompile Include="src\GameFeatures\PlayerAnimation.cpp" />
+    <ClCompile Include="src\GameFeatures\PlayerEffect.cpp" />
+    <ClCompile Include="src\GameFeatures\PopUpText.cpp" />
+    <ClCompile Include="src\GameFeatures\SpriteSheet.cpp" />
+    <ClCompile Include="src\GameFeatures\Timer.cpp" />
+    <ClCompile Include="src\GameFeatures\Weapon.cpp" />
+    <ClCompile Include="src\GameFeatures\Zombie.cpp" />
+    <ClCompile Include="src\GameFeatures\ZombieWeapon.cpp" />
+    <ClCompile Include="src\GameManager\ResourceManagers.cpp" />
+    <ClCompile Include="src\GameObject\Camera.cpp" />
+    <ClCompile Include="src\GameObject\CMath.cpp" />
+    <ClCompile Include="src\GameObject\MouseButton.cpp" />
+    <ClCompile Include="src\GameObject\Renderer.cpp" />
+    <ClCompile Include="src\GameObject\Sound.cpp" />
+    <ClCompile Include="src\GameObject\Sprite2D.cpp" />
+    <ClCompile Include="src\GameObject\SpriteAnimation.cpp" />
+    <ClCompile Include="src\GameObject\Text.cpp" />
+    <ClCompile Include="src\GameObject\TextureManager.cpp" />
+    <ClCompile Include="src\GameStates\GameStateBase.cpp" />
+    <ClCompile Include="src\GameStates\GameStateMachine.cpp" />
+    <ClCompile Include="src\GameStates\GSIntro.cpp" />
+    <ClCompile Include="src\GameStates\GSMenu.cpp" />
+    <ClCompile Include="src\GameStates\GSPlay.cpp" />
+    <ClCompile Include="src\Game\Game.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -165,61 +246,6 @@
       <Command>xcopy /y /d "$(SolutionDir)SDLLib\DynamicLib\*.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\GameManager\ResourceManagers.cpp" />
-    <ClCompile Include="src\GameObject\Camera.cpp" />
-    <ClCompile Include="src\GameObject\CMath.cpp" />
-    <ClCompile Include="src\GameObject\MouseButton.cpp" />
-    <ClCompile Include="src\GameObject\Player.cpp" />
-    <ClCompile Include="src\GameObject\Renderer.cpp" />
-    <ClCompile Include="src\GameObject\Sound.cpp" />
-    <ClCompile Include="src\GameObject\Sprite2D.cpp" />
-    <ClCompile Include="src\GameObject\SpriteAnimation.cpp" />
-    <ClCompile Include="src\GameObject\Text.cpp" />
-    <ClCompile Include="src\GameObject\TextureManager.cpp" />
-    <ClCompile Include="src\GameObject\Timer.cpp" />
-    <ClCompile Include="src\GameObject\Weapon.cpp" />
-    <ClCompile Include="src\GameStates\GameWindows.cpp" />
-    <ClCompile Include="src\GameStates\GameLoop.cpp" />
-    <ClCompile Include="src\GameStates\GameStateBase.cpp" />
-    <ClCompile Include="src\GameStates\GameStateMachine.cpp" />
-    <ClCompile Include="src\GameStates\GSIntro.cpp" />
-    <ClCompile Include="src\GameStates\GSMenu.cpp" />
-    <ClCompile Include="src\GameStates\GSPlay.cpp" />
-    <ClCompile Include="src\GameStates\KeyEvents.cpp" />
-    <ClCompile Include="src\GameStates\LTexture.cpp" />
-    <ClCompile Include="src\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Game.h" />
-    <ClInclude Include="src\GameManager\ResourceManagers.h" />
-    <ClInclude Include="src\GameManager\Singleton.h" />
-    <ClInclude Include="src\GameObject\BaseObject.h" />
-    <ClInclude Include="src\GameObject\Camera.h" />
-    <ClInclude Include="src\GameObject\CMath.h" />
-    <ClInclude Include="src\GameObject\Define.h" />
-    <ClInclude Include="src\GameObject\KeyState.h" />
-    <ClInclude Include="src\GameObject\MouseButton.h" />
-    <ClInclude Include="src\GameObject\Player.h" />
-    <ClInclude Include="src\GameObject\Renderer.h" />
-    <ClInclude Include="src\GameObject\Sound.h" />
-    <ClInclude Include="src\GameObject\Sprite2D.h" />
-    <ClInclude Include="src\GameObject\SpriteAnimation.h" />
-    <ClInclude Include="src\GameObject\Text.h" />
-    <ClInclude Include="src\GameObject\TextureManager.h" />
-    <ClInclude Include="src\GameObject\Timer.h" />
-    <ClInclude Include="src\GameObject\Weapon.h" />
-    <ClInclude Include="src\GameStates\GameWindows.h" />
-    <ClInclude Include="src\GameStates\GameLoop.h" />
-    <ClInclude Include="src\GameStates\GameStateBase.h" />
-    <ClInclude Include="src\GameStates\GameStateMachine.h" />
-    <ClInclude Include="src\GameStates\GSIntro.h" />
-    <ClInclude Include="src\GameStates\GSMenu.h" />
-    <ClInclude Include="src\GameStates\GSPlay.h" />
-    <ClInclude Include="src\GameStates\KeyEvents.h" />
-    <ClInclude Include="src\GameStates\LTexture.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

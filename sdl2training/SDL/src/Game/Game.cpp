@@ -15,7 +15,8 @@ Game::Game()
 }
 bool Game::Init()
 {
-	bool success=	Renderer::GetInstance()->Init();
+//	bool success = Renderer::GetInstance()->Init();
+	bool success = GameWindows::GetInstance()->init();
 	GameStateMachine::GetInstance()->PushState(StateType::STATE_INTRO);
 	return success;
 }

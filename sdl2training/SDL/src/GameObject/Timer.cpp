@@ -1,4 +1,4 @@
-#include "Timer.h"
+#include "GameObject/Timer.h"
 #include <SDL_timer.h>
 
 Timer::Timer()

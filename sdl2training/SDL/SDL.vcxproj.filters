@@ -13,129 +13,58 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\GameState">
-      <UniqueIdentifier>{db650f7a-84ca-48a1-a91a-eac8b140db4f}</UniqueIdentifier>
+    <Filter Include="Source Files\GameFeatures">
+      <UniqueIdentifier>{f71e8618-383d-4502-9191-2a95cc542a92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStates">
+      <UniqueIdentifier>{f691e652-3c0a-437e-a271-4e55ef377c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObject">
+      <UniqueIdentifier>{05bfa801-3b75-4027-8b02-acfc81c240ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GameManager">
-      <UniqueIdentifier>{ae5aeb1b-3347-42af-857b-6055349dade6}</UniqueIdentifier>
+      <UniqueIdentifier>{5b046e81-4a26-4dff-8752-ede4b0f8ca86}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameObjects">
-      <UniqueIdentifier>{b61357b4-8507-48e7-95d0-cba6485693e1}</UniqueIdentifier>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{9a967e24-cb9b-4c49-8123-e381665bc123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStates\MainStates">
+      <UniqueIdentifier>{0fa6f3c4-56df-4301-b943-6d7312b62050}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStates\SubStates">
+      <UniqueIdentifier>{6c7436aa-1eae-410f-918a-2d927f65e3ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\GameObject\Camera.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\CMath.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\MouseButton.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Renderer.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Sound.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Sprite2D.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\SpriteAnimation.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Text.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\TextureManager.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Timer.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameManager\ResourceManagers.cpp">
-      <Filter>Source Files\GameManager</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameStates\GameStateBase.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameStates\GameStateMachine.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameStates\GSIntro.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameStates\GSMenu.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameStates\GSPlay.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameStates\GameWindows.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameStates\GameLoop.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameStates\KeyEvents.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameStates\LTexture.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Player.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject\Weapon.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\GameObject\BaseObject.h">
-      <Filter>Source Files\GameObjects</Filter>
+    <ClInclude Include="src\Include\Audio.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Camera.h">
-      <Filter>Source Files\GameObjects</Filter>
+    <ClInclude Include="src\Include\Button.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\CMath.h">
-      <Filter>Source Files\GameObjects</Filter>
+    <ClInclude Include="src\Include\GameObject.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Define.h">
-      <Filter>Source Files\GameObjects</Filter>
+    <ClInclude Include="src\Include\Global.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\MouseButton.h">
-      <Filter>Source Files\GameObjects</Filter>
+    <ClInclude Include="src\Include\Graphics.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Renderer.h">
-      <Filter>Source Files\GameObjects</Filter>
+    <ClInclude Include="src\Include\Player.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Sound.h">
-      <Filter>Source Files\GameObjects</Filter>
+    <ClInclude Include="src\Include\PopUpText.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Sprite2D.h">
-      <Filter>Source Files\GameObjects</Filter>
+    <ClInclude Include="src\Include\Timer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\SpriteAnimation.h">
-      <Filter>Source Files\GameObjects</Filter>
+    <ClInclude Include="src\Include\Weapon.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Text.h">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\TextureManager.h">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject\Timer.h">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Game.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="src\Include\Zombie.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\GameManager\ResourceManagers.h">
       <Filter>Source Files\GameManager</Filter>
@@ -143,41 +72,202 @@
     <ClInclude Include="src\GameManager\Singleton.h">
       <Filter>Source Files\GameManager</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameObject\TextureManager.h">
+      <Filter>Source Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Renderer.h">
+      <Filter>Source Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Define.h">
+      <Filter>Source Files\GameObject</Filter>
+    </ClInclude>
     <ClInclude Include="src\GameStates\GameStateBase.h">
-      <Filter>Source Files\GameState</Filter>
+      <Filter>Source Files\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\GameStates\GameStateMachine.h">
-      <Filter>Source Files\GameState</Filter>
+      <Filter>Source Files\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameStates\GSIntro.h">
-      <Filter>Source Files\GameState</Filter>
+    <ClInclude Include="src\GameObject\BaseObject.h">
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameStates\GSMenu.h">
-      <Filter>Source Files\GameState</Filter>
+    <ClInclude Include="src\GameObject\Camera.h">
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameStates\GSPlay.h">
-      <Filter>Source Files\GameState</Filter>
+    <ClInclude Include="src\GameObject\CMath.h">
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="src\GameObject\KeyState.h">
-      <Filter>Source Files\GameObjects</Filter>
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameStates\GameWindows.h">
-      <Filter>Source Files\GameState</Filter>
+    <ClInclude Include="src\GameObject\MouseButton.h">
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameStates\GameLoop.h">
-      <Filter>Source Files\GameState</Filter>
+    <ClInclude Include="src\GameObject\Sound.h">
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameStates\KeyEvents.h">
-      <Filter>Source Files\GameState</Filter>
+    <ClInclude Include="src\GameObject\Sprite2D.h">
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameStates\LTexture.h">
-      <Filter>Source Files\GameState</Filter>
+    <ClInclude Include="src\GameObject\SpriteAnimation.h">
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Player.h">
-      <Filter>Source Files\GameObjects</Filter>
+    <ClInclude Include="src\GameObject\Text.h">
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameObject\Weapon.h">
-      <Filter>Source Files\GameObjects</Filter>
+    <ClInclude Include="src\Include\PlayerAnimation.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Include\SpriteSheet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameObjective.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameEnvironment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameDialogue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameWindows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game\Game.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStates\GSIntro.h">
+      <Filter>Source Files\GameStates\MainStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStates\GSMenu.h">
+      <Filter>Source Files\GameStates\MainStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStates\GSPlay.h">
+      <Filter>Source Files\GameStates\MainStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\ZombieWeapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\PlayerEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GameFeatures\Audio.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Button.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameObject.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Global.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Graphics.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Player.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\PopUpText.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Timer.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Weapon.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Zombie.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameManager\ResourceManagers.cpp">
+      <Filter>Source Files\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\TextureManager.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Renderer.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStates\GameStateBase.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStates\GameStateMachine.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Camera.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\CMath.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\MouseButton.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Sound.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Sprite2D.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\SpriteAnimation.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Text.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\PlayerAnimation.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\SpriteSheet.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameObjective.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameEnvironment.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameUI.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameResource.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameDialogue.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameWindows.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Game.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStates\GSIntro.cpp">
+      <Filter>Source Files\GameStates\MainStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStates\GSMenu.cpp">
+      <Filter>Source Files\GameStates\MainStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStates\GSPlay.cpp">
+      <Filter>Source Files\GameStates\MainStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\ZombieWeapon.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\PlayerEffect.cpp">
+      <Filter>Source Files\GameFeatures</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

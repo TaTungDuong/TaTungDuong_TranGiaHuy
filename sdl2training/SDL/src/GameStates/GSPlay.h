@@ -1,6 +1,26 @@
 #pragma once
 #include "GameStateBase.h"
 
+#include "Include/Global.h"
+#include "Include/Graphics.h"
+#include "Include/Player.h"
+#include "Include/PlayerAnimation.h"
+#include "Include/PlayerEffect.h"
+#include "Include/Zombie.h"
+#include "Include/Weapon.h"
+#include "Include/Timer.h"
+#include "Include/Audio.h"
+#include "Include/PopUpText.h"
+#include "Include/Button.h"
+
+#include "Include/SpriteSheet.h"
+#include "Include/GameEnvironment.h"
+#include "Include/GameResource.h"
+#include "Include/GameDialogue.h"
+#include "Include/GameUI.h"
+#include "Include/GameWindows.h"
+#include "GameStates/GSMenu.h"
+
 class Sprite2D;
 class SpriteAnimation;
 class MouseButton;
@@ -35,5 +55,6 @@ private:
 	
 	float time = 0.0f;
 	float m_Velocity = 10.0f;
+
 };
 

@@ -65,5 +65,6 @@ void playerAnimation::render(SDL_Rect& camera)
 	else {
 		isFlipped = false;
 	}
-	currentTexture->render(rx - camera.x, ry - camera.y - 16, size, size, currentClip, 0, NULL, isFlipped ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
+	currentTexture->render(rx - camera.x, ry - camera.y - 16, size, size, 
+		currentClip, 0, NULL, isFlipped ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }

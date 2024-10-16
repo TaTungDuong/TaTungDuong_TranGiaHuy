@@ -3,6 +3,8 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include "GameManager/Singleton.h"
+#include "Include/GameWindows.h"
+
 class Renderer :public CSingleton<Renderer>{
 public:
 	Renderer();
@@ -15,4 +17,6 @@ public:
 private:
 	SDL_Window* gWindow;
 	SDL_Renderer* gRenderer;
+
+	GameWindows m_GameWindows;
 };

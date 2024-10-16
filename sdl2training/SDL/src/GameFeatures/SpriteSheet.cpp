@@ -22,6 +22,21 @@ void SpriteSheet::loadSpritesheet(
 	}
 }
 void SpriteSheet::loadSpritesheet(
+	enum playerEffectState state,
+	std::map<playerEffectState, LTexture>& spritesheet,
+	std::map<playerEffectState,
+	std::vector <SDL_Rect>>&spritesheetClip,
+	int totalFrame
+)
+{
+	int w = spritesheet[state].getWidth() / totalFrame;
+	int h = spritesheet[state].getHeight();
+	for (int i = 0; i < totalFrame; i++)
+	{
+		spritesheetClip[state].push_back({ i * w, 0, w , h });
+	}
+}
+void SpriteSheet::loadSpritesheet(
 	enum playerState state, 
 	std::map<playerState, LTexture>& spritesheet,
 	std::map<playerState, 
@@ -40,6 +55,20 @@ void SpriteSheet::loadSpritesheet(
 	enum zombieState state, 
 	std::map<zombieState, LTexture>& spritesheet,
 	std::map<zombieState, std::vector <SDL_Rect>>& spritesheetClip, 
+	int totalFrame
+)
+{
+	int w = spritesheet[state].getWidth() / totalFrame;
+	int h = spritesheet[state].getHeight();
+	for (int i = 0; i < totalFrame; i++)
+	{
+		spritesheetClip[state].push_back({ i * w, 0, w , h });
+	}
+}
+void SpriteSheet::loadSpritesheet(
+	enum zombieWeaponState state,
+	std::map<zombieWeaponState, LTexture>& spritesheet,
+	std::map<zombieWeaponState, std::vector <SDL_Rect>>& spritesheetClip,
 	int totalFrame
 )
 {
@@ -123,6 +152,23 @@ bool SpriteSheet::loadPlayerAnimationMedia()
 	else
 	{
 		loadSpritesheet(playerAnimationState::RELOAD, gPlayerAnimationTexture, gPlayerAnimationClips, PLAYER_ANIMATION_RELOAD_ANIMATION_FRAMES);
+	}
+
+	return success;
+}
+bool SpriteSheet::loadPlayerEffectMedia()
+{
+	bool success = true;
+	// player effects
+	//drink
+	if (!gPlayerEffectTexture[playerEffectState::DRINK].loadFromFile("assets-main/sprites/objects/items/milk_128_drink.png"))
+	{
+		printf("Failed to load player drink effect texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(playerEffectState::DRINK, gPlayerEffectTexture, gPlayerEffectClips, 13);
 	}
 
 	return success;
@@ -229,26 +275,133 @@ bool SpriteSheet::loadPlayerMedia()
 bool SpriteSheet::loadZombieMedia()
 {
 	bool success = true;
-	//zombie
+	int cnt;
+
+	//Zombie
+	// #0. Cyborg
+	cnt = 0;
 	//walk
-	if (!gZombieTexture[zombieState::WALK].loadFromFile("assets-main/sprites/characters/enemies/cyborg/cyborg_walk_128.png"))
+	if (!gZombieTexture[cnt][zombieState::WALK].loadFromFile("assets-main/sprites/characters/enemies/cyborg/cyborg_walk_128.png"))
 	{
 		printf("Failed to load zombie walk texture!\n");
 		success = false;
 	}
 	else
 	{
-		loadSpritesheet(zombieState::WALK, gZombieTexture, gZombieClips, ZOMBIE_WALK_ANIMATION_FRAMES);
+		loadSpritesheet(zombieState::WALK, gZombieTexture[cnt], gZombieClips[cnt], ZOMBIE_WALK_ANIMATION_FRAMES);
 	}
 	//attack
-	if (!gZombieTexture[zombieState::ATTACK].loadFromFile("assets-main/sprites/characters/enemies/cyborg/cyborg_attack_128.png")) //TODO: change to zombie attack
+	if (!gZombieTexture[cnt][zombieState::ATTACK].loadFromFile("assets-main/sprites/characters/enemies/cyborg/cyborg_attack_128.png")) //TODO: change to zombie attack
 	{
 		printf("Failed to load zombie attack texture!\n");
 		success = false;
 	}
 	else
 	{
-		loadSpritesheet(zombieState::ATTACK, gZombieTexture, gZombieClips, ZOMBIE_ATTACK_ANIMATION_FRAMES);
+		loadSpritesheet(zombieState::ATTACK, gZombieTexture[cnt], gZombieClips[cnt], ZOMBIE_ATTACK_ANIMATION_FRAMES);
+	}
+
+	// #1. Drone
+	cnt = 1;
+	//walk
+	if (!gZombieTexture[cnt][zombieState::WALK].loadFromFile("assets-main/sprites/characters/enemies/drone/drone_walk_128.png"))
+	{
+		printf("Failed to load zombie walk texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(zombieState::WALK, gZombieTexture[cnt], gZombieClips[cnt], ZOMBIE_WALK_ANIMATION_FRAMES);
+	}
+	//attack
+	if (!gZombieTexture[cnt][zombieState::ATTACK].loadFromFile("assets-main/sprites/characters/enemies/drone/drone_attack_128.png")) //TODO: change to zombie attack
+	{
+		printf("Failed to load zombie attack texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(zombieState::ATTACK, gZombieTexture[cnt], gZombieClips[cnt], ZOMBIE_ATTACK_ANIMATION_FRAMES);
+	}
+
+	// #2. Uwu
+	cnt = 2;
+	//walk
+	if (!gZombieTexture[cnt][zombieState::WALK].loadFromFile("assets-main/sprites/characters/enemies/uwu/uwu_walk_128.png"))
+	{
+		printf("Failed to load zombie walk texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(zombieState::WALK, gZombieTexture[cnt], gZombieClips[cnt], ZOMBIE_WALK_ANIMATION_FRAMES);
+	}
+	//attack
+	if (!gZombieTexture[cnt][zombieState::ATTACK].loadFromFile("assets-main/sprites/characters/enemies/uwu/uwu_attack_128.png")) //TODO: change to zombie attack
+	{
+		printf("Failed to load zombie attack texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(zombieState::ATTACK, gZombieTexture[cnt], gZombieClips[cnt], ZOMBIE_ATTACK_ANIMATION_FRAMES);
+	}
+
+	// #3. Uwu
+	cnt = 3;
+	//walk
+	if (!gZombieTexture[cnt][zombieState::WALK].loadFromFile("assets-main/sprites/characters/enemies/creeper/creeper_walk_128.png"))
+	{
+		printf("Failed to load zombie walk texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(zombieState::WALK, gZombieTexture[cnt], gZombieClips[cnt], ZOMBIE_WALK_ANIMATION_FRAMES);
+	}
+	//attack
+	if (!gZombieTexture[cnt][zombieState::ATTACK].loadFromFile("assets-main/sprites/characters/enemies/creeper/creeper_attack_128.png")) //TODO: change to zombie attack
+	{
+		printf("Failed to load zombie attack texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(zombieState::ATTACK, gZombieTexture[cnt], gZombieClips[cnt], ZOMBIE_ATTACK_ANIMATION_FRAMES);
+	}
+
+	//load dead animation
+	for (int i = 0; i < gZombieTexture->size(); i++)
+	{
+		if (!gZombieTexture[i][zombieState::DEAD].loadFromFile("assets-main/sprites/characters/enemies/enemy_die_128.png"))
+		{
+			printf("Failed to load zombie dead texture!\n");
+			success = false;
+		}
+		else
+		{
+			loadSpritesheet(zombieState::DEAD, gZombieTexture[i], gZombieClips[i], ZOMBIE_WALK_ANIMATION_FRAMES);
+		}
+	}
+
+	return success;
+}
+bool SpriteSheet::loadZombieWeaponMedia()
+{
+	bool success = true;
+	int cnt;
+
+	//Zombie Weapon
+	// #0. Pistol
+	cnt = 0;
+	if (!gZombieWeaponTexture[cnt][zombieWeaponState::ATTACK].loadFromFile("assets-main/sprites/weapons/pistol/pistol_128.png")) //TODO: change to zombie weapon
+	{
+		printf("Failed to load zombie weapon texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(zombieWeaponState::ATTACK, gZombieWeaponTexture[cnt], gZombieWeaponClips[cnt], 1);
 	}
 
 	return success;
@@ -351,11 +504,31 @@ void SpriteSheet::setPlayerAnimationAnimation(playerAnimation& myPlayerAnimation
 	myPlayerAnimation.setAnimation(gPlayerAnimationTexture[myPlayerAnimation.currentState],
 		gPlayerAnimationClips[myPlayerAnimation.currentState][myPlayerAnimation.currentFrame]);
 }
+void SpriteSheet::setPlayerEffectAnimation(playerEffect& myPlayerEffect)
+{
+	myPlayerEffect.currentState = playerEffectState::DRINK;
+	switch (myPlayerEffect.currentState)
+	{
+	case playerEffectState::DRINK:
+		myPlayerEffect.currentTotalFrame = 13;
+		break;
+	case playerEffectState::IDLE:
+
+		break;
+	}
+	myPlayerEffect.setAnimation(gPlayerEffectTexture[myPlayerEffect.currentState],
+		gPlayerEffectClips[myPlayerEffect.currentState][myPlayerEffect.currentFrame]);
+}
 void SpriteSheet::setZombieAnimation(zombie& source)
 {
 	if (source.currentTotalFrame == ZOMBIE_ATTACK_ANIMATION_FRAMES && source.currentFrame < ZOMBIE_ATTACK_ANIMATION_FRAMES)
 	{
 		source.currentState = zombieState::ATTACK;
+	}
+
+	if (source.health <= 0)
+	{
+		source.currentState = zombieState::DEAD;
 	}
 
 	switch (source.currentState)
@@ -374,14 +547,46 @@ void SpriteSheet::setZombieAnimation(zombie& source)
 		}
 		source.currentTotalFrame = ZOMBIE_ATTACK_ANIMATION_FRAMES;
 		break;
+	case zombieState::DEAD:
+		if (source.currentFrame > ZOMBIE_WALK_ANIMATION_FRAMES - 1)
+		{
+			source.currentFrame = ZOMBIE_WALK_ANIMATION_FRAMES - 1;
+		}
+		source.currentTotalFrame = ZOMBIE_WALK_ANIMATION_FRAMES;
+		break;
 	}
 
-	source.setAnimation(gZombieTexture[source.currentState], gZombieClips[source.currentState][source.currentFrame]);
+	source.setAnimation(gZombieTexture[source.type][source.currentState], 
+		gZombieClips[source.type][source.currentState][source.currentFrame]);
+}
+void SpriteSheet::setZombieWeaponAnimation(zombieWeapon& source)
+{
+	source.currentState = zombieWeaponState::ATTACK;
+
+	switch (source.currentState)
+	{
+	case zombieWeaponState::ATTACK:
+		if (source.currentFrame > 1 - 1)
+		{
+			source.currentFrame = 0;
+		}
+		source.currentFrame = 0;
+		source.currentTotalFrame = 1;
+		break;
+	}
+
+	source.type = 0;
+	source.currentState = zombieWeaponState::ATTACK;
+	source.currentFrame = 0;
+
+	source.setAnimation(gZombieWeaponTexture[source.type][source.currentState], 
+		gZombieWeaponClips[source.type][source.currentState][source.currentFrame]);
 }
 
 void SpriteSheet::updateAnimation(
 	player& myPlayer,
 	playerAnimation& myPlayerAnimation,
+	playerEffect& myPlayerEffect,
 	std::vector<zombie>& zombies,
 	LTimer deltaTimer
 )
@@ -393,10 +598,20 @@ void SpriteSheet::updateAnimation(
 		animationTimeCounter = 0;
 		myPlayer.currentFrame++;
 		myPlayerAnimation.currentFrame++;
+		myPlayerEffect.currentFrame++;
 
 		for (int i = 0; i < zombies.size(); i++)
 		{
-			zombies[i].currentFrame++;
+			if (zombies[i].currentState != zombieState::DEAD)
+			{
+				zombies[i].currentFrame++;
+				continue;
+			}
+
+			if (zombies[i].currentFrame <= ZOMBIE_WALK_ANIMATION_FRAMES - 1)
+			{
+				zombies[i].currentFrame++;
+			}
 		}
 	}
 
@@ -409,11 +624,16 @@ void SpriteSheet::updateAnimation(
 	{
 		myPlayerAnimation.currentFrame = 0;
 	}
+	if (myPlayerEffect.currentFrame > myPlayerEffect.currentTotalFrame - 1)
+	{
+		myPlayerEffect.currentFrame = 0;
+	}
 }
 
 void SpriteSheet::updatePlayer(
 	player& myPlayer,
 	playerAnimation& myPlayerAnimation,
+	playerEffect& myPlayerEffect,
 	int mouseX,
 	int mouseY,
 	std::vector<gameObject>& trees,
@@ -430,10 +650,12 @@ void SpriteSheet::updatePlayer(
 	//set player's animation based on current state
 	setPlayerAnimation(myPlayer);
 	setPlayerAnimationAnimation(myPlayerAnimation);
+	setPlayerEffectAnimation(myPlayerEffect);
 
 	//calulate player rotation
 	myPlayer.calRotation(camera, mouseX, mouseY);
 	myPlayerAnimation.calRotation(camera, mouseX, mouseY);
+	myPlayerEffect.calRotation(camera, mouseX, mouseY);
 
 	myPlayer.speed = PLAYER_SPEED;
 	//slow down player if player walk into trees
@@ -447,6 +669,7 @@ void SpriteSheet::updatePlayer(
 		}
 	}
 	myPlayerAnimation.speed = myPlayer.speed;
+	myPlayerEffect.speed = myPlayer.speed;
 
 	//calulate player position
 	float dirX = myPlayer.vx * myPlayer.speed * deltaTimer.getDeltaTime();
@@ -455,6 +678,8 @@ void SpriteSheet::updatePlayer(
 	myPlayer.py += dirY;
 	myPlayerAnimation.px = myPlayer.px;
 	myPlayerAnimation.py = myPlayer.py;
+	myPlayerEffect.px = myPlayer.px;
+	myPlayerEffect.py = myPlayer.py;
 
 	//check collision with game objects
 	//zombies
@@ -484,8 +709,9 @@ void SpriteSheet::updatePlayer(
 				{
 					myPlayer.health += HEALTH_PICKUP_HEAL;
 				}
+				myPlayerEffect.gPlayerEffectTimeCounter[myPlayerEffect.currentState] = 0.0f;
 				healthPickUps.erase(healthPickUps.begin() + i);
-				myAudio.playCollectObject();
+				myAudio.playDrinkMilk();
 			}
 			break;
 		}
@@ -494,6 +720,7 @@ void SpriteSheet::updatePlayer(
 	//set player's render position
 	myPlayer.updateRenderPosition();
 	myPlayerAnimation.updateRenderPosition();
+	myPlayerEffect.updateRenderPosition();
 
 	//check if player is in harm zone
 	for (int i = 0; i < harmZones.size(); i++)
@@ -509,7 +736,8 @@ void SpriteSheet::updatePlayer(
 		}
 	}
 
-	//render player
+	//render player++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	myPlayerAnimation.render(camera);
 	myPlayer.render(camera);
+	myPlayerEffect.render(camera);
 }

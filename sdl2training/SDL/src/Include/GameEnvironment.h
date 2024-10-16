@@ -25,6 +25,7 @@ public:
 	std::vector<gameObject> harmZones;
 	std::vector<gameObject> bloodpools;
 	std::vector<zombie> zombies;
+	std::vector<zombieWeapon> zombieWeapons;
 	std::vector<bullet> bullets;
 	std::vector<gameObject> signalZones;
 	std::vector<gameObject> healthPickUps;
@@ -34,6 +35,7 @@ public:
 
 	bool canSpawnZombie = true;
 	zombie myZombie;
+	zombieWeapon myZombieWeapon;
 
 #pragma region Render and Update functions
 	void renderGround(SDL_Rect& camera);

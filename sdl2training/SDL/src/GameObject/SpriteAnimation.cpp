@@ -94,4 +94,3 @@ void SpriteAnimation::SetCurrentAction(int action)
 {
 	m_currentAction = action;
 }
-

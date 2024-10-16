@@ -10,7 +10,7 @@ public:
 #pragma region Objectives
 	int totalZombieKilled = 0;
 	bool tutorial = true;
-	int currentObjective = -1;
+	int currentObjective = 2;// -1;
 	bool objective[TOTAL_OBJECTIVE];
 	std::string objectiveText;
 	int timeLeft = TIME_LIMIT;

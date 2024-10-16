@@ -18,51 +18,76 @@ bool Renderer::Init()
 {
 	//Initialization flag
 	bool success = true;
-	//Set texture filtering to linear
-	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+
+	//Initialize SDL
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
 	{
-		printf("Warning: Linear texture filtering not enabled!");
-	}
-	//Create window
-	gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIDHT, SDL_WINDOW_SHOWN);
-	if (gWindow == NULL)
-	{
-		printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
+		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
 		success = false;
 	}
 	else
 	{
-		//Create renderer for window ( tao doi tuong renderer de co the render on window)
-		gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-		if (gRenderer == NULL)
+		//Initialize SDL_ttf
+		if (TTF_Init() == -1)
 		{
-			printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+			printf("Unable to init TTF: %s\n", SDL_GetError());
+			success = false;
+		}
+
+		//Set texture filtering to linear
+		if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+		{
+			printf("Warning: Linear texture filtering not enabled!");
+		}
+
+		//Create window
+		gWindow = SDL_CreateWindow("Catgirl & Shotgun Project", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN); //SDL_WINDOW_RESIZABLE
+		if (gWindow == NULL)
+		{
+			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
 			success = false;
 		}
 		else
 		{
-			//Initialize renderer color
-			SDL_SetRenderDrawColor(Renderer::GetInstance()->GetRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+			//Create vsynced renderer for window
+			gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+			if (gRenderer == NULL)
+			{
+				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+				success = false;
+			}
+			else
+			{
+				//Initialize renderer color
+				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
+				//Initialize PNG loading
+				int imgFlags = IMG_INIT_PNG;
+				if (!(IMG_Init(imgFlags) & imgFlags))
+				{
+					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+					success = false;
+				}
+
+				//Initialize SDL_mixer
+				//new code for the sound here==================
+				if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) < 0)
+				{
+					printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+					success = false;
+				}
+				Mix_AllocateChannels(48); //allocate audio channels
+
+				SDL_Surface* sf = IMG_Load("assets-main/sprites/ui/boot_splash/icon-circle.png");
+				SDL_SetWindowIcon(gWindow, sf);
+			}
 		}
 	}
 
-	//	//Initialize PNG loading
-	bool ret = true;
-	int imgFlags = IMG_INIT_PNG; //we can use other type maybe jpg, bmp...
-	if (!(IMG_Init(imgFlags) & imgFlags))
-	{
-		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
-		ret = false;
-	}
+	//set base scaling
+	SDL_RenderSetLogicalSize(gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	//Initialize SDL_ttf
-	if (TTF_Init() == -1)
-	{
-		printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
-		ret = false;
-	}
-
-	return (success && ret);
+	return success;
 }
 SDL_Window* Renderer::GetWindow()
 {

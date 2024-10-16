@@ -29,10 +29,12 @@ void GameStateMachine::ChangeState(StateType state)
 void GameStateMachine::ChangeState(std::shared_ptr<GameStateBase> state)
 {
 	m_pNextState = state;
+	printf("->CHANGE_STATE\n");
 }
 
 void GameStateMachine::PushState(StateType state)
 {
+	printf("->PUSH_STATE\n");
 	std::shared_ptr<GameStateBase> nextState = GameStateBase::CreateState(state);
 	// pause current state
 	if (!m_StateStack.empty()) {
@@ -44,6 +46,7 @@ void GameStateMachine::PushState(StateType state)
 
 void GameStateMachine::PopState()
 {
+	printf("->POP_STATE\n");
 	// cleanup the current state
 	if (!m_StateStack.empty()) {
 		m_StateStack.back()->Exit();
