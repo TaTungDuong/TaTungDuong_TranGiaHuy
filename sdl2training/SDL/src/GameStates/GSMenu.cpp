@@ -21,7 +21,6 @@ bool GSMenu::loadMedia()
 
 #pragma region Load_audio
 	//Load audio
-	myAudio.loadAudio();
 #pragma endregion
 	success = m_GameResource.loadMedia();
 	success = m_GameDialogue.loadMedia();
@@ -41,9 +40,8 @@ void GSMenu::Init()
 		else
 		{
 			//play background music
-			myAudio.playMenuMusic();
-
-			myAudio.stopBackgroundLoop();
+			Sound::GetInstance()->playMenuMusic();
+			Sound::GetInstance()->stopBackgroundLoop();
 
 			//show back the cursor
 			SDL_ShowCursor(SDL_ENABLE);
@@ -320,9 +318,9 @@ void GSMenu::handleMenuEvent(int& choice)
 void GSMenu::Menu()
 {
 	//play background music
-	myAudio.playMenuMusic();
+	Sound::GetInstance()->playMenuMusic();
 
-	myAudio.stopBackgroundLoop();
+	Sound::GetInstance()->stopBackgroundLoop();
 
 	//show back the cursor
 	SDL_ShowCursor(SDL_ENABLE);

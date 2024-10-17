@@ -6,7 +6,7 @@
 #include "Include/ZombieWeapon.h"
 #include "Include/PlayerAnimation.h"
 #include "Include/PlayerEffect.h"
-#include "Include/Audio.h"
+#include "Sound.h"
 
 class SpriteSheet {
 public:
@@ -107,8 +107,7 @@ public:
 		std::vector<bullet>& bullets,
 		std::vector<gameObject>& signalZones,
 		std::vector<gameObject>& healthPickUps,
-		LTimer deltaTimer,
-		audioManager& myAudio
+		LTimer deltaTimer
 	);
 };
 

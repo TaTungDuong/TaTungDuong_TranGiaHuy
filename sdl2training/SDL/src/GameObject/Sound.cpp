@@ -3,7 +3,7 @@
 
 Sound::Sound()
 {
-    m_PathMusic = "Data/Sounds/";
+    m_PathMusic = "assets-main/audio/";
     Init();
 }
 
@@ -50,7 +50,7 @@ void Sound::PlaySound(const std::string& name)
         }
         else
         {
-            printf("No sound available can play");
+            printf("No sound available can play: %s\n", name.c_str());// 
         }
     }
     //If music is being played
@@ -105,11 +105,10 @@ void Sound::LoadSound(const std::string& name)
    }
    else
    {
-       printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
+       printf("Failed to load beat music: %s! SDL_mixer Error: %s\n", name.c_str(), Mix_GetError());
 
    }
 }
-
 
 void Sound::LoadSfx(const std::string& name)
 {
@@ -123,7 +122,7 @@ void Sound::LoadSfx(const std::string& name)
 	Mix_Chunk * chunk = Mix_LoadWAV(path.c_str());
 	if (chunk == nullptr)
 	{
-		printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
+        printf("Failed to load beat music: %s! SDL_mixer Error: %s\n", name.c_str(), Mix_GetError());
 	}
 	else
 	{
@@ -146,7 +145,7 @@ void Sound::PlaySfx(const std::string& name, int repeat)
 	}
     else
     {
-        printf("Cannot play sfx");
+        printf("Cannot play sfx: %s\n", name.c_str());
     }
 }
 
@@ -168,3 +167,121 @@ void Sound::CleanUp()
 	Mix_Quit();
 	SDL_QuitSubSystem(SDL_INIT_AUDIO);
 }
+
+#pragma region Play_Audio
+void Sound::playMenuMusic()
+{
+    //Play the menu music
+    StopSound();
+    LoadSound(p_MenuMusic);
+    PlaySound(p_MenuMusic);
+}
+
+void Sound::playMainMusic()
+{
+    //Play the game music
+    StopSound();
+    LoadSound(p_MainMusic);
+    PlaySound(p_MainMusic);
+}
+
+
+void Sound::playBackgroundLoop()
+{
+    //Play ambient sound and walk loop
+    ///walk
+    LoadSfx(p_Walk);
+    PlaySfx(p_Walk, -1);
+    ///ambient sound
+}
+
+void Sound::stopBackgroundLoop()
+{
+    PauseSound();
+}
+
+void Sound::playRadio()
+{
+    LoadSfx(p_Radio);
+    PlaySfx(p_Radio);
+}
+
+void Sound::playPlayerHurt()
+{
+    return;
+    LoadSfx(p_PlayerHit);
+    PlaySfx(p_PlayerHit);
+}
+
+void Sound::playHitTree()
+{
+    LoadSfx(p_HitTree);
+    PlaySfx(p_HitTree);
+}
+
+void Sound::playReload()
+{
+    LoadSfx(p_Reload);
+    PlaySfx(p_Reload);
+}
+
+void Sound::stopReload()
+{
+    Mix_HaltChannel(RELOAD_CHANNEL); //to stop the last sound effect from playing
+}
+
+void Sound::playSwapWeapon() {
+    LoadSfx(p_SwapWeapon);
+    PlaySfx(p_SwapWeapon);
+}
+
+void Sound::playGunshot() {
+    int i = GetRandomInt(0, GUNSHOT_VARIATION - 2, 1);
+    LoadSfx(p_GunShot[i]);
+    PlaySfx(p_GunShot[i]);
+}
+
+void Sound::playZombieAttack() {
+    int i = GetRandomInt(0, ZOMBIE_ATTACK_VARIATION - 2, 1);
+    LoadSfx(p_ZombieAttack[i]);
+    PlaySfx(p_ZombieAttack[i]);
+}
+
+void Sound::playHitZombie() {
+    int i = GetRandomInt(0, HIT_ZOMBIE_VARIATION - 2, 1);
+    LoadSfx(p_ZombieHit[i]);
+    PlaySfx(p_ZombieHit[i]);
+}
+
+void Sound::playGunEmpty()
+{
+    LoadSfx(p_GunEmpty);
+    PlaySfx(p_GunEmpty);
+}
+
+void Sound::playCollectObject()
+{
+    LoadSfx(p_CollectObject);
+    PlaySfx(p_CollectObject);
+}
+
+void Sound::playDrinkMilk()
+{
+    LoadSfx(p_DrinkMilk);
+    PlaySfx(p_DrinkMilk);
+}
+
+void Sound::playGameLose()
+{
+    StopSound();
+    LoadSound(p_GameLose);
+    PlaySound(p_GameLose);
+}
+
+void Sound::playGameWin()
+{  
+    StopSound();
+    LoadSound(p_GameWin);
+    PlaySound(p_GameWin);
+}
+#pragma endregion

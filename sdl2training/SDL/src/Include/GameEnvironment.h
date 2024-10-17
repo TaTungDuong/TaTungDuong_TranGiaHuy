@@ -1,9 +1,10 @@
 #pragma once
 #include "Include/GameObject.h"
 #include "Include/Weapon.h"
-#include "Include/Audio.h"
 #include "Include/SpriteSheet.h"
 #include "Include/GameObjective.h"
+
+#include "Sound.h"
 
 class GameEnvironment
 {
@@ -41,11 +42,10 @@ public:
 	void renderGround(SDL_Rect& camera);
 	void renderBloodPool(SDL_Rect& camera);
 	void spawnZombie();
-	void updateZombie(SpriteSheet& m_SpriteSheet, player& myPlayer, audioManager& myAudio, SDL_Rect& camera);
+	void updateZombie(SpriteSheet& m_SpriteSheet, player& myPlayer, SDL_Rect& camera);
 	void updateBullet(
 		player& myPlayer, 
-		GameObjective& m_GameObjective, 
-		audioManager& myAudio
+		GameObjective& m_GameObjective
 	);
 #pragma endregion
 

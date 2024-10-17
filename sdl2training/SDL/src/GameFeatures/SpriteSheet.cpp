@@ -179,8 +179,6 @@ bool SpriteSheet::loadPlayerMedia()
 	bool success = true;
 	//pistol
 	//idle
-//	if (!gPlayerPistolTexture[playerState::IDLE].loadFromFile("assets-main/sprites/[spritesheets]/player/pistol/pistol-idle.png"))
-//	if (!gPlayerPistolTexture[playerState::IDLE].loadFromFile("assets-main/sprites/weapons/shotgun/256_shotgun_idle.png"))
 	if (!gPlayerPistolTexture[playerState::IDLE].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_idle_128.png"))
 	{
 		printf("Failed to load player pistol idle texture!\n");
@@ -191,8 +189,6 @@ bool SpriteSheet::loadPlayerMedia()
 		loadSpritesheet(playerState::IDLE, gPlayerPistolTexture, gPlayerPistolClips, PLAYER_PISTOL_IDLE_ANIMATION_FRAMES);
 	}
 	//walk
-//	if (!gPlayerPistolTexture[playerState::WALK].loadFromFile("assets-main/sprites/[spritesheets]/player/pistol/pistol-walk.png"))
-//	if (!gPlayerPistolTexture[playerState::WALK].loadFromFile("assets-main/sprites/weapons/shotgun/256_shotgun_walk.png"))
 	if (!gPlayerPistolTexture[playerState::WALK].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_walk_128.png"))
 	{
 		printf("Failed to load player pistol walk texture!\n");
@@ -203,8 +199,6 @@ bool SpriteSheet::loadPlayerMedia()
 		loadSpritesheet(playerState::WALK, gPlayerPistolTexture, gPlayerPistolClips, PLAYER_PISTOL_WALK_ANIMATION_FRAMES);
 	}
 	//fire
-//	if (!gPlayerPistolTexture[playerState::WALK].loadFromFile("assets-main/sprites/[spritesheets]/player/pistol/pistol-fire.png"))
-//	if (!gPlayerPistolTexture[playerState::FIRE].loadFromFile("assets-main/sprites/weapons/shotgun/256_shotgun_fire.png"))
 	if (!gPlayerPistolTexture[playerState::FIRE].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_fire_128.png"))
 	{
 		printf("Failed to load player pistol fire texture!\n");
@@ -215,8 +209,6 @@ bool SpriteSheet::loadPlayerMedia()
 		loadSpritesheet(playerState::FIRE, gPlayerPistolTexture, gPlayerPistolClips, PLAYER_PISTOL_FIRE_ANIMATION_FRAMES);
 	}
 	//reload
-//	if (!gPlayerPistolTexture[playerState::WALK].loadFromFile("assets-main/sprites/[spritesheets]/player/pistol/pistol-reload.png"))
-//	if (!gPlayerPistolTexture[playerState::RELOAD].loadFromFile("assets-main/sprites/weapons/shotgun/256_shotgun_reload.png"))
 	if (!gPlayerPistolTexture[playerState::RELOAD].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_reload_128.png"))
 	{
 		printf("Failed to load player pistol reload texture!\n");
@@ -643,8 +635,7 @@ void SpriteSheet::updatePlayer(
 	std::vector<bullet>& bullets,
 	std::vector<gameObject>& signalZones,
 	std::vector<gameObject>& healthPickUps,
-	LTimer deltaTimer,
-	audioManager& myAudio
+	LTimer deltaTimer
 )
 {
 	//set player's animation based on current state
@@ -711,7 +702,7 @@ void SpriteSheet::updatePlayer(
 				}
 				myPlayerEffect.gPlayerEffectTimeCounter[myPlayerEffect.currentState] = 0.0f;
 				healthPickUps.erase(healthPickUps.begin() + i);
-				myAudio.playDrinkMilk();
+				Sound::GetInstance()->playDrinkMilk();
 			}
 			break;
 		}
@@ -731,7 +722,7 @@ void SpriteSheet::updatePlayer(
 			myPlayer.health -= ((MAX_HARM_ZONE_DAMAGE * DIFFICULTY) 
 				- map(distance, 0, harmZones[i].size / COLLIDER_TOLERANCE, 
 					0, (MAX_HARM_ZONE_DAMAGE * DIFFICULTY))) * deltaTimer.getDeltaTime();
-			myAudio.playPlayerHurt(myPlayer);
+			Sound::GetInstance()->playPlayerHurt();
 			break;
 		}
 	}

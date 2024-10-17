@@ -2,7 +2,7 @@
 #include "Include/Global.h"
 #include "Include/Graphics.h"
 #include "Include/Player.h"
-#include "Include/Audio.h"
+#include "Sound.h"
 
 class GameObjective
 {
@@ -29,7 +29,6 @@ public:
 	void checkObjective4(
 		std::vector<gameObject>& signalZones,
 		LTexture& gLightTexture,
-		player& myPlayer,
-		audioManager& myAudio
+		player& myPlayer
 	);
 };

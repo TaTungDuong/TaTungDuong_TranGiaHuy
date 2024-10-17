@@ -56,8 +56,7 @@ void GameObjective::checkObjective3()
 void GameObjective::checkObjective4(
 	std	::vector<gameObject>& signalZones, 
 	LTexture& gLightTexture, 
-	player& myPlayer,
-	audioManager& myAudio
+	player& myPlayer
 )
 {
 	if (currentObjective == 4)
@@ -69,7 +68,7 @@ void GameObjective::checkObjective4(
 			if (signalZones[i].checkCollision(myPlayer))
 			{
 				signalZones.erase(signalZones.begin() + i);
-				myAudio.playCollectObject();
+				Sound::GetInstance()->playCollectObject();
 				obj_zones--;
 			}
 			else

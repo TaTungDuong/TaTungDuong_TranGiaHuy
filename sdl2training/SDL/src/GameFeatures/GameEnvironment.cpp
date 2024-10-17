@@ -13,7 +13,7 @@ bool GameEnvironment::loadMedia(SpriteSheet& m_SpriteSheet)
 		success = false;
 	}
 	
-	if (!gTreeTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/trees.png"))
+	if (!gTreeTexture.loadFromFile("assets-main/sprites/objects/environment/trees/trees.png"))
 	{
 		printf("Failed to load tree texture!\n");
 		success = false;
@@ -31,13 +31,7 @@ bool GameEnvironment::loadMedia(SpriteSheet& m_SpriteSheet)
 		success = false;
 	}
 
-	if (!gBloodPoolTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/blood pool.png"))
-	{
-		printf("Failed to load white texture!\n");
-		success = false;
-	}
-
-	if (!gBloodPoolTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/blood pool.png"))
+	if (!gBloodPoolTexture.loadFromFile("assets-main/sprites/effects/blood_pool.png"))
 	{
 		printf("Failed to load white texture!\n");
 		success = false;
@@ -109,7 +103,7 @@ void GameEnvironment::spawnZombie()
 		canSpawnZombie = false;
 	}
 }
-void GameEnvironment::updateZombie(SpriteSheet& m_SpriteSheet, player& myPlayer, audioManager& myAudio, SDL_Rect& camera)
+void GameEnvironment::updateZombie(SpriteSheet& m_SpriteSheet, player& myPlayer, SDL_Rect& camera)
 {
 	spawnZombie();
 	int i = 0;
@@ -122,8 +116,8 @@ void GameEnvironment::updateZombie(SpriteSheet& m_SpriteSheet, player& myPlayer,
 			if (zombies[i].attack(myPlayer))
 			{
 //				printf("HIT BY ZOMBIES\n");
-				myAudio.playZombieAttack(zombies[i]);
-				myAudio.playPlayerHurt(myPlayer);
+				Sound::GetInstance()->playZombieAttack();
+				Sound::GetInstance()->playPlayerHurt();
 			}
 		}
 		//move
@@ -138,7 +132,7 @@ void GameEnvironment::updateZombie(SpriteSheet& m_SpriteSheet, player& myPlayer,
 	}//
 }
 void GameEnvironment::updateBullet(
-	player& myPlayer, GameObjective& m_GameObjective, audioManager& myAudio
+	player& myPlayer, GameObjective& m_GameObjective
 )
 {
 	int i = 0;
@@ -163,7 +157,7 @@ void GameEnvironment::updateBullet(
 				if (bullets[i].checkCollision(trees[j]))
 				{
 					collised = true;
-					myAudio.playHitTree(bullets[i]);
+					Sound::GetInstance()->playHitTree();
 					break;
 				}
 			}
@@ -174,7 +168,7 @@ void GameEnvironment::updateBullet(
 				{
 					collised = (zombies[j].health > 0);
 					zombies[j].hurt();
-					myAudio.playHitZombie(bullets[i]);
+					Sound::GetInstance()->playHitZombie();
 
 					//remove zombie if it's health is below 0
 					if (zombies[j].health <= 0 && collised)

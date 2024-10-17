@@ -7,13 +7,13 @@ bool GameUI::loadMedia()
 	bool success = true;
 
 #pragma region Load_static_textures
-	if (!gCrosshairTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/crosshair.png"))
+	if (!gCrosshairTexture.loadFromFile("assets-main/sprites/ui/cursor/crosshair.png"))
 	{
 		printf("Failed to load player texture!\n");
 		success = false;
 	}
 
-	if (!gWhiteTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/white.png"))
+	if (!gWhiteTexture.loadFromFile("assets-main/sprites/ui/others/white.png"))
 	{
 		printf("Failed to load white texture!\n");
 		success = false;
@@ -29,7 +29,7 @@ bool GameUI::loadMedia()
 
 #pragma region Load_UI_textures
 	//Load UI texture
-	if (!gHealthIconTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/health icon.png"))
+	if (!gHealthIconTexture.loadFromFile("assets-main/sprites/ui/icons/health_icon.png"))
 	{
 		printf("Failed to load health icon texture!\n");
 		success = false;
@@ -50,28 +50,29 @@ bool GameUI::loadMedia()
 
 #pragma region Load_screen_effect_textures
 	//Load screen effect texture
-	if (!gVignetteTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/vignette.png"))
+	if (!gVignetteTexture.loadFromFile("assets-main/resources/textures/light/vignette.png"))
 //	if (!gVignetteTexture.loadFromFile("assets-main/sprites/ui/others/empty.png"))
 	{
 		printf("Failed to load vignette texture!\n");
 		success = false;
 	}
 
-	if (!gLightTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/light halo.png"))
+	if (!gLightTexture.loadFromFile("assets-main/resources/textures/light/light_halo.png"))
 //	if (!gLightTexture.loadFromFile("assets-main/sprites/ui/others/empty.png"))
 	{
 		printf("Failed to load light halo texture!\n");
 		success = false;
 	}
 
-	if (!gLensDirtTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/lens dirt.png"))
+	if (!gLensDirtTexture.loadFromFile("assets-main/resources/textures/overlay/lens_dirt.png"))
 //	if (!gLensDirtTexture.loadFromFile("assets-main/sprites/ui/others/empty.png"))
 	{
 		printf("Failed to load len dirt texture!\n");
 		success = false;
 	}
 
-	if (!gBloodOverlayTexture.loadFromFile("assets-main/sprites/[spritesheets]/gui/blood overlay.png"))
+//	if (!gBloodOverlayTexture.loadFromFile("assets-main/resources/textures/blood/blood_overlay.png"))
+	if (!gBloodOverlayTexture.loadFromFile("assets-main/resources/textures/blood/blood_overlay(1).png"))
 	{
 		printf("Failed to load blood overlay texture!\n");
 		success = false;
@@ -327,8 +328,7 @@ void GameUI::drawHealth(player& myPlayer, GameResource& m_GameResource)
 void GameUI::drawDialogue(
 	GameResource& m_GameResource,
 	GameObjective& m_GameObjective,
-	GameDialogue& m_GameDialogue,
-	audioManager& myAudio
+	GameDialogue& m_GameDialogue
 )
 {
 	static std::string fullDialogue;
@@ -359,7 +359,7 @@ void GameUI::drawDialogue(
 						fullDialogue = "Radio: " 
 							+ m_GameDialogue.dialogueLine[m_GameDialogue.dialogue.currentLine];
 						m_GameDialogue.dialogue.currentLine++;
-						myAudio.playRadio();
+						Sound::GetInstance()->playRadio();
 					}
 				}
 				else if (m_GameObjective.objective[m_GameObjective.currentObjective]
@@ -405,8 +405,7 @@ void GameUI::drawUI(
 	GameResource& m_GameResource,
 	GameObjective& m_GameObjective,
 	GameEnvironment& m_GameEnvironment,
-	GameDialogue& m_GameDialogue,
-	audioManager& myAudio
+	GameDialogue& m_GameDialogue
 )
 {
 	drawWeapon(myPlayer, m_GameResource);
@@ -426,8 +425,7 @@ void GameUI::drawUI(
 	drawDialogue(
 		m_GameResource,
 		m_GameObjective,
-		m_GameDialogue,
-		myAudio
+		m_GameDialogue
 	);
 /*
 	if (cheat)

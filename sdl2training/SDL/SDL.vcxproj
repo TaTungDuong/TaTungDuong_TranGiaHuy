@@ -39,7 +39,6 @@
     <ClInclude Include="src\GameStates\GSMenu.h" />
     <ClInclude Include="src\GameStates\GSPlay.h" />
     <ClInclude Include="src\Game\Game.h" />
-    <ClInclude Include="src\Include\Audio.h" />
     <ClInclude Include="src\Include\Button.h" />
     <ClInclude Include="src\Include\GameDialogue.h" />
     <ClInclude Include="src\Include\GameEnvironment.h" />
@@ -47,7 +46,6 @@
     <ClInclude Include="src\Include\GameObjective.h" />
     <ClInclude Include="src\Include\GameResource.h" />
     <ClInclude Include="src\Include\GameUI.h" />
-    <ClInclude Include="src\Include\GameWindows.h" />
     <ClInclude Include="src\Include\Global.h" />
     <ClInclude Include="src\Include\Graphics.h" />
     <ClInclude Include="src\Include\Player.h" />
@@ -61,7 +59,6 @@
     <ClInclude Include="src\Include\ZombieWeapon.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\GameFeatures\Audio.cpp" />
     <ClCompile Include="src\GameFeatures\Button.cpp" />
     <ClCompile Include="src\GameFeatures\GameDialogue.cpp" />
     <ClCompile Include="src\GameFeatures\GameEnvironment.cpp" />
@@ -69,7 +66,6 @@
     <ClCompile Include="src\GameFeatures\GameObjective.cpp" />
     <ClCompile Include="src\GameFeatures\GameResource.cpp" />
     <ClCompile Include="src\GameFeatures\GameUI.cpp" />
-    <ClCompile Include="src\GameFeatures\GameWindows.cpp" />
     <ClCompile Include="src\GameFeatures\Global.cpp" />
     <ClCompile Include="src\GameFeatures\Graphics.cpp" />
     <ClCompile Include="src\GameFeatures\Player.cpp" />

@@ -157,14 +157,9 @@ gameObject mySignalZone;
 gameObject myHealthPickup;
 #pragma endregion
 /**/
-#pragma region Audio
-audioManager myAudio;
-#pragma endregion
-
 #pragma region Framerate
 LTimer systemTimer; //The frames per second timer
 LTimer deltaTimer; //The frames per second cap timer
-int countedFrames = 0; //total frames
 #pragma endregion
 
 #pragma region Input
@@ -199,7 +194,6 @@ bool init()
 {
 	//Initialization flag
 	bool success = true;
-//	success = GameWindows::GetInstance()->init();
 
 	StateStruct state;
 	//add Game 
@@ -226,7 +220,6 @@ bool loadMedia()
 
 #pragma region Load_audio
 	//Load audio
-	myAudio.loadAudio();
 #pragma endregion
 	success = m_GameResource.loadMedia();
 	success = m_GameDialogue.loadMedia();
@@ -292,9 +285,9 @@ void handleMenuEvent(int& choice)
 void Menu()
 {
 	//play background music
-	myAudio.playMenuMusic();
+	Sound::GetInstance()->playMenuMusic();
 
-	myAudio.stopBackgroundLoop();
+	Sound::GetInstance()->stopBackgroundLoop();
 
 	//show back the cursor
 	SDL_ShowCursor(SDL_ENABLE);
@@ -356,13 +349,11 @@ void Menu()
 		//Update screen
 		SDL_RenderPresent(gRenderer);
 
-		GameWindows::GetInstance()->frameCap(myPlayer);
+		Renderer::GetInstance()->frameCap();
 	}
 
 	//remove all buttons
 	buttons.clear();
-
-	GameWindows::GetInstance()->clearScreen();
 
 	StateStruct temp;
 	switch (choice)
@@ -545,19 +536,19 @@ void handleGameEvent()
 			}
 			else if (!myPlayer.myWeapon[myPlayer.currentWeapon].checkAmmo())
 			{
-				myAudio.playGunEmpty();
+				Sound::GetInstance()->playGunEmpty();
 			}
 			break;
 		case SDL_MOUSEWHEEL:
 			myPlayer.cycleWeapon();
-			myAudio.playSwapWeapon();
-			myAudio.stopReload();
+			Sound::GetInstance()->playSwapWeapon();
+			Sound::GetInstance()->stopReload();
 		case SDL_KEYDOWN:
 			if (event.key.keysym.sym == SDLK_q) //cycle weapon
 			{
 				myPlayer.cycleWeapon();
-				myAudio.playSwapWeapon();
-				myAudio.stopReload();
+				Sound::GetInstance()->playSwapWeapon();
+				Sound::GetInstance()->stopReload();
 			}
 			if (event.key.keysym.sym == SDLK_r) //reload weapon
 			{
@@ -568,7 +559,6 @@ void handleGameEvent()
 										myPlayer.myWeapon[myPlayer.currentWeapon].reload();
 										myPlayer.currentState = playerState::RELOAD;
 										myPlayer.currentFrame = 0;
-										myAudio.playReload();
 					*/
 					//for objective 3
 					m_GameObjective.checkObjective2();
@@ -579,8 +569,8 @@ void handleGameEvent()
 				if (myPlayer.currentWeapon != 0)
 				{
 					myPlayer.currentWeapon = 0;
-					myAudio.playSwapWeapon();
-					myAudio.stopReload();
+					Sound::GetInstance()->playSwapWeapon();
+					Sound::GetInstance()->stopReload();
 				}
 			}
 			if (event.key.keysym.sym == SDLK_2) //weapon 2
@@ -588,8 +578,8 @@ void handleGameEvent()
 				if (myPlayer.currentWeapon != 1)
 				{
 					myPlayer.currentWeapon = 1;
-					myAudio.playSwapWeapon();
-					myAudio.stopReload();
+					Sound::GetInstance()->playSwapWeapon();
+					Sound::GetInstance()->stopReload();
 				}
 			}
 			if (event.key.keysym.sym == SDLK_ESCAPE) //esc
@@ -769,7 +759,7 @@ void handleGameInput()
 			SDL_GetMouseState(&mouseX, &mouseY);
 			bullet myBullet(camera, myPlayer, mouseX, mouseY);
 			m_GameEnvironment.bullets.push_back(myBullet);
-			myAudio.playGunshot(myPlayer);
+			Sound::GetInstance()->playGunshot();
 
 			//for objective 2
 			m_GameObjective.checkObjective1();
@@ -779,8 +769,6 @@ void handleGameInput()
 
 void Game()
 {
-	GameWindows::GetInstance()->clearScreen();
-
 	if (!initedLevel)
 	{
 		//init level
@@ -789,9 +777,9 @@ void Game()
 		//play background music
 		if (setting_Music)
 		{
-			myAudio.playMainMusic();
+			Sound::GetInstance()->playMainMusic();
 		}
-		myAudio.playBackgroundLoop();
+//		Sound::GetInstance()->playBackgroundLoop();
 
 		initedLevel = true;
 	}
@@ -831,7 +819,7 @@ void Game()
 
 		//Update and render player bullets and zombie bullets
 		m_GameEnvironment.updateBullet(
-			myPlayer, m_GameObjective, myAudio
+			myPlayer, m_GameObjective
 		);
 
 		//render health pickups
@@ -851,13 +839,12 @@ void Game()
 			m_GameEnvironment.bullets,
 			m_GameEnvironment.signalZones,
 			m_GameEnvironment.healthPickUps,
-			deltaTimer,
-			myAudio
+			deltaTimer
 		);
 
 		//Update and render zombie
 //		updateZombie();
-		m_GameEnvironment.updateZombie(m_SpriteSheet, myPlayer, myAudio, camera);
+		m_GameEnvironment.updateZombie(m_SpriteSheet, myPlayer, camera);
 
 		//Render lightings
 		m_GameUI.renderLighting(m_GameEnvironment);
@@ -872,8 +859,7 @@ void Game()
 		m_GameObjective.checkObjective4(
 			m_GameEnvironment.signalZones,
 			m_GameUI.gLightTexture,
-			myPlayer,
-			myAudio
+			myPlayer
 		);
 
 		//Render UI
@@ -883,8 +869,7 @@ void Game()
 			m_GameResource,
 			m_GameObjective,
 			m_GameEnvironment,
-			m_GameDialogue,
-			myAudio
+			m_GameDialogue
 		);
 
 		//Render crosshair
@@ -900,7 +885,7 @@ void Game()
 		);
 
 		//cap frame rate
-		GameWindows::GetInstance()->frameCap(myPlayer);
+		Renderer::GetInstance()->frameCap();
 
 		//check if end game condition is met
 		checkEndGame();
@@ -1066,7 +1051,7 @@ void Pause()
 		//Update screen
 		SDL_RenderPresent(gRenderer);
 
-		GameWindows::GetInstance()->frameCap(myPlayer);
+		Renderer::GetInstance()->frameCap();
 	}
 	//resume all paused audios
 	Mix_ResumeMusic();
@@ -1074,8 +1059,6 @@ void Pause()
 
 	//remove all buttons
 	buttons.clear();
-
-	GameWindows::GetInstance()->clearScreen();
 
 	StateStruct temp;
 	if (confirmScreen)
@@ -1217,7 +1200,7 @@ void Confirm()
 		//Update screen
 		SDL_RenderPresent(gRenderer);
 
-		GameWindows::GetInstance()->frameCap(myPlayer);
+		Renderer::GetInstance()->frameCap();
 	}
 
 	//resume all paused audios
@@ -1226,8 +1209,6 @@ void Confirm()
 
 	//remove all buttons
 	buttons.clear();
-
-	GameWindows::GetInstance()->clearScreen();
 
 	StateStruct temp;
 	switch (choice)
@@ -1326,13 +1307,13 @@ void EndGame()
 	switch (endGameMode)
 	{
 	case endState::WIN:
-		myAudio.playGameWin();
+		Sound::GetInstance()->playGameWin();
 		break;
 	case endState::LOSE:
-		myAudio.playGameLose();
+		Sound::GetInstance()->playGameLose();
 		break;
 	case endState::TIME_OVER:
-		myAudio.playGameLose();
+		Sound::GetInstance()->playGameLose();
 		break;
 	}
 
@@ -1417,7 +1398,8 @@ void EndGame()
 		//Update screen
 		SDL_RenderPresent(gRenderer);
 
-		GameWindows::GetInstance()->frameCap(myPlayer);
+		Renderer::GetInstance()->frameCap();
+
 	}
 
 	//resume all paused audios
@@ -1426,8 +1408,6 @@ void EndGame()
 
 	//remove all buttons
 	buttons.clear();
-
-	GameWindows::GetInstance()->clearScreen();
 
 	StateStruct temp;
 	switch (choice)

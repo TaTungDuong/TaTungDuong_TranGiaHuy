@@ -55,16 +55,14 @@ public:
 	void drawDialogue(
 		GameResource& m_GameResource,
 		GameObjective& m_GameObjective,
-		GameDialogue& m_GameDialogue,
-		audioManager& myAudio
+		GameDialogue& m_GameDialogue
 	);
 	void drawUI(
 		player& myPlayer,
 		GameResource& m_GameResource,
 		GameObjective& m_GameObjective,
 		GameEnvironment& m_GameEnvironment,
-		GameDialogue& m_GameDialogue,
-		audioManager& myAudio
+		GameDialogue& m_GameDialogue
 	);
 
 #pragma endregion

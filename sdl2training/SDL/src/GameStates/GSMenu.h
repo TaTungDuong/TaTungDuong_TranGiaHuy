@@ -4,7 +4,6 @@
 #include"GameObject/Text.h"
 #include "GameObject/Sound.h"
 
-#include "Include/Audio.h"
 #include "Include/Button.h"
 
 #include "Include/GameResource.h"
@@ -50,7 +49,6 @@ private:
 	GameResource m_GameResource;
 	GameDialogue m_GameDialogue;
 	GameUI m_GameUI;
-	audioManager myAudio;
 #pragma endregion
 #pragma region Button
 	button myButton;

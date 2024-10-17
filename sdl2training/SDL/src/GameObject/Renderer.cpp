@@ -2,6 +2,7 @@
 #include "Define.h"
 Renderer::Renderer()
 {
+	countedFrames = 0;
 	gWindow = NULL;
 	gRenderer = NULL;
 }
@@ -86,7 +87,6 @@ bool Renderer::Init()
 
 	//set base scaling
 	SDL_RenderSetLogicalSize(gRenderer, SCREEN_WIDTH, SCREEN_HEIGHT);
-
 	return success;
 }
 SDL_Window* Renderer::GetWindow()
@@ -105,4 +105,26 @@ void Renderer::SetWindow(SDL_Window* mWindow)
 void Renderer::SetRenderer(SDL_Renderer* mRenderer)
 {
 	gRenderer = mRenderer;
+}
+void Renderer::frameCap()
+{
+	//Calculate and correct fps
+	float avgFPS = countedFrames / (systemTimer.getTicks() / 1000.f);
+	if (avgFPS > 2000000)
+	{
+		avgFPS = 0;
+	}
+	++countedFrames;
+
+	//If frame finished early
+	int frameTicks = deltaTimer.getTicks();
+	if (frameTicks < SCREEN_TICK_PER_FRAME)
+	{
+		//Wait remaining time
+		SDL_Delay(SCREEN_TICK_PER_FRAME - frameTicks);
+	}
+
+	std::string title = "Catgirl & Shotgun Project [avg fps: " + std::to_string(int(avgFPS)) + "] ";
+//		" [X:" + std::to_string(int(myPlayer.px)) + ", Y:" + std::to_string(int(myPlayer.py)) + "]";
+	SDL_SetWindowTitle(gWindow, title.c_str());
 }

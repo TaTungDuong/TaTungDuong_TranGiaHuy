@@ -29,6 +29,10 @@
 #include "Define.h"
 #include "Singleton.h"
 
+#include "Include/Timer.h"
+
+extern SDL_Rect camera;
+
 //render window
 extern SDL_Window* gWindow;
 extern SDL_Renderer* gRenderer;

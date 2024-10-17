@@ -22,7 +22,8 @@ public:
 	void SetPosition(Vector3 position) { m_position = position; }
 	Vector3 GetPosition() { return m_position; }
 	void SetTexture(std::shared_ptr<TextureManager> texture) { m_pTexture = texture; }
-	 
+	
+
 };
 
  
