@@ -78,6 +78,7 @@
     <ClCompile Include="src\GameFeatures\Zombie.cpp" />
     <ClCompile Include="src\GameFeatures\ZombieWeapon.cpp" />
     <ClCompile Include="src\GameManager\ResourceManagers.cpp" />
+    <ClCompile Include="src\GameObject\BaseObject.cpp" />
     <ClCompile Include="src\GameObject\Camera.cpp" />
     <ClCompile Include="src\GameObject\CMath.cpp" />
     <ClCompile Include="src\GameObject\MouseButton.cpp" />

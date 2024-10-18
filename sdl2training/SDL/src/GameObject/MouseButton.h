@@ -1,7 +1,9 @@
 #pragma once
 #include <functional>
+#include "Include/GameObject.h"
 #include"Sprite2D.h"
-class MouseButton : public Sprite2D
+class MouseButton : 
+	public Sprite2D 
 {
 public:
 	

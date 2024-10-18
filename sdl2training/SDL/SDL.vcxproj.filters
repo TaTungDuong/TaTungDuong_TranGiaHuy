@@ -257,5 +257,8 @@
     <ClCompile Include="src\GameFeatures\PlayerEffect.cpp">
       <Filter>Source Files\GameFeatures</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject\BaseObject.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -100,7 +100,7 @@ void GSPlay::Init()
 
 void GSPlay::Exit()
 {
-	exit(0);
+	//exit(0);
 }
 
 #pragma region Pause_Screen
@@ -1207,13 +1207,11 @@ void GSPlay::Confirm()
 		}
 		if (confirmMode == confirmState::QUIT_TO_MENU) //quit to menu
 		{
-			GameStateMachine::GetInstance()->PushState(StateType::STATE_MENU);
-
-			/*
+			printf("QUIT_TO_MENU\n\n");
 			g_StateStack.swap(emptyStack);
 			temp.StatePointer = std::bind(&GSPlay::Menu, this); //.StatePointer = Menu;
 			g_StateStack.push(temp);
-			*/
+
 		}
 		break;
 	case 1:
