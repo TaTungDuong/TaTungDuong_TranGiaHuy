@@ -6,6 +6,57 @@
 #include "GameObject/Camera.h"
 #include "KeyState.h"
 #include "Sound.h"
+
+
+#pragma region Create_Variables
+player myPlayer;
+playerAnimation myPlayerAnimation;
+playerEffect myPlayerEffect;
+
+#pragma region Features
+SpriteSheet m_SpriteSheet;
+GameEnvironment m_GameEnvironment;
+GameObjective m_GameObjective;
+GameResource m_GameResource;
+GameDialogue m_GameDialogue;
+GameUI m_GameUI;
+#pragma endregion
+
+#pragma region Rendering
+SDL_Window* gWindow = NULL;
+SDL_Renderer* gRenderer = NULL;
+#pragma endregion
+
+#pragma region Framerate
+LTimer systemTimer; //The frames per second timer
+LTimer deltaTimer; //The frames per second cap timer
+#pragma endregion
+
+#pragma region Menus
+std::stack<StateStruct> g_StateStack;
+std::stack<StateStruct> emptyStack; //for clearing stack
+
+#pragma region Camera
+SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+#pragma endregion
+
+#pragma region Input
+int mouseX;
+int mouseY;
+const Uint8* keys;
+Uint32 mouses;
+#pragma endregion
+
+#pragma region Event_Handler
+SDL_Event event;
+#pragma endregion
+
+#pragma region Button
+button myButton;
+std::vector<button> buttons;
+#pragma endregion
+#pragma endregion
+
 GSPlay::GSPlay()
 {
 }
@@ -15,18 +66,182 @@ GSPlay::~GSPlay()
 {
 }
 
+void GSPlay::Init()
+{
+	//	srand((unsigned)time(0)); //random seed
 
+		//Start up SDL and create window
+	if (!init())
+	{
+		printf("Failed to initialize!\n");
+	}
+	else
+	{
+		//Load media
+		if (!loadMedia())
+		{
+			printf("Failed to load media!\n");
+		}
+		else
+		{
+			//start the timers
+			systemTimer.tick();
 
+			// Our game loop is just a while loop that breaks when our state stack is empty. //
+			while (!g_StateStack.empty())
+			{
+				g_StateStack.top().StatePointer();
+			}
+		}
+
+		return;
+	}
+}
 
 void GSPlay::Exit()
 {
+	exit(0);
 }
 
+#pragma region Pause_Screen
+void GSPlay::handlePauseEvent()
+{
+	//Poll events
+	while (SDL_PollEvent(&event))
+	{
+		//check events
+		switch (event.type)
+		{
+		case SDL_QUIT: //User hit the X	
+			showConfirmScreen(confirmState::QUIT);
+			break;
+		case SDL_WINDOWEVENT:
+			if (event.window.event == SDL_WINDOWEVENT_RESIZED)
+			{
+				//resize window
+				SDL_SetWindowSize(gWindow, event.window.data1, event.window.data2);
+				//SCREEN_WIDTH = event.window.data1;
+				//SCREEN_HEIGHT = event.window.data2;
+			}
+			break;
+		case SDL_KEYDOWN:
+			if (event.key.keysym.sym == SDLK_ESCAPE) //esc
+			{
+				paused = false;
+			}
+			break;
+		case SDL_MOUSEBUTTONUP:
+			//resume button
+			if (buttons[0].checkInside(mouseX, mouseY))
+			{
+				paused = false;
+			}
+			//retry button
+			if (buttons[1].checkInside(mouseX, mouseY))
+			{
+				showConfirmScreen(confirmState::RETRY);
+			}
+			//quit to menu button
+			if (buttons[2].checkInside(mouseX, mouseY))
+			{
+				showConfirmScreen(confirmState::QUIT_TO_MENU);
+			}
+			break;
+		}
+	}
+}
 
 void GSPlay::Pause()
 {
+	//pause all playing audios
+	Mix_PauseMusic();
+	Mix_Pause(-1);
 
+	//show back the cursor
+	SDL_ShowCursor(SDL_ENABLE);
+	//SDL_WarpMouseInWindow(gWindow, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //set the cursor to center of the window
+
+	//set text positions
+	int pausedOffset = SCREEN_HEIGHT / 3.5;
+	int pausedX = SCREEN_WIDTH / 2;
+	int pausedY = SCREEN_HEIGHT / 2 - pausedOffset;
+	int tipsX = SCREEN_WIDTH / 2;
+	int tipsY = pausedY + SCREEN_HEIGHT / 5;
+
+	//add buttons
+	//resume button
+	int buttonpy = tipsY + 75;
+	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Resume", m_GameResource.regularFont);
+	buttons.push_back(myButton);
+	//retry button
+	buttonpy += 75;
+	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Retry", m_GameResource.regularFont);
+	buttons.push_back(myButton);
+	//quit to menu button
+	buttonpy += 75;
+	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Quit to menu", m_GameResource.regularFont);
+	buttons.push_back(myButton);
+
+	//set tips
+	std::string fullTips;
+	m_GameDialogue.dialogueTips.currentLine = GetRandomInt(0, m_GameDialogue.tipsLine.size() - 2, 1);
+	fullTips = "Tips: " + m_GameDialogue.tipsLine[m_GameDialogue.dialogueTips.currentLine];
+
+	while (paused && !confirmScreen)
+	{
+		deltaTimer.tick();
+		mouses = SDL_GetMouseState(&mouseX, &mouseY);
+		handlePauseEvent();
+
+		//Clear screen
+		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
+		SDL_RenderClear(gRenderer);
+
+		//Render backdrop
+		SDL_RenderCopy(gRenderer, m_GameUI.backdrop, NULL, NULL);
+
+		//Render black overlay 
+		m_GameUI.gWhiteTexture.setColor(0, 0, 0, 175);
+		m_GameUI.gWhiteTexture.render(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+		//Render paused text
+		drawText(pausedX, pausedY, m_GameResource.boldFontTitle, m_GameResource.UIColor, "Paused", 1);
+
+		//Render tips
+		drawText(tipsX, tipsY, m_GameResource.regularFontSmall, m_GameResource.UIColor, fullTips, 1);
+
+		//Render buttons
+		for (int i = 0; i < buttons.size(); i++)
+		{
+			buttons[i].checkButton(mouses, mouseX, mouseY);
+			buttons[i].render(gRenderer);
+		}
+
+		//Update screen
+		SDL_RenderPresent(gRenderer);
+
+		Renderer::GetInstance()->frameCap();
+	}
+	//resume all paused audios
+	Mix_ResumeMusic();
+	Mix_Resume(-1);
+
+	//remove all buttons
+	buttons.clear();
+
+	StateStruct temp;
+	if (confirmScreen)
+	{
+		temp.StatePointer = std::bind(&GSPlay::Confirm, this); //.StatePointer = Confirm;
+		g_StateStack.push(temp);
+	}
+	else
+	{
+		g_StateStack.pop();
+	}
 }
+#pragma endregion
+
 void GSPlay::Resume()
 {
 }
@@ -91,118 +306,20 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 		}
 	*/
 }
-
-
-#pragma region Create_Variables
-#pragma region Features
-SpriteSheet m_SpriteSheet;
-GameEnvironment m_GameEnvironment;
-GameObjective m_GameObjective;
-GameResource m_GameResource;
-GameDialogue m_GameDialogue;
-GameUI m_GameUI;
-#pragma endregion
-
-#pragma region Rendering
-SDL_Window* gWindow = NULL;
-SDL_Renderer* gRenderer = NULL;
-#pragma endregion
-
-#pragma region Menus
-std::stack<StateStruct> g_StateStack;
-std::stack<StateStruct> emptyStack; //for clearing stack
-
-//menu screen
-void Menu();
-void handleMenuEvent(int& choice);
-
-//game screen
-void Game();
-void handleGameEvent();
-void handleGameInput();
-
-//pause screen
-void Pause();
-bool paused = false; //flag
-void handlePauseEvent();
-
-//confirm screen
-void Confirm();
-enum class confirmState { FALSE, RETRY, QUIT, QUIT_TO_MENU };
-confirmState confirmMode;
-void showConfirmScreen(confirmState m);
-void hideConfirmScreen();
-bool confirmScreen = false; //flag
-void handleConfirmEvent(int& choice);
-
-//end game screen
-void EndGame();
-enum class endState { FALSE, WIN, LOSE, TIME_OVER };
-endState endGameMode = endState::FALSE;
-void showEndGamecreen(endState m);
-void hideEndGameScreen();
-bool endGameScreen = false; //flag
-void handleEndGameEvent(int& choice);
-
-#pragma endregion
-#pragma region Game_Objects
-player myPlayer;
-playerAnimation myPlayerAnimation;
-playerEffect myPlayerEffect;
-
-zombie myZombie;
-gameObject myTree;
-gameObject myHarmZone;
-gameObject mySignalZone;
-gameObject myHealthPickup;
-#pragma endregion
-/**/
-#pragma region Framerate
-LTimer systemTimer; //The frames per second timer
-LTimer deltaTimer; //The frames per second cap timer
-#pragma endregion
-
-#pragma region Input
-int mouseX;
-int mouseY;
-const Uint8* keys;
-Uint32 mouses;
-#pragma endregion
-
-#pragma region Flags
-bool initedLevel = false;
-bool quit = false;
-bool cheat = false;
-#pragma endregion
-
-#pragma region Event_Handler
-SDL_Event event;
-#pragma endregion
-
-#pragma region Camera
-SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
-#pragma endregion
-
-#pragma region Button
-button myButton;
-std::vector<button> buttons;
-#pragma endregion
-#pragma endregion
-
 #pragma region Init_And_Load_Media
-bool init()
+bool GSPlay::init()
 {
 	//Initialization flag
 	bool success = true;
 
 	StateStruct state;
 	//add Game 
-	state.StatePointer = Game;
+	state.StatePointer = std::bind(&GSPlay::Game, this); //.StatePointer = Game;
 	g_StateStack.push(state);
 	return success;
 }
 
-bool loadMedia()
+bool GSPlay::loadMedia()
 {
 	//Loading success flag
 	bool success = true;
@@ -229,7 +346,7 @@ bool loadMedia()
 #pragma endregion
 
 #pragma region Menu_Screen
-void handleMenuEvent(int& choice)
+void GSPlay::handleMenuEvent(int& choice)
 {
 	//Poll events
 	while (SDL_PollEvent(&event))
@@ -282,7 +399,7 @@ void handleMenuEvent(int& choice)
 	}
 }
 
-void Menu()
+void GSPlay::Menu()
 {
 	//play background music
 	Sound::GetInstance()->playMenuMusic();
@@ -360,7 +477,7 @@ void Menu()
 	{
 	case 0: //start
 		initedLevel = false;
-		temp.StatePointer = Game;
+		temp.StatePointer = std::bind(&GSPlay::Game, this); //.StatePointer = Game;
 		g_StateStack.push(temp);
 		break;
 	case 1: //toggle music
@@ -368,7 +485,7 @@ void Menu()
 		break;
 	case 2: //quit
 		showConfirmScreen(confirmState::QUIT);
-		temp.StatePointer = Confirm;
+		temp.StatePointer = std::bind(&GSPlay::Confirm, this); //.StatePointer = Confirm;
 		g_StateStack.push(temp);
 	}
 
@@ -378,7 +495,7 @@ void Menu()
 #pragma endregion
 
 #pragma region Game_Screen
-void initLevel()
+void GSPlay::initLevel()
 {
 	//reset state and flags
 	endGameMode = endState::FALSE;
@@ -469,7 +586,7 @@ void initLevel()
 	printf("---inited level---\n");
 }
 
-void checkEndGame()
+void GSPlay::checkEndGame()
 {
 	if (m_GameObjective.timeLeft <= 0)
 	{
@@ -487,13 +604,13 @@ void checkEndGame()
 		showEndGamecreen(endState::LOSE);
 	}
 }
-void setDifficulty()
+void GSPlay::setDifficulty()
 {
 	DIFFICULTY = 1 + m_GameObjective.totalZombieKilled / DIFFICULTY_REQUIREMENT;
 	MAX_ZOMBIE_NUM = DIFFICULTY * ZOMBIE_NUMBER_STEP;
 }
 
-void handleGameEvent()
+void GSPlay::handleGameEvent()
 {
 	Uint32 windowID = SDL_GetWindowID(gWindow);
 
@@ -663,7 +780,7 @@ void handleGameEvent()
 	}
 }
 
-void handleGameInput()
+void GSPlay::handleGameInput()
 {
 	keys = SDL_GetKeyboardState(NULL);
 	mouses = SDL_GetMouseState(&mouseX, &mouseY);
@@ -767,7 +884,7 @@ void handleGameInput()
 	}
 }
 
-void Game()
+void GSPlay::Game()
 {
 	if (!initedLevel)
 	{
@@ -911,17 +1028,17 @@ void Game()
 	//handle menus
 	if (paused)
 	{
-		temp.StatePointer = Pause;
+		temp.StatePointer = std::bind(&GSPlay::Pause, this); //.StatePointer = Pause;
 		g_StateStack.push(temp);
 	}
 	if (confirmScreen)
 	{
-		temp.StatePointer = Confirm;
+		temp.StatePointer = std::bind(&GSPlay::Confirm, this); //.StatePointer = Confirm;
 		g_StateStack.push(temp);
 	}
 	if (endGameScreen)
 	{
-		temp.StatePointer = EndGame;
+		temp.StatePointer = std::bind(&GSPlay::EndGame, this); //.StatePointer = EndGame;
 		g_StateStack.push(temp);
 	}
 	if (quit)
@@ -934,160 +1051,23 @@ void Game()
 }
 #pragma endregion
 
-#pragma region Pause_Screen
-void handlePauseEvent()
-{
-	//Poll events
-	while (SDL_PollEvent(&event))
-	{
-		//check events
-		switch (event.type)
-		{
-		case SDL_QUIT: //User hit the X	
-			showConfirmScreen(confirmState::QUIT);
-			break;
-		case SDL_WINDOWEVENT:
-			if (event.window.event == SDL_WINDOWEVENT_RESIZED)
-			{
-				//resize window
-				SDL_SetWindowSize(gWindow, event.window.data1, event.window.data2);
-				//SCREEN_WIDTH = event.window.data1;
-				//SCREEN_HEIGHT = event.window.data2;
-			}
-			break;
-		case SDL_KEYDOWN:
-			if (event.key.keysym.sym == SDLK_ESCAPE) //esc
-			{
-				paused = false;
-			}
-			break;
-		case SDL_MOUSEBUTTONUP:
-			//resume button
-			if (buttons[0].checkInside(mouseX, mouseY))
-			{
-				paused = false;
-			}
-			//retry button
-			if (buttons[1].checkInside(mouseX, mouseY))
-			{
-				showConfirmScreen(confirmState::RETRY);
-			}
-			//quit to menu button
-			if (buttons[2].checkInside(mouseX, mouseY))
-			{
-				showConfirmScreen(confirmState::QUIT_TO_MENU);
-			}
-			break;
-		}
-	}
-}
 
-void Pause()
-{
-	//pause all playing audios
-	Mix_PauseMusic();
-	Mix_Pause(-1);
-
-	//show back the cursor
-	SDL_ShowCursor(SDL_ENABLE);
-	//SDL_WarpMouseInWindow(gWindow, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //set the cursor to center of the window
-
-	//set text positions
-	int pausedOffset = SCREEN_HEIGHT / 3.5;
-	int pausedX = SCREEN_WIDTH / 2;
-	int pausedY = SCREEN_HEIGHT / 2 - pausedOffset;
-	int tipsX = SCREEN_WIDTH / 2;
-	int tipsY = pausedY + SCREEN_HEIGHT / 5;
-
-	//add buttons
-	//resume button
-	int buttonpy = tipsY + 75;
-	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Resume", m_GameResource.regularFont);
-	buttons.push_back(myButton);
-	//retry button
-	buttonpy += 75;
-	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Retry", m_GameResource.regularFont);
-	buttons.push_back(myButton);
-	//quit to menu button
-	buttonpy += 75;
-	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Quit to menu", m_GameResource.regularFont);
-	buttons.push_back(myButton);
-
-	//set tips
-	std::string fullTips;
-	m_GameDialogue.dialogueTips.currentLine = GetRandomInt(0, m_GameDialogue.tipsLine.size() - 2, 1);
-	fullTips = "Tips: " + m_GameDialogue.tipsLine[m_GameDialogue.dialogueTips.currentLine];
-
-	while (paused && !confirmScreen)
-	{
-		deltaTimer.tick();
-		mouses = SDL_GetMouseState(&mouseX, &mouseY);
-		handlePauseEvent();
-
-		//Clear screen
-		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
-		SDL_RenderClear(gRenderer);
-
-		//Render backdrop
-		SDL_RenderCopy(gRenderer, m_GameUI.backdrop, NULL, NULL);
-
-		//Render black overlay 
-		m_GameUI.gWhiteTexture.setColor(0, 0, 0, 175);
-		m_GameUI.gWhiteTexture.render(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-		//Render paused text
-		drawText(pausedX, pausedY, m_GameResource.boldFontTitle, m_GameResource.UIColor, "Paused", 1);
-
-		//Render tips
-		drawText(tipsX, tipsY, m_GameResource.regularFontSmall, m_GameResource.UIColor, fullTips, 1);
-
-		//Render buttons
-		for (int i = 0; i < buttons.size(); i++)
-		{
-			buttons[i].checkButton(mouses, mouseX, mouseY);
-			buttons[i].render(gRenderer);
-		}
-
-		//Update screen
-		SDL_RenderPresent(gRenderer);
-
-		Renderer::GetInstance()->frameCap();
-	}
-	//resume all paused audios
-	Mix_ResumeMusic();
-	Mix_Resume(-1);
-
-	//remove all buttons
-	buttons.clear();
-
-	StateStruct temp;
-	if (confirmScreen)
-	{
-		temp.StatePointer = Confirm;
-		g_StateStack.push(temp);
-	}
-	else
-	{
-		g_StateStack.pop();
-	}
-}
-#pragma endregion
 
 #pragma region Confirm_Screen
-void showConfirmScreen(confirmState m)
+void GSPlay::showConfirmScreen(confirmState m)
 {
 	confirmScreen = true;
 	confirmMode = m;
 }
 
-void hideConfirmScreen()
+void GSPlay::hideConfirmScreen()
 {
 	confirmScreen = false;
 	confirmMode = confirmState::FALSE;
 	g_StateStack.pop();
 }
 
-void handleConfirmEvent(int& choice)
+void GSPlay::handleConfirmEvent(int& choice)
 {
 	//Poll events
 	while (SDL_PollEvent(&event))
@@ -1130,7 +1110,7 @@ void handleConfirmEvent(int& choice)
 	}
 }
 
-void Confirm()
+void GSPlay::Confirm()
 {
 	//pause all playing audios
 	Mix_PauseMusic();
@@ -1227,9 +1207,13 @@ void Confirm()
 		}
 		if (confirmMode == confirmState::QUIT_TO_MENU) //quit to menu
 		{
+			GameStateMachine::GetInstance()->PushState(StateType::STATE_MENU);
+
+			/*
 			g_StateStack.swap(emptyStack);
-			temp.StatePointer = Menu;
+			temp.StatePointer = std::bind(&GSPlay::Menu, this); //.StatePointer = Menu;
 			g_StateStack.push(temp);
+			*/
 		}
 		break;
 	case 1:
@@ -1238,20 +1222,20 @@ void Confirm()
 	case 2:
 		hideConfirmScreen();
 		showConfirmScreen(confirmState::QUIT);
-		temp.StatePointer = Confirm;
+		temp.StatePointer = std::bind(&GSPlay::Confirm, this); //.StatePointer = Confirm;
 		g_StateStack.push(temp);
 	}
 }
 #pragma endregion
 
 #pragma region End_Game_Screen
-void showEndGamecreen(endState m)
+void GSPlay::showEndGamecreen(endState m)
 {
 	endGameScreen = true;
 	endGameMode = m;
 }
 
-void hideEndGameScreen()
+void GSPlay::hideEndGameScreen()
 {
 	endGameScreen = false;
 	endGameMode = endState::FALSE;
@@ -1260,7 +1244,7 @@ void hideEndGameScreen()
 	g_StateStack.pop();
 }
 
-void handleEndGameEvent(int& choice)
+void GSPlay::handleEndGameEvent(int& choice)
 {
 	//Poll events
 	while (SDL_PollEvent(&event))
@@ -1299,7 +1283,7 @@ void handleEndGameEvent(int& choice)
 	}
 }
 
-void EndGame()
+void GSPlay::EndGame()
 {
 	//pause all playing audios
 	Mix_PauseMusic();
@@ -1419,82 +1403,14 @@ void EndGame()
 	case 1: //quit to menu
 		hideEndGameScreen();
 		showConfirmScreen(confirmState::QUIT_TO_MENU);
-		temp.StatePointer = Confirm;
+		temp.StatePointer = std::bind(&GSPlay::Confirm, this); //.StatePointer = Confirm;
 		g_StateStack.push(temp);
 		break;
 	case 2: //pressed exit
 		hideEndGameScreen();
 		showConfirmScreen(confirmState::QUIT);
-		temp.StatePointer = Confirm;
+		temp.StatePointer = std::bind(&GSPlay::Confirm, this); //.StatePointer = Confirm;
 		g_StateStack.push(temp);
 	}
 }
 #pragma endregion
-
-#pragma endregion
-
-#pragma region Main
-int execute()
-{
-	srand((unsigned)time(0)); //random seed
-
-	//Start up SDL and create window
-	if (!init())
-	{
-		printf("Failed to initialize!\n");
-	}
-	else
-	{
-		//Load media
-		if (!loadMedia())
-		{
-			printf("Failed to load media!\n");
-		}
-		else
-		{
-			//start the timers
-			systemTimer.tick();
-
-			// Our game loop is just a while loop that breaks when our state stack is empty. //
-			while (!g_StateStack.empty())
-			{
-				g_StateStack.top().StatePointer();
-			}
-		}
-
-		return 0;
-	}
-}
-#pragma endregion
-
-void GSPlay::Init()
-{
-	//	srand((unsigned)time(0)); //random seed
-
-		//Start up SDL and create window
-	if (!init())
-	{
-		printf("Failed to initialize!\n");
-	}
-	else
-	{
-		//Load media
-		if (!loadMedia())
-		{
-			printf("Failed to load media!\n");
-		}
-		else
-		{
-			//start the timers
-			systemTimer.tick();
-
-			// Our game loop is just a while loop that breaks when our state stack is empty. //
-			while (!g_StateStack.empty())
-			{
-				g_StateStack.top().StatePointer();
-			}
-		}
-
-		return;
-	}
-}

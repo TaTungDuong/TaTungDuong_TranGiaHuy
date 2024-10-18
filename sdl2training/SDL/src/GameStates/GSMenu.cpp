@@ -246,7 +246,7 @@ void GSMenu::Draw(SDL_Renderer* renderer)
 	switch (choice)
 	{
 	case 0: //start
-		GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY);
+		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
 		break;
 	case 1: //toggle music
 		setting_Music = !setting_Music;

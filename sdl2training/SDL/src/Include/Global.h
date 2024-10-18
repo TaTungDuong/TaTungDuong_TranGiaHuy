@@ -165,8 +165,3 @@ int map(int x, int in_min, int in_max, int out_min, int out_max);
 float calOnScreenXPosition(SDL_Rect& camera, int targetX);
 float calOnScreenYPosition(SDL_Rect& camera, int targetY);
 float calDistance(float x1, float y1, float x2, float y2);
-
-struct StateStruct
-{
-	void (*StatePointer)();
-};
