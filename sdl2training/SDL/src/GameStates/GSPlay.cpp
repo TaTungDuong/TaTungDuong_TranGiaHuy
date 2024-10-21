@@ -12,6 +12,7 @@
 player myPlayer;
 playerAnimation myPlayerAnimation;
 playerEffect myPlayerEffect;
+playerSkill myPlayerSkill;
 
 #pragma region Features
 SpriteSheet m_SpriteSheet;
@@ -327,12 +328,17 @@ bool GSPlay::loadMedia()
 	success = m_GameUI.loadMedia();
 #pragma region Load_animations_textures
 	//Load animation textures
+	///Load Player's
 	success = m_SpriteSheet.loadPlayerMedia();
 	success = m_SpriteSheet.loadPlayerAnimationMedia();
 	success = m_SpriteSheet.loadPlayerEffectMedia();
+	success = m_SpriteSheet.loadPlayerSkillMedia();
+
+	///Load Enemy's
 	success = m_SpriteSheet.loadPlayerMedia();
 	success = m_SpriteSheet.loadZombieMedia();
 	success = m_SpriteSheet.loadZombieWeaponMedia();
+	success = m_SpriteSheet.loadZombieEffectMedia();
 #pragma endregion
 
 #pragma region Load_audio
@@ -558,6 +564,8 @@ void GSPlay::initLevel()
 	//init player
 	myPlayer.initPlayer();
 	myPlayerAnimation.initPlayer();
+	myPlayerEffect.initPlayer();
+	myPlayerSkill.initPlayer(myPlayer);
 
 	//create weapon
 	myPlayer.myWeapon[0].init(PISTOL_NAME, PISTOL_DAMAGE, PISTOL_RATE_OF_FIRE, PISTOL_CLIP_SIZE, PISTOL_CLIP_SIZE, PISTOL_RELOAD_TIME);
@@ -667,16 +675,12 @@ void GSPlay::handleGameEvent()
 				Sound::GetInstance()->playSwapWeapon();
 				Sound::GetInstance()->stopReload();
 			}
-			if (event.key.keysym.sym == SDLK_r) //reload weapon
+			if (event.key.keysym.sym == SDLK_r) //activate skill
 			{
-				if (myPlayer.myWeapon[myPlayer.currentWeapon].ammo <= myPlayer.myWeapon[myPlayer.currentWeapon].getClipSize() &&
-					!myPlayer.myWeapon[myPlayer.currentWeapon].getReloadFlag())
+				if (COOLDOWN_TIME_COUNTER >= COOLDOWN_TIME_INTERVAL)
 				{
-					/*
-										myPlayer.myWeapon[myPlayer.currentWeapon].reload();
-										myPlayer.currentState = playerState::RELOAD;
-										myPlayer.currentFrame = 0;
-					*/
+					Sound::GetInstance()->playSkillActivation();
+					myPlayerSkill.initSkill(myPlayer);
 					//for objective 3
 					m_GameObjective.checkObjective2();
 				}
@@ -707,6 +711,7 @@ void GSPlay::handleGameEvent()
 			if (event.key.keysym.sym == SDLK_BACKQUOTE) //cheat toggle
 			{
 				cheat = !cheat;
+				cheat = false;
 				printf("---cheat mode: %i---\n", cheat);
 			}
 
@@ -867,7 +872,8 @@ void GSPlay::handleGameInput()
 	{
 		if (myPlayer.myWeapon[myPlayer.currentWeapon].checkRateOfFire() &&
 			myPlayer.myWeapon[myPlayer.currentWeapon].checkAmmo() &&
-			!myPlayer.myWeapon[myPlayer.currentWeapon].checkReload())
+			!myPlayer.myWeapon[myPlayer.currentWeapon].checkReload() &&
+			myPlayer.isActive)
 		{
 			myPlayer.currentState = playerState::FIRE;
 			myPlayer.currentFrame = 0;
@@ -934,19 +940,26 @@ void GSPlay::Game()
 		//Render blood pool
 		m_GameEnvironment.renderBloodPool(camera);
 
+		//render health pickups
+		renderGameObject(camera, m_GameEnvironment.gHealthPickUpTexture, m_GameEnvironment.healthPickUps);
+
 		//Update and render player bullets and zombie bullets
 		m_GameEnvironment.updateBullet(
 			myPlayer, m_GameObjective
 		);
+		m_GameEnvironment.updateZombieBullet(
+			myPlayer, myPlayerEffect
+		);
 
-		//render health pickups
-		renderGameObject(camera, m_GameEnvironment.gHealthPickUpTexture, m_GameEnvironment.healthPickUps);
+		//Update player's skill
+		myPlayerSkill.cooldownSkill(myPlayer);
 
 		//Update and render player
 		m_SpriteSheet.updatePlayer(
 			myPlayer,
 			myPlayerAnimation,
 			myPlayerEffect,
+			myPlayerSkill,
 			mouseX,
 			mouseY,
 			m_GameEnvironment.trees,
@@ -960,8 +973,13 @@ void GSPlay::Game()
 		);
 
 		//Update and render zombie
-//		updateZombie();
-		m_GameEnvironment.updateZombie(m_SpriteSheet, myPlayer, camera);
+		m_GameEnvironment.updateZombie(
+			m_SpriteSheet, 
+			myPlayer,
+			myPlayerSkill,
+			m_GameObjective,
+			camera
+		);
 
 		//Render lightings
 		m_GameUI.renderLighting(m_GameEnvironment);
@@ -997,7 +1015,9 @@ void GSPlay::Game()
 			myPlayer,
 			myPlayerAnimation,
 			myPlayerEffect,
+			myPlayerSkill,
 			m_GameEnvironment.zombies,
+			m_GameEnvironment.zombieEffects,
 			deltaTimer
 		);
 
@@ -1211,7 +1231,6 @@ void GSPlay::Confirm()
 			g_StateStack.swap(emptyStack);
 			temp.StatePointer = std::bind(&GSPlay::Menu, this); //.StatePointer = Menu;
 			g_StateStack.push(temp);
-
 		}
 		break;
 	case 1:

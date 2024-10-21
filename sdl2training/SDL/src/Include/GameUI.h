@@ -13,6 +13,7 @@ public:
 #pragma region Textures
 	//static textures
 	LTexture gWhiteTexture;
+	LTexture gSkillTexture;
 	//corsshair
 	LTexture gCrosshairTexture;
 	//UI textures
@@ -51,7 +52,9 @@ public:
 		GameDialogue& m_GameDialogue
 	);
 	void drawTimer(GameResource& m_GameResource, GameObjective& m_GameObjective);
+	void drawPosition(player& myPlayer, GameResource& m_GameResource, GameObjective& m_GameObjective);
 	void drawHealth(player& myPlayer, GameResource& m_GameResource);
+	void drawSkill(GameResource& m_GameResource);
 	void drawDialogue(
 		GameResource& m_GameResource,
 		GameObjective& m_GameObjective,

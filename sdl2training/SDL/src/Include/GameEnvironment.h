@@ -14,6 +14,7 @@ public:
 	LTexture gGroundTexture;
 	LTexture gTreeTexture;
 	LTexture gBulletTexture;
+	LTexture gZombieBulletTextures[4];
 	LTexture gBloodPoolTexture;
 	LTexture gHealthPickUpTexture;
 
@@ -22,12 +23,14 @@ public:
 #pragma endregion
 
 #pragma region Vectors
+	std::vector<bullet> bullets;
 	std::vector<gameObject> trees;
 	std::vector<gameObject> harmZones;
 	std::vector<gameObject> bloodpools;
 	std::vector<zombie> zombies;
 	std::vector<zombieWeapon> zombieWeapons;
-	std::vector<bullet> bullets;
+	std::vector<zombieBullet> zombieBullets;
+	std::vector<zombieEffect> zombieEffects;
 	std::vector<gameObject> signalZones;
 	std::vector<gameObject> healthPickUps;
 #pragma endregion
@@ -37,16 +40,24 @@ public:
 	bool canSpawnZombie = true;
 	zombie myZombie;
 	zombieWeapon myZombieWeapon;
+	zombieEffect myZombieEffect;
 
 #pragma region Render and Update functions
 	void renderGround(SDL_Rect& camera);
 	void renderBloodPool(SDL_Rect& camera);
 	void spawnZombie();
-	void updateZombie(SpriteSheet& m_SpriteSheet, player& myPlayer, SDL_Rect& camera);
+	void updateZombie(
+		SpriteSheet& m_SpriteSheet, 
+		player& myPlayer, 
+		playerSkill& myPlayerSkill,
+		GameObjective& m_GameObjective,
+		SDL_Rect& camera
+	);
 	void updateBullet(
 		player& myPlayer, 
 		GameObjective& m_GameObjective
 	);
+	void updateZombieBullet(player& myPlayer, playerEffect& myPlayerEffect);
 #pragma endregion
 
 	//free

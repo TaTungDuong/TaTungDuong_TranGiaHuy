@@ -79,11 +79,11 @@ const int MAX_DEAD_ZOMBIE_NUM = MAX_BLOOD_POOL_NUM / 2;
 const int TIME_LIMIT = 60;// 300; //total game time in second
 const int TOTAL_OBJECTIVE = 5;
 const int ZOMBIE_NEEDED_TO_KILL = 1;// 10;
-const int TOTAL_SIGNAL_ZONE = 1;// 3;
+const int TOTAL_SIGNAL_ZONE = 3;
 
 //pickupables
 //health pickup
-const int MAX_HEALTH_PICKUP_NUM = 10;
+const int MAX_HEALTH_PICKUP_NUM = 25;
 const int HEALTH_PICKUP_HEAL = 25;
 const int HEALTH_PICKUP_SIZE = 75;
 
@@ -114,24 +114,24 @@ static int MAX_ZOMBIE_NUM = DIFFICULTY_REQUIREMENT;
 //normal zombie
 const int NORMAL_ZOMBIE_CHANCE = 5;
 const float NORMAL_ZOMBIE_HEALTH = 20;
-const float NORMAL_ZOMBIE_SPEED = PLAYER_SPEED * 0.75;// 1.1;
-const float NORMAL_ZOMBIE_DAMAGE = 2.5f;
+const float NORMAL_ZOMBIE_SPEED = PLAYER_SPEED * 0.75;
+const float NORMAL_ZOMBIE_DAMAGE = 5.0f;
 const float NORMAL_ZOMBIE_ATTACK_RANGE = 30.0f;
-const float NORMAL_ZOMBIE_ATTACK_SPEED = 0.35f;
+const float NORMAL_ZOMBIE_ATTACK_SPEED = 1.5f;// 0.35f;
 //fast zombie
 const int FAST_ZOMBIE_CHANCE = 3;
 const float FAST_ZOMBIE_HEALTH = 15;
-const float FAST_ZOMBIE_SPEED = PLAYER_SPEED * 1.0;// 1.5;
-const float FAST_ZOMBIE_DAMAGE = 1.5f;
+const float FAST_ZOMBIE_SPEED = PLAYER_SPEED * 1.0;
+const float FAST_ZOMBIE_DAMAGE = 10.0f;
 const float FAST_ZOMBIE_ATTACK_RANGE = 20.0f;
-const float FAST_ZOMBIE_ATTACK_SPEED = 0.15f;
+const float FAST_ZOMBIE_ATTACK_SPEED = 3.0f;// 0.15f;
 //tank zombie
 const int TANK_ZOMBIE_CHANCE = 2;
 const float TANK_ZOMBIE_HEALTH = 50;
-const float TANK_ZOMBIE_SPEED = PLAYER_SPEED * 0.5;// 0.75;
-const float TANK_ZOMBIE_DAMAGE = 10.0f;
+const float TANK_ZOMBIE_SPEED = PLAYER_SPEED * 0.5;
+const float TANK_ZOMBIE_DAMAGE = 15.0f;
 const float TANK_ZOMBIE_ATTACK_RANGE = 20.0f;
-const float TANK_ZOMBIE_ATTACK_SPEED = 0.75f;
+const float TANK_ZOMBIE_ATTACK_SPEED = 2.0f;// 0.75f;
 
 //animations properties
 const float ANIMATION_INTERVAL = 0.075f; //animation interval until next frame in second
@@ -152,6 +152,16 @@ const int PLAYER_RIFLE_WALK_ANIMATION_FRAMES = 20;
 const int PLAYER_RIFLE_FIRE_ANIMATION_FRAMES = 3;
 const int PLAYER_RIFLE_RELOAD_ANIMATION_FRAMES = 20;
 
+//player skills
+const float COOLDOWN_TIME_INTERVAL = 10.0f;
+static float COOLDOWN_TIME_COUNTER = COOLDOWN_TIME_INTERVAL;
+const int PLAYER_EMPEROR_DIVIDE_ANIMATION_FRAMES = 8;
+const int PLAYER_CALL_OF_THE_FORGE_GOD_ANIMATION_FRAMES = 8;
+
+//player effects
+const int PLAYER_EFFECT_ANIMATION_FRAMES = 16;
+const float PLAYER_EFFECT_ANIMATION_TIME_INTERVAL = 1.2f;
+
 //zombie
 const int ZOMBIE_WALK_ANIMATION_FRAMES = 17;
 const int ZOMBIE_ATTACK_ANIMATION_FRAMES = 9;
@@ -161,7 +171,7 @@ static bool setting_Music = true;
 
 int GetRandomInt(int min_value, int max_value, int step);
 float GetRandomFloat(float min_value, float max_value, float step);
-int map(int x, int in_min, int in_max, int out_min, int out_max);
+float map(float x, float in_min, float in_max, float out_min, float out_max);
 float calOnScreenXPosition(SDL_Rect& camera, int targetX);
 float calOnScreenYPosition(SDL_Rect& camera, int targetY);
 float calDistance(float x1, float y1, float x2, float y2);

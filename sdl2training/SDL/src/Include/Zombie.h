@@ -7,7 +7,7 @@
 extern LTimer deltaTimer;
 extern player myPlayer;
 
-class SPriteSheet;
+class SpriteSheet;
 enum class zombieState
 {
 	WALK, ATTACK, DEAD
@@ -23,6 +23,7 @@ public:
 
 	float health;
 	float speed;
+	int isActive; //if true, zombie can move and attack; also applied for stunt
 	float damage;
 	float attackRange;
 	float attackSpeed; //attack speed in second

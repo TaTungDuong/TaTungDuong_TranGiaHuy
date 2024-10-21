@@ -40,6 +40,8 @@
     <ClInclude Include="src\GameStates\GSPlay.h" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Include\Button.h" />
+    <ClInclude Include="src\Include\CallOfTheForgeGod.h" />
+    <ClInclude Include="src\Include\EmperorDivide.h" />
     <ClInclude Include="src\Include\GameDialogue.h" />
     <ClInclude Include="src\Include\GameEnvironment.h" />
     <ClInclude Include="src\Include\GameObject.h" />
@@ -51,15 +53,19 @@
     <ClInclude Include="src\Include\Player.h" />
     <ClInclude Include="src\Include\PlayerAnimation.h" />
     <ClInclude Include="src\Include\PlayerEffect.h" />
+    <ClInclude Include="src\Include\PlayerSkill.h" />
     <ClInclude Include="src\Include\PopUpText.h" />
     <ClInclude Include="src\Include\SpriteSheet.h" />
     <ClInclude Include="src\Include\Timer.h" />
     <ClInclude Include="src\Include\Weapon.h" />
     <ClInclude Include="src\Include\Zombie.h" />
+    <ClInclude Include="src\Include\ZombieEffect.h" />
     <ClInclude Include="src\Include\ZombieWeapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameFeatures\Button.cpp" />
+    <ClCompile Include="src\GameFeatures\CallOfTheForgeGod.cpp" />
+    <ClCompile Include="src\GameFeatures\EmperorDivide.cpp" />
     <ClCompile Include="src\GameFeatures\GameDialogue.cpp" />
     <ClCompile Include="src\GameFeatures\GameEnvironment.cpp" />
     <ClCompile Include="src\GameFeatures\GameObject.cpp" />
@@ -71,14 +77,15 @@
     <ClCompile Include="src\GameFeatures\Player.cpp" />
     <ClCompile Include="src\GameFeatures\PlayerAnimation.cpp" />
     <ClCompile Include="src\GameFeatures\PlayerEffect.cpp" />
+    <ClCompile Include="src\GameFeatures\PlayerSkill.cpp" />
     <ClCompile Include="src\GameFeatures\PopUpText.cpp" />
     <ClCompile Include="src\GameFeatures\SpriteSheet.cpp" />
     <ClCompile Include="src\GameFeatures\Timer.cpp" />
     <ClCompile Include="src\GameFeatures\Weapon.cpp" />
     <ClCompile Include="src\GameFeatures\Zombie.cpp" />
+    <ClCompile Include="src\GameFeatures\ZombieEffect.cpp" />
     <ClCompile Include="src\GameFeatures\ZombieWeapon.cpp" />
     <ClCompile Include="src\GameManager\ResourceManagers.cpp" />
-    <ClCompile Include="src\GameObject\BaseObject.cpp" />
     <ClCompile Include="src\GameObject\Camera.cpp" />
     <ClCompile Include="src\GameObject\CMath.cpp" />
     <ClCompile Include="src\GameObject\MouseButton.cpp" />

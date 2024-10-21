@@ -13,7 +13,9 @@ class player : public  gameObject
 public:
 	//player stat
 	float health;
+	int skill; //value for skill cooldown timer bar
 	int speed;
+	int isActive; //if true (isActive == 1), player can move and attack; also applied for when player is stunt
 	int vx;
 	int vy;
 

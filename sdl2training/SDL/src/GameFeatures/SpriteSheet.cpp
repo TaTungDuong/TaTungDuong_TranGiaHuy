@@ -6,6 +6,7 @@ SpriteSheet::SpriteSheet()
 }
 
 //Load Sprite Sheet
+//load Sprite Sheet for Player
 void SpriteSheet::loadSpritesheet(
 	enum playerAnimationState state, 
 	std::map<playerAnimationState, LTexture>& spritesheet,
@@ -37,6 +38,21 @@ void SpriteSheet::loadSpritesheet(
 	}
 }
 void SpriteSheet::loadSpritesheet(
+	enum playerSkillState state,
+	std::map<playerSkillState, LTexture>& spritesheet,
+	std::map<playerSkillState,
+	std::vector <SDL_Rect>>&spritesheetClip,
+	int totalFrame
+)
+{
+	int w = spritesheet[state].getWidth() / totalFrame;
+	int h = spritesheet[state].getHeight();
+	for (int i = 0; i < totalFrame; i++)
+	{
+		spritesheetClip[state].push_back({ i * w, 0, w , h });
+	}
+}
+void SpriteSheet::loadSpritesheet(
 	enum playerState state, 
 	std::map<playerState, LTexture>& spritesheet,
 	std::map<playerState, 
@@ -51,6 +67,7 @@ void SpriteSheet::loadSpritesheet(
 		spritesheetClip[state].push_back({ i * w, 0, w , h });
 	}
 }
+//load Sprite Sheet for Enemy
 void SpriteSheet::loadSpritesheet(
 	enum zombieState state, 
 	std::map<zombieState, LTexture>& spritesheet,
@@ -80,6 +97,21 @@ void SpriteSheet::loadSpritesheet(
 	}
 }
 void SpriteSheet::loadSpritesheet(
+	enum zombieEffectState state,
+	std::map<zombieEffectState, LTexture>& spritesheet,
+	std::map<zombieEffectState, std::vector <SDL_Rect>>& spritesheetClip,
+	int totalFrame
+)
+{
+	int w = spritesheet[state].getWidth() / totalFrame;
+	int h = spritesheet[state].getHeight();
+	for (int i = 0; i < totalFrame; i++)
+	{
+		spritesheetClip[state].push_back({ i * w, 0, w , h });
+	}
+}
+
+void SpriteSheet::loadSpritesheet(
 	LTexture& spritesheet, 
 	std::vector <SDL_Rect>& spritesheetClip, 
 	int totalFrame
@@ -107,6 +139,7 @@ void SpriteSheet::loadClips(
 	}
 }
 
+#pragma region Load Player Stuff
 bool SpriteSheet::loadPlayerAnimationMedia()
 {
 	bool success = true;
@@ -160,6 +193,16 @@ bool SpriteSheet::loadPlayerEffectMedia()
 {
 	bool success = true;
 	// player effects
+	//idle
+	if (!gPlayerEffectTexture[playerEffectState::IDLE].loadFromFile("assets-main/sprites/objects/items/milk_128_drink.png"))
+	{
+		printf("Failed to load player idle effect texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(playerEffectState::IDLE, gPlayerEffectTexture, gPlayerEffectClips, PLAYER_EFFECT_ANIMATION_FRAMES);
+	}
 	//drink
 	if (!gPlayerEffectTexture[playerEffectState::DRINK].loadFromFile("assets-main/sprites/objects/items/milk_128_drink.png"))
 	{
@@ -168,9 +211,28 @@ bool SpriteSheet::loadPlayerEffectMedia()
 	}
 	else
 	{
-		loadSpritesheet(playerEffectState::DRINK, gPlayerEffectTexture, gPlayerEffectClips, 13);
+		loadSpritesheet(playerEffectState::DRINK, gPlayerEffectTexture, gPlayerEffectClips, PLAYER_EFFECT_ANIMATION_FRAMES);
 	}
-
+	//hurt
+	if (!gPlayerEffectTexture[playerEffectState::HURT].loadFromFile("assets-main/sprites/characters/player/player_bleed_128.png"))
+	{
+		printf("Failed to load player hurt effect texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(playerEffectState::HURT, gPlayerEffectTexture, gPlayerEffectClips, PLAYER_EFFECT_ANIMATION_FRAMES);
+	}
+	//stunt
+	if (!gPlayerEffectTexture[playerEffectState::STUNT].loadFromFile("assets-main/sprites/effects/stunt_128.png"))
+	{
+		printf("Failed to load player stunt effect texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(playerEffectState::STUNT, gPlayerEffectTexture, gPlayerEffectClips, PLAYER_EFFECT_ANIMATION_FRAMES);
+	}
 	return success;
 }
 
@@ -263,7 +325,38 @@ bool SpriteSheet::loadPlayerMedia()
 
 	return success;
 }
+bool SpriteSheet::loadPlayerSkillMedia()
+{
+	bool success = true;
+	//Emperor's Divide
+	if (!gPlayerSkillTexture[playerSkillState::EMPEROR_DIVIDE].loadFromFile(
+		"assets-main/sprites/objects/bullets/skills/emperor_divide/emperor_divide_128.png"))
+	{
+		printf("Failed to load player skill: Emperor's Divide texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(playerSkillState::EMPEROR_DIVIDE, gPlayerSkillTexture, gPlayerSkillClips, PLAYER_EMPEROR_DIVIDE_ANIMATION_FRAMES);
+	}
+	//Call of the Forge God
+	if (!gPlayerSkillTexture[playerSkillState::CALL_OF_THE_FORGE_GOD].loadFromFile(
+		"assets-main/sprites/objects/bullets/skills/call_of_the_forge_god/nyan_cat_red_256.png"))
+	{
+		printf("Failed to load player skill: Call of the Forge God texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(playerSkillState::CALL_OF_THE_FORGE_GOD, gPlayerSkillTexture, gPlayerSkillClips, 
+			PLAYER_CALL_OF_THE_FORGE_GOD_ANIMATION_FRAMES);
+	}
 
+	return success;
+}
+#pragma endregion
+
+#pragma region Load Zombie Stuff
 bool SpriteSheet::loadZombieMedia()
 {
 	bool success = true;
@@ -339,7 +432,7 @@ bool SpriteSheet::loadZombieMedia()
 		loadSpritesheet(zombieState::ATTACK, gZombieTexture[cnt], gZombieClips[cnt], ZOMBIE_ATTACK_ANIMATION_FRAMES);
 	}
 
-	// #3. Uwu
+	// #3. Creeper
 	cnt = 3;
 	//walk
 	if (!gZombieTexture[cnt][zombieState::WALK].loadFromFile("assets-main/sprites/characters/enemies/creeper/creeper_walk_128.png"))
@@ -386,7 +479,29 @@ bool SpriteSheet::loadZombieWeaponMedia()
 	//Zombie Weapon
 	// #0. Pistol
 	cnt = 0;
-	if (!gZombieWeaponTexture[cnt][zombieWeaponState::ATTACK].loadFromFile("assets-main/sprites/weapons/pistol/pistol_128.png")) //TODO: change to zombie weapon
+	if (!gZombieWeaponTexture[cnt][zombieWeaponState::ATTACK].loadFromFile("assets-main/sprites/weapons/[npc]/pistol_128.png")) //TODO: change to zombie weapon
+	{
+		printf("Failed to load zombie weapon texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(zombieWeaponState::ATTACK, gZombieWeaponTexture[cnt], gZombieWeaponClips[cnt], 1);
+	}
+	// #1. Heavy Cannon
+	cnt = 1;
+	if (!gZombieWeaponTexture[cnt][zombieWeaponState::ATTACK].loadFromFile("assets-main/sprites/weapons/[npc]/heavy_cannon_128.png")) //TODO: change to zombie weapon
+	{
+		printf("Failed to load zombie weapon texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(zombieWeaponState::ATTACK, gZombieWeaponTexture[cnt], gZombieWeaponClips[cnt], 1);
+	}
+	// #2. Shotgun
+	cnt = 2;
+	if (!gZombieWeaponTexture[cnt][zombieWeaponState::ATTACK].loadFromFile("assets-main/sprites/weapons/[npc]/shotgun_128.png")) //TODO: change to zombie weapon
 	{
 		printf("Failed to load zombie weapon texture!\n");
 		success = false;
@@ -398,7 +513,35 @@ bool SpriteSheet::loadZombieWeaponMedia()
 
 	return success;
 }
+bool SpriteSheet::loadZombieEffectMedia()
+{
+	bool success = true;
+	//zombie's effect
+	//idle
+	if (!gZombieEffectTexture[zombieEffectState::IDLE].loadFromFile("assets-main/sprites/effects/stunt_128.png"))
+	{
+		printf("Failed to load player idle effect texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(zombieEffectState::IDLE, gZombieEffectTexture, gZombieEffectClips, PLAYER_EFFECT_ANIMATION_FRAMES);
+	}
+	//stunt
+	if (!gZombieEffectTexture[zombieEffectState::STUNT].loadFromFile("assets-main/sprites/effects/stunt_128.png"))
+	{
+		printf("Failed to load player stunt effect texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(zombieEffectState::STUNT, gZombieEffectTexture, gZombieEffectClips, PLAYER_EFFECT_ANIMATION_FRAMES);
+	}
+	return success;
+}
+#pragma endregion
 
+#pragma region Set Animations for Player
 void SpriteSheet::setPlayerAnimation(player& myPlayer)
 {
 	if (myPlayer.myWeapon[myPlayer.currentWeapon].checkReload())
@@ -498,19 +641,17 @@ void SpriteSheet::setPlayerAnimationAnimation(playerAnimation& myPlayerAnimation
 }
 void SpriteSheet::setPlayerEffectAnimation(playerEffect& myPlayerEffect)
 {
-	myPlayerEffect.currentState = playerEffectState::DRINK;
-	switch (myPlayerEffect.currentState)
-	{
-	case playerEffectState::DRINK:
-		myPlayerEffect.currentTotalFrame = 13;
-		break;
-	case playerEffectState::IDLE:
-
-		break;
-	}
+	myPlayerEffect.currentTotalFrame = PLAYER_EFFECT_ANIMATION_FRAMES;
 	myPlayerEffect.setAnimation(gPlayerEffectTexture[myPlayerEffect.currentState],
 		gPlayerEffectClips[myPlayerEffect.currentState][myPlayerEffect.currentFrame]);
 }
+void SpriteSheet::setPlayerSkillAnimation(playerSkill& myPlayerSkill)
+{
+	myPlayerSkill.setAnimation(gPlayerSkillTexture, gPlayerSkillClips);
+}
+#pragma endregion
+
+#pragma region Set Animation for Zombies
 void SpriteSheet::setZombieAnimation(zombie& source)
 {
 	if (source.currentTotalFrame == ZOMBIE_ATTACK_ANIMATION_FRAMES && source.currentFrame < ZOMBIE_ATTACK_ANIMATION_FRAMES)
@@ -567,19 +708,37 @@ void SpriteSheet::setZombieWeaponAnimation(zombieWeapon& source)
 		break;
 	}
 
-	source.type = 0;
 	source.currentState = zombieWeaponState::ATTACK;
 	source.currentFrame = 0;
 
 	source.setAnimation(gZombieWeaponTexture[source.type][source.currentState], 
 		gZombieWeaponClips[source.type][source.currentState][source.currentFrame]);
 }
+void SpriteSheet::setZombieEffectAnimation(zombieEffect& source)
+{
+	switch (source.currentState)
+	{
+	case zombieEffectState::STUNT:
+		if (source.currentFrame > PLAYER_EFFECT_ANIMATION_FRAMES - 1)
+		{
+			source.currentFrame = 0;
+		}
+	default:
+		break;
+	}
+
+	source.setAnimation(gZombieEffectTexture[source.currentState],
+		gZombieEffectClips[source.currentState][source.currentFrame]);
+}
+#pragma endregion
 
 void SpriteSheet::updateAnimation(
 	player& myPlayer,
 	playerAnimation& myPlayerAnimation,
 	playerEffect& myPlayerEffect,
+	playerSkill& myPlayerSkill,
 	std::vector<zombie>& zombies,
+	std::vector<zombieEffect>& zombieEffects,
 	LTimer deltaTimer
 )
 {
@@ -592,17 +751,28 @@ void SpriteSheet::updateAnimation(
 		myPlayerAnimation.currentFrame++;
 		myPlayerEffect.currentFrame++;
 
-		for (int i = 0; i < zombies.size(); i++)
+		myPlayerSkill.updateAnimation();
+
+		for (auto& zZ : zombies)
 		{
-			if (zombies[i].currentState != zombieState::DEAD)
+			// increase Animation Frame for Zombie
+			if (zZ.currentState != zombieState::DEAD)
 			{
-				zombies[i].currentFrame++;
+				zZ.currentFrame++;
 				continue;
 			}
 
-			if (zombies[i].currentFrame <= ZOMBIE_WALK_ANIMATION_FRAMES - 1)
+			if (zZ.currentFrame <= ZOMBIE_WALK_ANIMATION_FRAMES - 1)
 			{
-				zombies[i].currentFrame++;
+				zZ.currentFrame++;
+			}
+		}
+
+		for (auto& zEffect : zombieEffects)
+		{
+			if (zEffect.currentState != zombieEffectState::IDLE)
+			{
+				zEffect.currentFrame++;
 			}
 		}
 	}
@@ -626,6 +796,7 @@ void SpriteSheet::updatePlayer(
 	player& myPlayer,
 	playerAnimation& myPlayerAnimation,
 	playerEffect& myPlayerEffect,
+	playerSkill& myPlayerSkill,
 	int mouseX,
 	int mouseY,
 	std::vector<gameObject>& trees,
@@ -641,7 +812,7 @@ void SpriteSheet::updatePlayer(
 	//set player's animation based on current state
 	setPlayerAnimation(myPlayer);
 	setPlayerAnimationAnimation(myPlayerAnimation);
-	setPlayerEffectAnimation(myPlayerEffect);
+	setPlayerSkillAnimation(myPlayerSkill);
 
 	//calulate player rotation
 	myPlayer.calRotation(camera, mouseX, mouseY);
@@ -663,8 +834,8 @@ void SpriteSheet::updatePlayer(
 	myPlayerEffect.speed = myPlayer.speed;
 
 	//calulate player position
-	float dirX = myPlayer.vx * myPlayer.speed * deltaTimer.getDeltaTime();
-	float dirY = myPlayer.vy * myPlayer.speed * deltaTimer.getDeltaTime();
+	float dirX = myPlayer.vx * myPlayer.speed * deltaTimer.getDeltaTime() * myPlayer.isActive;
+	float dirY = myPlayer.vy * myPlayer.speed * deltaTimer.getDeltaTime() * myPlayer.isActive;
 	myPlayer.px += dirX;
 	myPlayer.py += dirY;
 	myPlayerAnimation.px = myPlayer.px;
@@ -700,13 +871,24 @@ void SpriteSheet::updatePlayer(
 				{
 					myPlayer.health += HEALTH_PICKUP_HEAL;
 				}
-				myPlayerEffect.gPlayerEffectTimeCounter[myPlayerEffect.currentState] = 0.0f;
 				healthPickUps.erase(healthPickUps.begin() + i);
 				Sound::GetInstance()->playDrinkMilk();
+				myPlayerEffect.currentState = playerEffectState::DRINK;
+				myPlayerEffect.gPlayerEffectTimeCounter[myPlayerEffect.currentState] = 0.0f;
 			}
 			break;
 		}
 	}
+	if (myPlayer.isActive == 0)
+	{
+		myPlayerEffect.currentState = playerEffectState::STUNT;
+		myPlayerEffect.gPlayerEffectTimeCounter[myPlayerEffect.currentState] = 0.0f;
+	}
+	else
+	{
+		myPlayerEffect.gPlayerEffectTimeCounter[playerEffectState::STUNT] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	}
+	setPlayerEffectAnimation(myPlayerEffect);
 
 	//set player's render position
 	myPlayer.updateRenderPosition();
@@ -731,4 +913,7 @@ void SpriteSheet::updatePlayer(
 	myPlayerAnimation.render(camera);
 	myPlayer.render(camera);
 	myPlayerEffect.render(camera);
+	
+
+	myPlayerSkill.activateSkill(myPlayer);
 }

@@ -35,10 +35,12 @@ public:
 	void playGameLose();
 	void playGameWin();
 	void playZombieAttack();
+	void playZombieShoot();
 	void playHitZombie();
 	void playGunshot();
 	void playSwapWeapon();
 	void playGunEmpty();
+	void playSkillActivation();
 
 private:
 	//Bgm
@@ -76,6 +78,8 @@ private:
 		"sfx/npcs/hit_zombie(3).wav",
 		"sfx/npcs/hit_zombie(4).wav"
 	};
+	const std::string p_ZombieShoot = "sfx/npcs/enemy_shoot.mp3";
+	const std::string p_PlayerSkill = "sfx/skills/_skill.mp3";
 
 	//Fixed channel for some sound effect
 	const int AMBIENT_CHANNEL = 0;
@@ -89,28 +93,7 @@ private:
 	const int GUNSHOT_VARIATION = 3;
 	const int ZOMBIE_ATTACK_VARIATION = 7;
 	const int HIT_ZOMBIE_VARIATION = 4;
-/*
-	//The music that will be played
-	Mix_Music* menu_bgm;
-	Mix_Music* main_bgm;
 
-	//The sound effects that will be used
-	Mix_Chunk* ambient;
-	Mix_Chunk* radio;
-	Mix_Chunk* walk;
-	Mix_Chunk* reload;
-	Mix_Chunk* swapWeapon;
-	Mix_Chunk* gunEmpty;
-	Mix_Chunk* hitTree;
-	Mix_Chunk* drinkMilk;
-	Mix_Chunk* collectObject;
-	Mix_Chunk* gameLose;
-	Mix_Chunk* gameWin;
-	std::vector<Mix_Chunk*> playerHurt;
-	std::vector<Mix_Chunk*> gunshot;
-	std::vector<Mix_Chunk*> zombieAttack;
-	std::vector<Mix_Chunk*> hitZombie;
-*/
 	std::string m_PathMusic;
 	//Mix_Music* m_Music = NULL;
 	std::map< std::string, Mix_Chunk*> m_Sfxs;

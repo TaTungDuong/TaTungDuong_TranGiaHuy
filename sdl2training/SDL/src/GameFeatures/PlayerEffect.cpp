@@ -13,8 +13,14 @@ playerEffect::playerEffect()
 	currentState = playerEffectState::IDLE;
 	previousState = playerEffectState::IDLE;
 
-	gPlayerEffectInterval[playerEffectState::DRINK] = 1.0f;
-	gPlayerEffectTimeCounter[playerEffectState::DRINK] = 1.0f;
+	gPlayerEffectInterval[playerEffectState::IDLE] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectTimeCounter[playerEffectState::IDLE] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectInterval[playerEffectState::DRINK] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectTimeCounter[playerEffectState::DRINK] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectInterval[playerEffectState::HURT] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectTimeCounter[playerEffectState::HURT] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectInterval[playerEffectState::STUNT] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectTimeCounter[playerEffectState::STUNT] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
 }
 
 void playerEffect::initPlayer()
@@ -28,8 +34,14 @@ void playerEffect::initPlayer()
 	currentState = playerEffectState::IDLE;
 	previousState = playerEffectState::IDLE;
 
-	gPlayerEffectInterval[playerEffectState::DRINK] = 1.0f;
-	gPlayerEffectTimeCounter[playerEffectState::DRINK] = 1.0f;
+	gPlayerEffectInterval[playerEffectState::IDLE] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectTimeCounter[playerEffectState::IDLE] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectInterval[playerEffectState::DRINK] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectTimeCounter[playerEffectState::DRINK] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectInterval[playerEffectState::HURT] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectTimeCounter[playerEffectState::HURT] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectInterval[playerEffectState::STUNT] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
+	gPlayerEffectTimeCounter[playerEffectState::STUNT] = PLAYER_EFFECT_ANIMATION_TIME_INTERVAL;
 }
 
 void playerEffect::calRotation(SDL_Rect& camera, int x, int y)
@@ -73,6 +85,7 @@ void playerEffect::render(SDL_Rect& camera)
 		isFlipped = false;
 	}
 
+	if (currentState == playerEffectState::IDLE) return;
 	gPlayerEffectTimeCounter[currentState] += deltaTimer.getDeltaTime();
 	if (gPlayerEffectTimeCounter[currentState] < gPlayerEffectInterval[currentState])
 	{

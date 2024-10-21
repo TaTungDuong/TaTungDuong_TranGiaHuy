@@ -20,6 +20,7 @@ public:
 class weapon
 {
 public:
+	std::string name;
 	weapon();
 
 	int ammo;
@@ -39,7 +40,6 @@ public:
 	void resetTimer();
 
 private:
-	std::string name;
 	float damage;
 	float rateOfFire;
 	int clipSize;

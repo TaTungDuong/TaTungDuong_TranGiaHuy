@@ -219,16 +219,17 @@ void GSMenu::Draw(SDL_Renderer* renderer)
 
 		//Render title
 //		drawText(textX, textY, boldFontTitle, UIColor, "Catgirl & Shotgun", 1);
-
+// 
 		//set toggle music text
-		if (setting_Music)
-		{
-			buttons[1].setText("Music On");
-		}
-		else if (!setting_Music)
-		{
-			buttons[1].setText("Music Off");
-		}
+		if (buttons.size() > 0)
+			if (setting_Music)
+			{
+				buttons[1].setText("Music On");
+			}
+			else if (!setting_Music)
+			{
+				buttons[1].setText("Music Off");
+			}
 		//Render buttons
 		for (int i = 0; i < buttons.size(); i++)
 		{
@@ -241,7 +242,7 @@ void GSMenu::Draw(SDL_Renderer* renderer)
 	}
 
 	//remove all buttons
-	buttons.clear();
+//	buttons.clear();
 
 	switch (choice)
 	{

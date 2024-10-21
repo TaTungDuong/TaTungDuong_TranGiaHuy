@@ -247,6 +247,11 @@ void Sound::playZombieAttack() {
     PlaySfx(p_ZombieAttack[i]);
 }
 
+void Sound::playZombieShoot() {
+    LoadSfx(p_ZombieShoot);
+    PlaySfx(p_ZombieShoot);
+}
+
 void Sound::playHitZombie() {
     int i = GetRandomInt(0, HIT_ZOMBIE_VARIATION - 2, 1);
     LoadSfx(p_ZombieHit[i]);
@@ -269,6 +274,12 @@ void Sound::playDrinkMilk()
 {
     LoadSfx(p_DrinkMilk);
     PlaySfx(p_DrinkMilk);
+}
+
+void Sound::playSkillActivation()
+{
+    LoadSfx(p_PlayerSkill);
+    PlaySfx(p_PlayerSkill);
 }
 
 void Sound::playGameLose()

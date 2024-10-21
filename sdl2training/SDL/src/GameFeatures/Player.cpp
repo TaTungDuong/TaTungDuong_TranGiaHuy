@@ -5,6 +5,8 @@ player::player()
 	init(LEVEL_WIDTH / 2, LEVEL_HEIGHT / 2, PLAYER_SIZE, -1);
 	speed = PLAYER_SPEED;
 	health = 100;
+	skill = SCREEN_WIDTH / 5.0f;
+	isActive = 1;
 	vx = 0;
 	vy = 0;
 	currentFrame = 0;
@@ -22,6 +24,7 @@ void player::initPlayer()
 {
 	init(LEVEL_WIDTH / 2, LEVEL_HEIGHT / 2, SCREEN_HEIGHT / 7, -1);
 	speed = PLAYER_SPEED;
+	isActive = 1;
 	health = 100;
 	vx = 0;
 	vy = 0;

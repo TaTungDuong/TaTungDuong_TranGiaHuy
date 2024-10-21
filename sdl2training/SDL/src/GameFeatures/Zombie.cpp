@@ -12,6 +12,7 @@ zombie::zombie()
 
 void zombie::init()
 {
+	isActive = 1;
 	//set random position
 	bool ok = false;
 	int randomX = 0;
@@ -74,10 +75,11 @@ void zombie::move(gameObject target)
 	float dirX = 0;
 	float dirY = 0;
 
+	int ratio = 2.0f;
 	dirX = -cos(rotation * M_PI / 180.0);
 	dirY = -sin(rotation * M_PI / 180.0);
-	vx = dirX * speed * deltaTimer.getDeltaTime();
-	vy = dirY * speed * deltaTimer.getDeltaTime();
+	vx = dirX * speed * deltaTimer.getDeltaTime() / ratio * isActive;
+	vy = dirY * speed * deltaTimer.getDeltaTime() / ratio * isActive;
 
 	px += vx;
 	py += vy;

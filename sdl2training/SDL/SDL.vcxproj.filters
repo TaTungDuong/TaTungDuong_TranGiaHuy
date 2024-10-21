@@ -34,35 +34,32 @@
     <Filter Include="Source Files\GameStates\SubStates">
       <UniqueIdentifier>{6c7436aa-1eae-410f-918a-2d927f65e3ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Player">
+      <UniqueIdentifier>{1b7539ae-304c-4a99-8af9-6404f216c545}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Zombie">
+      <UniqueIdentifier>{b1f45646-7a8c-4977-80b7-75365c0afe1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObject">
+      <UniqueIdentifier>{357880f1-2fab-4d1d-aacc-41fd8ebbe9d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameFeatures\Player">
+      <UniqueIdentifier>{135eb084-cc0b-4b8c-979b-384a1caeb341}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameFeatures\Zombie">
+      <UniqueIdentifier>{c4d5b370-953f-4dc7-a18b-c50726dd8c52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameFeatures\GameObject">
+      <UniqueIdentifier>{880effb5-e104-4dea-aafe-fa05ddc65fbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Player\PlayerSkills">
+      <UniqueIdentifier>{54d462ef-34af-422c-8bb4-a309ee7997bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameFeatures\Player\PlayerSkills">
+      <UniqueIdentifier>{5b954175-7a5d-4b74-ac58-b9f7c72f15d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Include\Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\Global.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\Graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\PopUpText.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\Timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\Weapon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\Zombie.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\GameManager\ResourceManagers.h">
       <Filter>Source Files\GameManager</Filter>
     </ClInclude>
@@ -111,27 +108,6 @@
     <ClInclude Include="src\GameObject\Text.h">
       <Filter>Source Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\Include\PlayerAnimation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\SpriteSheet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\GameObjective.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\GameEnvironment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\GameUI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\GameResource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Include\GameDialogue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Game\Game.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
@@ -144,41 +120,74 @@
     <ClInclude Include="src\GameStates\GSPlay.h">
       <Filter>Source Files\GameStates\MainStates</Filter>
     </ClInclude>
-    <ClInclude Include="src\Include\ZombieWeapon.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Include\Player.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\PlayerAnimation.h">
+      <Filter>Header Files\Player</Filter>
     </ClInclude>
     <ClInclude Include="src\Include\PlayerEffect.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\PlayerSkill.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\Zombie.h">
+      <Filter>Header Files\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\ZombieEffect.h">
+      <Filter>Header Files\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\ZombieWeapon.h">
+      <Filter>Header Files\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\Button.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameDialogue.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameEnvironment.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameObject.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameObjective.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameResource.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\GameUI.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\Global.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\Graphics.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\PopUpText.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\SpriteSheet.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\Timer.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\Weapon.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\EmperorDivide.h">
+      <Filter>Header Files\Player\PlayerSkills</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Include\CallOfTheForgeGod.h">
+      <Filter>Header Files\Player\PlayerSkills</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\GameFeatures\Button.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\GameObject.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\Global.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\Graphics.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\Player.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\PopUpText.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\Timer.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\Weapon.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\Zombie.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameManager\ResourceManagers.cpp">
       <Filter>Source Files\GameManager</Filter>
     </ClCompile>
@@ -215,27 +224,6 @@
     <ClCompile Include="src\GameObject\Text.cpp">
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameFeatures\PlayerAnimation.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\SpriteSheet.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\GameObjective.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\GameEnvironment.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\GameUI.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\GameResource.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameFeatures\GameDialogue.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
-    </ClCompile>
     <ClCompile Include="src\Game\Game.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
@@ -251,14 +239,71 @@
     <ClCompile Include="src\GameStates\GSPlay.cpp">
       <Filter>Source Files\GameStates\MainStates</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameFeatures\ZombieWeapon.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
+    <ClCompile Include="src\GameFeatures\Button.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameDialogue.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameEnvironment.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameObject.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameObjective.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameResource.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\GameUI.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Global.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Graphics.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Player.cpp">
+      <Filter>Source Files\GameFeatures\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\PlayerAnimation.cpp">
+      <Filter>Source Files\GameFeatures\Player</Filter>
     </ClCompile>
     <ClCompile Include="src\GameFeatures\PlayerEffect.cpp">
-      <Filter>Source Files\GameFeatures</Filter>
+      <Filter>Source Files\GameFeatures\Player</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject\BaseObject.cpp">
-      <Filter>Source Files\GameObject</Filter>
+    <ClCompile Include="src\GameFeatures\PopUpText.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\SpriteSheet.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Weapon.cpp">
+      <Filter>Source Files\GameFeatures\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Timer.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Zombie.cpp">
+      <Filter>Source Files\GameFeatures\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\ZombieEffect.cpp">
+      <Filter>Source Files\GameFeatures\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\ZombieWeapon.cpp">
+      <Filter>Source Files\GameFeatures\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\EmperorDivide.cpp">
+      <Filter>Source Files\GameFeatures\Player\PlayerSkills</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\CallOfTheForgeGod.cpp">
+      <Filter>Source Files\GameFeatures\Player\PlayerSkills</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\PlayerSkill.cpp">
+      <Filter>Source Files\GameFeatures\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

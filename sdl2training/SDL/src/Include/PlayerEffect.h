@@ -5,7 +5,7 @@
 
 enum class playerEffectState
 {
-	DRINK, IDLE
+	DRINK, HURT, IDLE, STUNT
 };
 
 class playerEffect : public  gameObject

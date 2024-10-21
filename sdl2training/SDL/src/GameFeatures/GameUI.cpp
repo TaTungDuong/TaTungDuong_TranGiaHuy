@@ -19,6 +19,11 @@ bool GameUI::loadMedia()
 		success = false;
 	}
 
+	if (!gSkillTexture.loadFromFile("assets-main/sprites/ui/others/white.png"))
+	{
+		printf("Failed to load white texture!\n");
+		success = false;
+	}
 
 	if (!gMenuTexture.loadFromFile("assets-main/sprites/ui/boot_splash/menu_background.png"))
 	{
@@ -86,15 +91,62 @@ void GameUI::renderLighting(GameEnvironment& m_GameEnvironment)
 {
 //	return;
 	//bullet lightings
+	///player bullets
 	for (int i = 0; i < m_GameEnvironment.bullets.size(); i++)
 	{
 		int lightSize1 = 750;
 		int lightSize2 = 300;
-		//render bullet lighting
+		
+		// Get the bullet's position
+		float bulletX = m_GameEnvironment.bullets[i].rx;
+		float bulletY = m_GameEnvironment.bullets[i].ry;
+
+		// Render the larger, dimmer outer light
 		gLightTexture.setColor(200, 150, 0, 100);
-		gLightTexture.render(camera, m_GameEnvironment.bullets[i].rx - lightSize1 / 2, m_GameEnvironment.bullets[i].ry - lightSize1 / 2, lightSize1, lightSize1);
+		gLightTexture.render(
+			camera, 
+			bulletX - lightSize1 / 2, 
+			bulletY - lightSize1 / 2, 
+			lightSize1, lightSize1
+		);
+
+		// Render the smaller, brighter inner light
 		gLightTexture.setColor(250, 175, 0, 125);
-		gLightTexture.render(camera, m_GameEnvironment.bullets[i].rx - lightSize2 / 2, m_GameEnvironment.bullets[i].ry - lightSize2 / 2, lightSize2, lightSize2);
+		gLightTexture.render(
+			camera, 
+			bulletX - lightSize2 / 2, 
+			bulletY - lightSize2 / 2, 
+			lightSize2, lightSize2
+		);
+	}
+//	return;
+	///zombie bullets
+	for (int i = 0; i < m_GameEnvironment.zombieBullets.size(); i++)
+	{
+		int lightSize1 = 90 * m_GameEnvironment.zombieBullets[i].size / 48;
+		int lightSize2 = 90 * m_GameEnvironment.zombieBullets[i].size / 48;
+
+		// Get the bullet's position
+		float bulletX = m_GameEnvironment.zombieBullets[i].rx - m_GameEnvironment.zombieBullets[i].size / 2;
+		float bulletY = m_GameEnvironment.zombieBullets[i].ry - m_GameEnvironment.zombieBullets[i].size / 2;
+
+		// Render the larger, dimmer outer light
+		gLightTexture.setColor(225, 80, 0, 100);
+		gLightTexture.render(
+			camera,
+			bulletX,
+			bulletY,
+			lightSize1, lightSize1
+		);
+//		continue;
+		// Render the smaller, brighter inner light
+		gLightTexture.setColor(255, 85, 75, 125);
+		gLightTexture.render(
+			camera,
+			bulletX,
+			bulletY,
+			lightSize2, lightSize2
+		);
 	}
 }
 
@@ -248,6 +300,16 @@ void GameUI::drawObjective(
 	int objectiveX = int(V_BORDER + renderedTextWidth * 1.05);
 	int objectiveY = objectiveTextY;
 	drawText(objectiveX, objectiveY, m_GameResource.regularFont, m_GameResource.UIColor, m_GameObjective.objectiveText, 0);
+	if (m_GameObjective.currentObjective == 4)
+	{
+		for (int i = 0; i < m_GameEnvironment.signalZones.size(); i++)
+		{
+			std::string signalPosition = "[+] : [X = " + std::to_string(int(m_GameEnvironment.signalZones[i].px))
+				+ ", Y = " + std::to_string(int(m_GameEnvironment.signalZones[i].py)) + "]";
+			drawText(objectiveTextX, objectiveY + 32 * (i + 1),
+				m_GameResource.regularFont, m_GameResource.UIColor, signalPosition, 0);
+		}
+	}
 }
 void GameUI::drawTimer(GameResource& m_GameResource, GameObjective& m_GameObjective)
 {
@@ -290,9 +352,16 @@ void GameUI::drawTimer(GameResource& m_GameResource, GameObjective& m_GameObject
 	int timerTextX = int(SCREEN_WIDTH - V_BORDER - renderedTextWidth * 1.1);
 	int timerTextY = timerY;
 	drawText(timerTextX, timerTextY, m_GameResource.boldFont, m_GameResource.UIColor, "Time Left: ", 2);
-
-
 }
+void GameUI::drawPosition(player& myPlayer, GameResource& m_GameResource, GameObjective& m_GameObjective)
+{
+	//draw the text Position of the player
+	int positionTextX = int(SCREEN_WIDTH - V_BORDER);
+	int positionTextY = H_BORDER + 32;
+	std::string myPosition = "[X:" + std::to_string(int(myPlayer.px)) + ", Y:" + std::to_string(int(myPlayer.py)) + "]";
+	drawText(positionTextX, positionTextY, m_GameResource.boldFont, m_GameResource.UIColor, myPosition, 2);
+}
+
 void GameUI::drawHealth(player& myPlayer, GameResource& m_GameResource)
 {
 	//set health to 0 if it drop below 0
@@ -324,6 +393,39 @@ void GameUI::drawHealth(player& myPlayer, GameResource& m_GameResource)
 	//draw heath bar
 	gWhiteTexture.setColor(255, 255, 255, 255);
 	gWhiteTexture.render(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
+}
+void GameUI::drawSkill(GameResource& m_GameResource)
+{
+	//set cooldown time counter to max
+	if (COOLDOWN_TIME_COUNTER > COOLDOWN_TIME_INTERVAL)
+	{
+		COOLDOWN_TIME_COUNTER = COOLDOWN_TIME_INTERVAL;
+	}
+
+	//size of icons
+	int skillBarWidth = map(myPlayer.skill, 0, SCREEN_WIDTH / 5, 0, SCREEN_WIDTH / 5); //map player's current skill time to the skill bar width
+	int skillBarHeight = SCREEN_HEIGHT / 100;
+	int skillIconSize = SCREEN_HEIGHT / 20;
+	//printf("-> %d, %d\n", map(myPlayer.skill, 0, SCREEN_WIDTH / 5, 0, SCREEN_WIDTH / 5), myPlayer.skill);
+
+	//position of icons
+	int skillBarOffset = SCREEN_HEIGHT / 20;
+	int skillBarX = V_BORDER;
+	int skillBarY = SCREEN_HEIGHT - H_BORDER - skillBarOffset + 32;
+	int skillIconX = int(V_BORDER * 1.25);
+	int skillIconY = skillBarY - skillBarHeight - skillIconSize;
+	int skillX = int(skillIconX + skillIconSize * 1.5);
+	int skillY = skillIconY;
+
+	//draw heath icon
+	//gHealthIconTexture.render(skillIconX, skillIconY, skillIconSize, skillIconSize);
+
+	//draw text
+	//drawText(skillX, skillY, m_GameResource.boldFont, m_GameResource.UIColor, std::to_string(int(myPlayer.health)), 0);
+
+	//draw skill bar
+	gSkillTexture.setColor(255, 255, 255, 255);
+	gSkillTexture.render(skillBarX, skillBarY, skillBarWidth, skillBarHeight);
 }
 void GameUI::drawDialogue(
 	GameResource& m_GameResource,
@@ -370,29 +472,6 @@ void GameUI::drawDialogue(
 			}
 		}
 
-		/*//last objective is finished
-		if (objective[TOTAL_OBJECTIVE -1] && dialogue.currentPart == TOTAL_OBJECTIVE + 1)
-		{
-				printf("yes");
-			if (dialogueTips.check())
-			{
-				if (!dialogueTips.onScreen())
-				{
-					printf("2");
-					fullDialogue = " ";
-					dialogueTips.setFlag(true);
-
-					//random interval and dialogue line
-					dialogueTips.interval = GetRandomFloat(10.0f, 20.0f, 0.1f);
-					dialogueTips.currentLine = GetRandomInt(0, tipsLine.size() - 2, 1);
-					printf("interval = %f\n", dialogueTips.interval);
-					//std::cout << "dialogueTips interval = " << dialogueTips.interval << std::endl; //temp
-					//printf("dialogueTips current line = %i\n", dialogueTips.currentLine); //temp
-					fullDialogue = "Radio: " + tipsLine[dialogueTips.currentLine];
-				}
-			}
-		}*/
-
 		//draw dialogue
 		int dialogueOffset = SCREEN_HEIGHT / 10;
 		int dialogueX = SCREEN_WIDTH / 2;
@@ -408,31 +487,6 @@ void GameUI::drawUI(
 	GameDialogue& m_GameDialogue
 )
 {
-	drawWeapon(myPlayer, m_GameResource);
-	updateObjective(
-		m_GameObjective,
-		m_GameEnvironment,
-		m_GameDialogue
-	);
-	drawObjective(
-		m_GameResource,
-		m_GameObjective,
-		m_GameEnvironment,
-		m_GameDialogue
-	);
-	drawTimer(m_GameResource, m_GameObjective);
-	drawHealth(myPlayer, m_GameResource);
-	drawDialogue(
-		m_GameResource,
-		m_GameObjective,
-		m_GameDialogue
-	);
-/*
-	if (cheat)
-	{
-		drawText(SCREEN_WIDTH / 2, H_BORDER, m_GameResource.boldFontSmall, m_GameResource.UIColor, "cheat mode: on", 1);
-	}
-*/
 	//Render screen effect
 	//color filter
 	gWhiteTexture.setColor(75, 100, 200, 50);
@@ -447,6 +501,38 @@ void GameUI::drawUI(
 	//blood overlay effect
 	gBloodOverlayTexture.setColor(255, 255, 255, unsigned char(healthColor));
 	gBloodOverlayTexture.render(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+	drawWeapon(myPlayer, m_GameResource);
+	updateObjective(
+		m_GameObjective,
+		m_GameEnvironment,
+		m_GameDialogue
+	);
+	drawObjective(
+		m_GameResource,
+		m_GameObjective,
+		m_GameEnvironment,
+		m_GameDialogue
+	);
+	drawTimer(m_GameResource, m_GameObjective);
+	drawPosition(
+		myPlayer,
+		m_GameResource, 
+		m_GameObjective
+	);
+	drawHealth(myPlayer, m_GameResource);
+	drawSkill(m_GameResource);
+	drawDialogue(
+		m_GameResource,
+		m_GameObjective,
+		m_GameDialogue
+	);
+/*
+	if (cheat)
+	{
+		drawText(SCREEN_WIDTH / 2, H_BORDER, m_GameResource.boldFontSmall, m_GameResource.UIColor, "cheat mode: on", 1);
+	}
+*/
 }
 
 void GameUI::close()
