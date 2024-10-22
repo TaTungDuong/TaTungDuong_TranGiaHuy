@@ -1,14 +1,18 @@
 #pragma once
 #include "Include/GameObject.h"
-#include "Include/Weapon.h"
+#include "Sound.h"
+
 #include "Include/Player.h"
-#include "Include/Zombie.h"
-#include "Include/ZombieWeapon.h"
-#include "Include/ZombieEffect.h"
 #include "Include/PlayerAnimation.h"
 #include "Include/PlayerEffect.h"
 #include "Include/PlayerSkill.h"
-#include "Sound.h"
+#include "Include/Weapon.h"
+
+#include "Include/Zombie.h"
+#include "Include/ZombieWeapon.h"
+#include "Include/ZombieEffect.h"
+
+#include "Include/Signal.h"
 
 class SpriteSheet {
 public:
@@ -64,6 +68,13 @@ public:
 		std::map<zombieEffectState, std::vector <SDL_Rect>>& spritesheetClip,
 		int totalFrame
 	);
+	//load Sprite Sheet for Signal
+	void loadSpritesheet(
+		enum signalState state,
+		std::map<signalState, LTexture>& spritesheet,
+		std::map<signalState, std::vector <SDL_Rect>>& spritesheetClip,
+		int totalFrame
+	);
 
 	void loadSpritesheet(LTexture& spritesheet, std::vector <SDL_Rect>& spritesheetClip, int totalFrame);
 	//Load Clips
@@ -97,6 +108,10 @@ public:
 	std::map<zombieEffectState, std::vector <SDL_Rect>> gZombieEffectClips;
 #pragma endregion
 
+	//signal
+	std::map<signalState, LTexture> gSignalTexture;
+	std::map<signalState, std::vector <SDL_Rect>> gSignalClips;
+
 	//Check load media
 	///load player
 	bool loadPlayerAnimationMedia();
@@ -108,6 +123,9 @@ public:
 	bool loadZombieMedia();
 	bool loadZombieWeaponMedia();
 	bool loadZombieEffectMedia();
+
+	///load signal
+	bool loadSignalMedia();
 
 	//set animations
 	///set player's
@@ -121,6 +139,9 @@ public:
 	void setZombieWeaponAnimation(zombieWeapon& source);
 	void setZombieEffectAnimation(zombieEffect& source);
 
+	///set signal's
+	void setSignalAnimation(signal& source);
+
 	//update animation
 	void updateAnimation(
 		player& myPlayer, 
@@ -129,6 +150,7 @@ public:
 		playerSkill& myPlayerSkill,
 		std::vector<zombie>& zombies,
 		std::vector<zombieEffect>& zombieEffects,
+		std::vector<signal>& signals,
 		LTimer deltaTimer
 	);
 	void updatePlayer(
@@ -143,7 +165,7 @@ public:
 		std::vector<gameObject>& bloodpools,
 		std::vector<zombie>& zombies,
 		std::vector<bullet>& bullets,
-		std::vector<gameObject>& signalZones,
+		std::vector<signal>& signals,
 		std::vector<gameObject>& healthPickUps,
 		LTimer deltaTimer
 	);

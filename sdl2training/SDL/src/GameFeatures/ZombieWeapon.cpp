@@ -78,7 +78,7 @@ bool zombieWeapon::attack(
 )
 {
 	if (!isAlive) return false;
-	if (source.calDistance(myPlayer) > attackRange * 25.0f + myPlayer.size) return false;
+	if (source.calDistance(myPlayer) > attackRange * 15.0f + myPlayer.size) return false;
 
 	currentState = zombieWeaponState::ATTACK;
 

@@ -53,43 +53,8 @@ void GameObjective::checkObjective3()
 		}
 	}
 }
-void GameObjective::checkObjective4(
-	std	::vector<gameObject>& signalZones, 
-	LTexture& gLightTexture, 
-	player& myPlayer
-)
+void GameObjective::checkObjective4()
 {
-	if (currentObjective == 4)
-	{
-
-		int i = 0;
-		while (i < signalZones.size())
-		{
-			if (signalZones[i].checkCollision(myPlayer))
-			{
-				signalZones.erase(signalZones.begin() + i);
-				Sound::GetInstance()->playCollectObject();
-				obj_zones--;
-			}
-			else
-			{
-				int size1 = signalZones[i].size * 10;
-				int size2 = signalZones[i].size * 5;
-				int size3 = signalZones[i].size * 3;
-				gLightTexture.setColor(0, 0, 255, 25);
-				gLightTexture.render(camera, signalZones[i].px - size1 / 2, signalZones[i].py - size1 / 2, size1, size1);
-				gLightTexture.setColor(0, 0, 255, 50);
-				gLightTexture.render(camera, signalZones[i].px - size2 / 2, signalZones[i].py - size2 / 2, size2, size2);
-				gLightTexture.setColor(0, 0, 255, 100);
-				gLightTexture.render(camera, signalZones[i].px - size3 / 2, signalZones[i].py - size3 / 2, size3, size3);
-				gLightTexture.setColor(0, 0, 255, 200);
-				gLightTexture.render(camera, signalZones[i].rx, signalZones[i].ry, signalZones[i].size, signalZones[i].size);
-			}
-			i++;
-		}
-	}
-	//renderGameObject(camera, gLightTexture, signalZones);
-
 	if (obj_zones <= 0)
 	{
 		objective[4] = true;

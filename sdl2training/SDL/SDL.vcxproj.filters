@@ -58,6 +58,12 @@
     <Filter Include="Source Files\GameFeatures\Player\PlayerSkills">
       <UniqueIdentifier>{5b954175-7a5d-4b74-ac58-b9f7c72f15d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameFeatures\Signal">
+      <UniqueIdentifier>{c32b6151-1813-443c-b0e5-a9ff4ef68b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Signal">
+      <UniqueIdentifier>{89bbf987-86e8-40b0-99f9-ab646e0fe82c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameManager\ResourceManagers.h">
@@ -186,6 +192,9 @@
     <ClInclude Include="src\Include\CallOfTheForgeGod.h">
       <Filter>Header Files\Player\PlayerSkills</Filter>
     </ClInclude>
+    <ClInclude Include="src\Include\Signal.h">
+      <Filter>Header Files\Signal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameManager\ResourceManagers.cpp">
@@ -304,6 +313,9 @@
     </ClCompile>
     <ClCompile Include="src\GameFeatures\PlayerSkill.cpp">
       <Filter>Source Files\GameFeatures\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Signal.cpp">
+      <Filter>Source Files\GameFeatures\Signal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

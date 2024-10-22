@@ -61,6 +61,8 @@ void playerSkill::updateAnimation()
 bool playerSkill::initSkill(player& myPlayer)
 {
 	if (COOLDOWN_TIME_COUNTER < COOLDOWN_TIME_INTERVAL) return false;
+	Sound::GetInstance()->playSkillActivation();
+
 	COOLDOWN_TIME_COUNTER = 0.0f;//set skill cooldown time counter to zero
 	myPlayer.skill = 0; // set player cooldown time bar to 0
 	
@@ -78,6 +80,7 @@ bool playerSkill::initSkill(player& myPlayer)
 	}
 
 	//set up skill based on current skill
+	Sound::GetInstance()->playSkillSfx(myPlayer.currentWeapon);
 	switch (currentState)
 	{
 	case playerSkillState::EMPEROR_DIVIDE:
@@ -147,6 +150,7 @@ void playerSkill::initEmperorDivide(player& myPlayer)
 	for (auto& soldier : myEmperorDivide)
 	{
 		soldier.lifeTimeCounter = 0.0f;
+		soldier.entranceTimeCounter = 0.0f;
 		soldier.moveTimeCounter = 0.0f;
 	}
 	//for (auto& soldier : myEmperorDivide)

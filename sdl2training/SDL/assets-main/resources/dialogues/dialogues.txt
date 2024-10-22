@@ -8,18 +8,21 @@ Good, now shoot your gun with left mouse button.
 You can switch weapon using Q or mouse wheel also.
 And remember you can't shoot through the bushes.
 //end part//
-Great, now reload your gun by pressing R.
+Great, now activate your skill by pressing R.
+Skill will be different based on the current weapon you're holding.
+And the cooldown will be 10 seconds, so pay attention!
 //end part//
 Alright enough for now... Wait whats that?
-Seems the zombies are heading to your position now!
+Seems the cyborgs are heading to your position now!
 Watch out and don't let them get close to you!
 //end part//
 Well we don't have much time left now.
-Your mission is to recover the missing signals.
-But their position is unknown, you have to find it yourself.
-They should be marked with a blue zone also.
+I found the locations of all the signals.
+Your mission is to destroy all of them.
+I will mark the coordinates for you.
+The cyborgs will stop spawning once you finish the job.
 //end part//
-Great! Seems you have recovered all missing signals.
+Great! Seems you have destroyed all the signals.
 We are coming to rescue you.
 Hold on and don't die!
 //end part//

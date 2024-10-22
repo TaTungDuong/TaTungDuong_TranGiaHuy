@@ -339,6 +339,10 @@ bool GSPlay::loadMedia()
 	success = m_SpriteSheet.loadZombieMedia();
 	success = m_SpriteSheet.loadZombieWeaponMedia();
 	success = m_SpriteSheet.loadZombieEffectMedia();
+
+	//load Signal's
+	success = m_SpriteSheet.loadSignalMedia();
+
 #pragma endregion
 
 #pragma region Load_audio
@@ -585,8 +589,9 @@ void GSPlay::initLevel()
 
 	//create objective zones for objective 5 (find the random signals)
 	createGameObjectRandom(mySignalZone, m_GameEnvironment.signalZones,
-		TOTAL_SIGNAL_ZONE, 500, 500, 0, -1); //random objective zone
+		TOTAL_SIGNAL_ZONE, 512, 512, 0, -1); //random objective zone
 	m_GameObjective.obj_zones = m_GameEnvironment.signalZones.size();
+	m_GameEnvironment.spawnSignal();
 	for (int i = 0; i < m_GameEnvironment.signalZones.size(); i++)
 	{
 		printf("signalZones[%i] px = %f, py = %f\n", i, m_GameEnvironment.signalZones[i].px, m_GameEnvironment.signalZones[i].py);
@@ -616,6 +621,7 @@ void GSPlay::setDifficulty()
 {
 	DIFFICULTY = 1 + m_GameObjective.totalZombieKilled / DIFFICULTY_REQUIREMENT;
 	MAX_ZOMBIE_NUM = DIFFICULTY * ZOMBIE_NUMBER_STEP;
+	myPlayer.health = 100;
 }
 
 void GSPlay::handleGameEvent()
@@ -679,7 +685,6 @@ void GSPlay::handleGameEvent()
 			{
 				if (COOLDOWN_TIME_COUNTER >= COOLDOWN_TIME_INTERVAL)
 				{
-					Sound::GetInstance()->playSkillActivation();
 					myPlayerSkill.initSkill(myPlayer);
 					//for objective 3
 					m_GameObjective.checkObjective2();
@@ -943,6 +948,13 @@ void GSPlay::Game()
 		//render health pickups
 		renderGameObject(camera, m_GameEnvironment.gHealthPickUpTexture, m_GameEnvironment.healthPickUps);
 
+		//render signals
+		for (auto& s : m_GameEnvironment.signals)
+		{
+			m_SpriteSheet.setSignalAnimation(s);
+			s.render(camera);
+		}
+
 		//Update and render player bullets and zombie bullets
 		m_GameEnvironment.updateBullet(
 			myPlayer, m_GameObjective
@@ -967,7 +979,7 @@ void GSPlay::Game()
 			m_GameEnvironment.bloodpools,
 			m_GameEnvironment.zombies,
 			m_GameEnvironment.bullets,
-			m_GameEnvironment.signalZones,
+			m_GameEnvironment.signals,
 			m_GameEnvironment.healthPickUps,
 			deltaTimer
 		);
@@ -991,11 +1003,7 @@ void GSPlay::Game()
 		m_GameUI.gLightTexture.setColor(255, 0, 0, 200);
 		renderGameObject(camera, m_GameUI.gLightTexture, m_GameEnvironment.harmZones);
 		//check objective 4 and render objective zones
-		m_GameObjective.checkObjective4(
-			m_GameEnvironment.signalZones,
-			m_GameUI.gLightTexture,
-			myPlayer
-		);
+		m_GameObjective.checkObjective4();
 
 		//Render UI
 //		drawUI();
@@ -1018,6 +1026,7 @@ void GSPlay::Game()
 			myPlayerSkill,
 			m_GameEnvironment.zombies,
 			m_GameEnvironment.zombieEffects,
+			m_GameEnvironment.signals,
 			deltaTimer
 		);
 

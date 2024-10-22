@@ -208,7 +208,7 @@ void Sound::playRadio()
 
 void Sound::playPlayerHurt()
 {
-    return;
+//    return;
     LoadSfx(p_PlayerHit);
     PlaySfx(p_PlayerHit);
 }
@@ -280,6 +280,23 @@ void Sound::playSkillActivation()
 {
     LoadSfx(p_PlayerSkill);
     PlaySfx(p_PlayerSkill);
+}
+void Sound::playSkillSfx(int weapon)
+{
+    std::string sfx;
+    switch (weapon)
+    {
+    case 0://pistol
+        sfx = p_CallOfTheForgeGod;
+        break;
+    case 1://heavy cannon
+        sfx = p_EmperorDivide;
+        break;
+    default:
+        break;
+    }
+    LoadSfx(sfx);
+    PlaySfx(sfx);
 }
 
 void Sound::playGameLose()

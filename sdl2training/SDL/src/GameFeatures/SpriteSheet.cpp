@@ -111,6 +111,22 @@ void SpriteSheet::loadSpritesheet(
 	}
 }
 
+//load Sprite Sheet for Signal
+void SpriteSheet::loadSpritesheet(
+	enum signalState state,
+	std::map<signalState, LTexture>& spritesheet,
+	std::map<signalState, std::vector <SDL_Rect>>& spritesheetClip,
+	int totalFrame
+)
+{
+	int w = spritesheet[state].getWidth() / totalFrame;
+	int h = spritesheet[state].getHeight();
+	for (int i = 0; i < totalFrame; i++)
+	{
+		spritesheetClip[state].push_back({ i * w, 0, w , h });
+	}
+}
+
 void SpriteSheet::loadSpritesheet(
 	LTexture& spritesheet, 
 	std::vector <SDL_Rect>& spritesheetClip, 
@@ -541,6 +557,55 @@ bool SpriteSheet::loadZombieEffectMedia()
 }
 #pragma endregion
 
+#pragma region Load Signal Stuff
+bool SpriteSheet::loadSignalMedia()
+{
+	bool success = true;
+	//signal states
+	//intro
+	if (!gSignalTexture[signalState::INTRO].loadFromFile("assets-main/sprites/characters/enemies/spawner/tower_summon.png"))
+	{
+		printf("Failed to load signal summon texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(signalState::INTRO, gSignalTexture, gSignalClips, SIGNAL_INTRO_ANIMATION_FRAMES);
+	}
+	//idle
+	if (!gSignalTexture[signalState::IDLE].loadFromFile("assets-main/sprites/characters/enemies/spawner/tower_idle.png"))
+	{
+		printf("Failed to load signal idle texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(signalState::IDLE, gSignalTexture, gSignalClips, SIGNAL_IDLE_ANIMATION_FRAMES);
+	}
+	//hurt
+	if (!gSignalTexture[signalState::HURT].loadFromFile("assets-main/sprites/characters/enemies/spawner/tower_attacked.png"))
+	{
+		printf("Failed to load signal hurt texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(signalState::HURT, gSignalTexture, gSignalClips, SIGNAL_HURT_ANIMATION_FRAMES);
+	}
+	//dead
+	if (!gSignalTexture[signalState::DEAD].loadFromFile("assets-main/sprites/characters/enemies/spawner/tower_dead.png"))
+	{
+		printf("Failed to load signal dead texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(signalState::DEAD, gSignalTexture, gSignalClips, SIGNAL_DEAD_ANIMATION_FRAMES);
+	}
+	return success;
+}
+#pragma endregion
+
 #pragma region Set Animations for Player
 void SpriteSheet::setPlayerAnimation(player& myPlayer)
 {
@@ -723,12 +788,50 @@ void SpriteSheet::setZombieEffectAnimation(zombieEffect& source)
 		{
 			source.currentFrame = 0;
 		}
+		break;
 	default:
 		break;
 	}
 
 	source.setAnimation(gZombieEffectTexture[source.currentState],
 		gZombieEffectClips[source.currentState][source.currentFrame]);
+}
+#pragma endregion
+
+#pragma region Set Animation for Signal
+void SpriteSheet::setSignalAnimation(signal& source)
+{
+	switch (source.currentState)
+	{
+	case signalState::INTRO:
+		if (source.currentFrame > SIGNAL_INTRO_ANIMATION_FRAMES - 1)
+		{
+			source.currentState = source.health > 0 ? signalState::IDLE : signalState::DEAD;
+			source.currentFrame = 0;
+		}
+		break;
+	case signalState::IDLE:
+		if (source.currentFrame > SIGNAL_IDLE_ANIMATION_FRAMES - 1)
+		{
+			source.currentFrame = 0;
+		}
+		break;
+	case signalState::HURT:
+		if (source.currentFrame > SIGNAL_HURT_ANIMATION_FRAMES - 1)
+		{
+			source.currentState = source.health > 0? signalState::IDLE : signalState::DEAD;
+			source.currentFrame = 0;
+		}
+		break;
+	case signalState::DEAD:
+		source.currentFrame = 0;
+		break;
+	default:
+		break;
+	}
+
+	source.setAnimation(gSignalTexture[source.currentState],
+		gSignalClips[source.currentState][source.currentFrame]);
 }
 #pragma endregion
 
@@ -739,6 +842,7 @@ void SpriteSheet::updateAnimation(
 	playerSkill& myPlayerSkill,
 	std::vector<zombie>& zombies,
 	std::vector<zombieEffect>& zombieEffects,
+	std::vector<signal>& signals,
 	LTimer deltaTimer
 )
 {
@@ -775,6 +879,13 @@ void SpriteSheet::updateAnimation(
 				zEffect.currentFrame++;
 			}
 		}
+		for (auto& sS : signals)
+		{
+			if (sS.currentState != signalState::DEAD)
+			{
+				sS.currentFrame++;
+			}
+		}
 	}
 
 	//Cycle player animation
@@ -804,7 +915,7 @@ void SpriteSheet::updatePlayer(
 	std::vector<gameObject>& bloodpools,
 	std::vector<zombie>& zombies,
 	std::vector<bullet>& bullets,
-	std::vector<gameObject>& signalZones,
+	std::vector<signal>& signals,
 	std::vector<gameObject>& healthPickUps,
 	LTimer deltaTimer
 )
@@ -845,10 +956,22 @@ void SpriteSheet::updatePlayer(
 
 	//check collision with game objects
 	//zombies
-	for (int i = 0; i < zombies.size(); i++)
+	/*for (int i = 0; i < zombies.size(); i++)
 	{
 		if (zombies[i].currentState != zombieState::DEAD
 			&& myPlayer.checkCollision(zombies[i], zombies[i].attackRange))
+		{
+			myPlayer.px -= dirX;
+			myPlayer.py -= dirY;
+			break;
+		}
+	}*/
+
+	//signals
+	for (int i = 0; i < signals.size(); i++)
+	{
+		if (signals[i].currentState != signalState::DEAD
+			&& myPlayer.checkCollision(signals[i]))
 		{
 			myPlayer.px -= dirX;
 			myPlayer.py -= dirY;

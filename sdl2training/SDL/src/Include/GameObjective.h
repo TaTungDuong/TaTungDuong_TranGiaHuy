@@ -1,8 +1,10 @@
 #pragma once
 #include "Include/Global.h"
 #include "Include/Graphics.h"
-#include "Include/Player.h"
 #include "Sound.h"
+
+#include "Include/Player.h"
+#include "Include/Signal.h"
 
 class GameObjective
 {
@@ -26,9 +28,5 @@ public:
 	void checkObjective1();
 	void checkObjective2();
 	void checkObjective3();
-	void checkObjective4(
-		std::vector<gameObject>& signalZones,
-		LTexture& gLightTexture,
-		player& myPlayer
-	);
+	void checkObjective4();
 };

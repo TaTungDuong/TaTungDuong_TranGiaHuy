@@ -41,6 +41,7 @@ public:
 	void playSwapWeapon();
 	void playGunEmpty();
 	void playSkillActivation();
+	void playSkillSfx(int weapon);
 
 private:
 	//Bgm
@@ -55,7 +56,7 @@ private:
 	const std::string p_HitTree = "sfx/objects/hit_tree.mp3";
 	const std::string p_CollectObject = "sfx/objects/collect_object.mp3";
 	const std::string p_DrinkMilk = "sfx/effects/drink.mp3";
-	const std::string p_PlayerHit = "sfx/player/hit.mp3";
+	const std::string p_PlayerHit = "sfx/player/hurt.mp3";
 	const std::string p_GameLose = "sfx/effects/game_lose.wav";
 	const std::string p_GameWin = "sfx/effects/game_win.wav";
 	const std::string p_GunShot[3] = {
@@ -80,6 +81,8 @@ private:
 	};
 	const std::string p_ZombieShoot = "sfx/npcs/enemy_shoot.mp3";
 	const std::string p_PlayerSkill = "sfx/skills/_skill.mp3";
+	const std::string p_EmperorDivide = "sfx/skills/emperor_divide.mp3";
+	const std::string p_CallOfTheForgeGod = "sfx/skills/call_of_the_forge_god.mp3";
 
 	//Fixed channel for some sound effect
 	const int AMBIENT_CHANNEL = 0;

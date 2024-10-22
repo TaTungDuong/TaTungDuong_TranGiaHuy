@@ -15,7 +15,7 @@ bool GameEnvironment::loadMedia(SpriteSheet& m_SpriteSheet)
 	}
 	
 	///Trees
-	if (!gTreeTexture.loadFromFile("assets-main/sprites/objects/environment/trees/trees.png"))
+	if (!gTreeTexture.loadFromFile("assets-main/sprites/objects/environment/trees/trees_red.png"))
 	{
 		printf("Failed to load tree texture!\n");
 		success = false;
@@ -100,9 +100,30 @@ void GameEnvironment::renderGround(SDL_Rect& camera)
 		}
 	}
 }
+void GameEnvironment::spawnSignal()
+{
+	for (auto sZ : signalZones)
+	{
+		signal mySignal;
+		mySignal.initSignal(sZ);
+		signals.push_back(mySignal);
+	}
+}
 void GameEnvironment::spawnZombie()
 {
-	if (canSpawnZombie)
+	//check if there is alive signal
+	//if false, the zombie can not be spawned anymore
+	bool hasSignal = false;
+	for (auto s : signals)
+	{
+		if (s.currentState != signalState::DEAD)
+		{
+			hasSignal = true;
+			break;
+		}
+	}
+
+	if (canSpawnZombie && hasSignal)
 	{
 		int zombieAliveCnt = 0;
 		for (auto z : zombies)
@@ -221,7 +242,8 @@ void GameEnvironment::updateZombie(
 	}//
 }
 void GameEnvironment::updateBullet(
-	player& myPlayer, GameObjective& m_GameObjective
+	player& myPlayer, 
+	GameObjective& m_GameObjective
 )
 {
 	int i = 0;
@@ -270,9 +292,27 @@ void GameEnvironment::updateBullet(
 						//for objective 4
 						m_GameObjective.checkObjective3();
 					}
-					break;
+
+					if (collised) break;
 				}
 			}
+			//signal
+			for (int j = 0; j < signals.size(); j++)
+			{
+				if (bullets[i].checkCollision(signals[j]))
+				{
+					collised = (signals[j].health > 0);
+					signals[j].hurt(myPlayer);
+
+					//remove signal if it's health is below 0
+					if (signals[j].health <= 0 && collised)
+					{
+						m_GameObjective.obj_zones--;
+					}
+					if (collised) break;
+				}
+			}
+
 			//delete current bullet if it's collided with something
 			if (collised)
 			{
@@ -361,6 +401,7 @@ void GameEnvironment::init()
 	zombieBullets.clear();
 	bloodpools.clear();
 	bullets.clear();
+	signals.clear();
 	signalZones.clear();
 	healthPickUps.clear();
 }
@@ -381,6 +422,7 @@ void GameEnvironment::close()
 	zombieBullets.clear();
 	bloodpools.clear();
 	bullets.clear();
+	signals.clear();
 	signalZones.clear();
 	healthPickUps.clear();
 }

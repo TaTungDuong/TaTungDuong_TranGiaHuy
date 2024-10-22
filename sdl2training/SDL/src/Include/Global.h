@@ -76,7 +76,7 @@ const int MAX_BLOOD_POOL_NUM = 50;
 const int MAX_DEAD_ZOMBIE_NUM = MAX_BLOOD_POOL_NUM / 2;
 
 //objectives
-const int TIME_LIMIT = 60;// 300; //total game time in second
+const int TIME_LIMIT = 300; //total game time in second
 const int TOTAL_OBJECTIVE = 5;
 const int ZOMBIE_NEEDED_TO_KILL = 1;// 10;
 const int TOTAL_SIGNAL_ZONE = 3;
@@ -116,22 +116,25 @@ const int NORMAL_ZOMBIE_CHANCE = 5;
 const float NORMAL_ZOMBIE_HEALTH = 20;
 const float NORMAL_ZOMBIE_SPEED = PLAYER_SPEED * 0.75;
 const float NORMAL_ZOMBIE_DAMAGE = 5.0f;
-const float NORMAL_ZOMBIE_ATTACK_RANGE = 30.0f;
+const float NORMAL_ZOMBIE_ATTACK_RANGE = 50.0f;
 const float NORMAL_ZOMBIE_ATTACK_SPEED = 1.5f;// 0.35f;
 //fast zombie
 const int FAST_ZOMBIE_CHANCE = 3;
 const float FAST_ZOMBIE_HEALTH = 15;
 const float FAST_ZOMBIE_SPEED = PLAYER_SPEED * 1.0;
 const float FAST_ZOMBIE_DAMAGE = 10.0f;
-const float FAST_ZOMBIE_ATTACK_RANGE = 20.0f;
+const float FAST_ZOMBIE_ATTACK_RANGE = 50.0f;
 const float FAST_ZOMBIE_ATTACK_SPEED = 3.0f;// 0.15f;
 //tank zombie
 const int TANK_ZOMBIE_CHANCE = 2;
 const float TANK_ZOMBIE_HEALTH = 50;
 const float TANK_ZOMBIE_SPEED = PLAYER_SPEED * 0.5;
 const float TANK_ZOMBIE_DAMAGE = 15.0f;
-const float TANK_ZOMBIE_ATTACK_RANGE = 20.0f;
+const float TANK_ZOMBIE_ATTACK_RANGE = 50.0f;
 const float TANK_ZOMBIE_ATTACK_SPEED = 2.0f;// 0.75f;
+
+//signal properties
+const float SIGNAL_HEALTH = 160;
 
 //animations properties
 const float ANIMATION_INTERVAL = 0.075f; //animation interval until next frame in second
@@ -165,6 +168,12 @@ const float PLAYER_EFFECT_ANIMATION_TIME_INTERVAL = 1.2f;
 //zombie
 const int ZOMBIE_WALK_ANIMATION_FRAMES = 17;
 const int ZOMBIE_ATTACK_ANIMATION_FRAMES = 9;
+
+//signal
+const int SIGNAL_INTRO_ANIMATION_FRAMES = 16;
+const int SIGNAL_IDLE_ANIMATION_FRAMES = 16;
+const int SIGNAL_HURT_ANIMATION_FRAMES = 4;
+const int SIGNAL_DEAD_ANIMATION_FRAMES = 1;
 
 //settings
 static bool setting_Music = true;

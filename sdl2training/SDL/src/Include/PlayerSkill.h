@@ -2,6 +2,8 @@
 #include "Include/Global.h"
 #include "Include/GameObject.h"
 #include "Include/Timer.h"
+#include "Sound.h"
+
 #include "Include/Player.h"
 #include "Include/PlayerEffect.h"
 

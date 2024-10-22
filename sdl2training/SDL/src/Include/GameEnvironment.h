@@ -31,6 +31,7 @@ public:
 	std::vector<zombieWeapon> zombieWeapons;
 	std::vector<zombieBullet> zombieBullets;
 	std::vector<zombieEffect> zombieEffects;
+	std::vector<signal> signals;
 	std::vector<gameObject> signalZones;
 	std::vector<gameObject> healthPickUps;
 #pragma endregion
@@ -45,6 +46,7 @@ public:
 #pragma region Render and Update functions
 	void renderGround(SDL_Rect& camera);
 	void renderBloodPool(SDL_Rect& camera);
+	void spawnSignal();
 	void spawnZombie();
 	void updateZombie(
 		SpriteSheet& m_SpriteSheet, 
@@ -54,7 +56,7 @@ public:
 		SDL_Rect& camera
 	);
 	void updateBullet(
-		player& myPlayer, 
+		player& myPlayer,
 		GameObjective& m_GameObjective
 	);
 	void updateZombieBullet(player& myPlayer, playerEffect& myPlayerEffect);

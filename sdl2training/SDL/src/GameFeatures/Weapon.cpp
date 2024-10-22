@@ -8,7 +8,7 @@ bullet::bullet(SDL_Rect& camera, gameObject source, int targetX, int targetY)
 //	printf("Rotation: %f\n", source.rotation);
 
 	//set fire rotation
-	float offsetX = 20;
+	float offsetX = -20;
 	float offsetY;
 	if (0 < source.rotation && source.rotation <= 90)
 	{

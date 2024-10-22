@@ -231,7 +231,7 @@ void GameUI::updateObjective(
 	switch (m_GameObjective.currentObjective)
 	{
 	case -1: //waiting for first dialogue to finish
-		m_GameObjective.objectiveText = "waiting for objective";
+		m_GameObjective.objectiveText = "Waiting for objective...";
 //		m_GameObjective.checkPreObjective();
 		if (m_GameDialogue.dialogue.currentPart == 1)
 		{
@@ -239,16 +239,16 @@ void GameUI::updateObjective(
 		}
 		break;
 	case 0: //objective 1: (tutorial): press w,a,s,d
-		m_GameObjective.objectiveText = "move around the area by pressing W, A, S, D";
+		m_GameObjective.objectiveText = "Move around the area by pressing W, A, S, D";
 		break;
 	case 1: //objective 2: (tutorial): shoot gun
-		m_GameObjective.objectiveText = "shoot your gun by pressing Left Mouse Button";
+		m_GameObjective.objectiveText = "Shoot your gun by pressing Left Mouse Button";
 		break;
 	case 2: //objective 3: (tutorial): reload gun
-		m_GameObjective.objectiveText = "reload your gun by pressing R";
+		m_GameObjective.objectiveText = "Activate the skill by pressing R";
 		break;
 	case 3: //objective 4: kill required amount of zombies (tutorial ended, zombie start spawning now)
-		m_GameObjective.objectiveText = "kill " 
+		m_GameObjective.objectiveText = "Kill " 
 			+ std::to_string(ZOMBIE_NEEDED_TO_KILL) + " enemies, " 
 			+ std::to_string(ZOMBIE_NEEDED_TO_KILL - m_GameObjective.obj_zombieKilled) 
 			+ "/" + std::to_string(ZOMBIE_NEEDED_TO_KILL) + " left";
@@ -259,9 +259,9 @@ void GameUI::updateObjective(
 			spawned = true;
 		}
 		break;
-	case 4: //objective 5: find 5 missing signals
-		m_GameObjective.objectiveText = "find the missing signals, " 
-			+ std::to_string(m_GameEnvironment.signalZones.size()) + "/" + std::to_string(TOTAL_SIGNAL_ZONE) + " left";
+	case 4: //objective 5: destroy 5 signals
+		m_GameObjective.objectiveText = "Destroy all the signals, " 
+			+ std::to_string(m_GameObjective.obj_zones) + "/" + std::to_string(TOTAL_SIGNAL_ZONE) + " left";
 		break;
 
 	case TOTAL_OBJECTIVE: //objective 5: All objective finished
@@ -274,7 +274,7 @@ void GameUI::updateObjective(
 		&& m_GameDialogue.dialogue.currentPart == m_GameObjective.currentObjective + 1
 		&& m_GameObjective.currentObjective < TOTAL_OBJECTIVE)
 	{
-		m_GameObjective.objectiveText = "waiting for objective";
+		m_GameObjective.objectiveText = "Waiting for objective...";
 	}
 }
 void GameUI::drawObjective(
@@ -302,12 +302,15 @@ void GameUI::drawObjective(
 	drawText(objectiveX, objectiveY, m_GameResource.regularFont, m_GameResource.UIColor, m_GameObjective.objectiveText, 0);
 	if (m_GameObjective.currentObjective == 4)
 	{
-		for (int i = 0; i < m_GameEnvironment.signalZones.size(); i++)
+		for (int i = 0; i < m_GameEnvironment.signals.size(); i++)
 		{
-			std::string signalPosition = "[+] : [X = " + std::to_string(int(m_GameEnvironment.signalZones[i].px))
-				+ ", Y = " + std::to_string(int(m_GameEnvironment.signalZones[i].py)) + "]";
-			drawText(objectiveTextX, objectiveY + 32 * (i + 1),
-				m_GameResource.regularFont, m_GameResource.UIColor, signalPosition, 0);
+			if (m_GameEnvironment.signals[i].health > 0)
+			{
+				std::string signalPosition = "[+] : [X = " + std::to_string(int(m_GameEnvironment.signalZones[i].px))
+					+ ", Y = " + std::to_string(int(m_GameEnvironment.signalZones[i].py)) + "]";
+				drawText(objectiveTextX, objectiveY + 32 * (i + 1),
+					m_GameResource.regularFont, m_GameResource.UIColor, signalPosition, 0);
+			}
 		}
 	}
 }
@@ -458,7 +461,7 @@ void GameUI::drawDialogue(
 				{
 					if (m_GameDialogue.dialogue.currentLine < m_GameDialogue.dialogueLine.size())
 					{
-						fullDialogue = "Radio: " 
+						fullDialogue = "Luxon: " 
 							+ m_GameDialogue.dialogueLine[m_GameDialogue.dialogue.currentLine];
 						m_GameDialogue.dialogue.currentLine++;
 						Sound::GetInstance()->playRadio();

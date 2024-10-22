@@ -14,10 +14,13 @@ public:
 
 	float speed;
 	float damage = 10.0f;
+	bool isReady; //if true, the soldier has finished the entrance and ready to attack
 	bool isActive; //if true, the soldier can move and damage the enemies
 
-	const float lifeTimeInterval = 3.0f;
+	const float lifeTimeInterval = 5.0f;
 	float lifeTimeCounter;
+	const float entranceTimeInterval = 0.432;
+	float entranceTimeCounter;
 	const float moveTimeInterval = 0.5f;
 	float moveTimeCounter;
 
@@ -32,7 +35,6 @@ public:
 	void move();
 	void setAnimation(LTexture& targetTexture, SDL_Rect& targetClip);
 	void render(SDL_Rect& camera);
-	void calRotation(SDL_Rect& camera, int x, int y);
 	void calPosition(player& myPlayer, float distance);
 
 	bool isFlipped;
