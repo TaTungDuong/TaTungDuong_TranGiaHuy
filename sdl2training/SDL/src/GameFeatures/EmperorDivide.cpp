@@ -7,7 +7,7 @@
 #include "SDL.h"
 
 #pragma region Emperor_Divide
-emperorDivide::emperorDivide()
+EmperorDivide::EmperorDivide()
 {
 	init(LEVEL_WIDTH * 2, LEVEL_HEIGHT * 2, PLAYER_SIZE, -1);
 	speed = BULLET_SPEED / ratio;
@@ -20,7 +20,7 @@ emperorDivide::emperorDivide()
 	lifeTimeCounter = 0.0f;
 }
 
-void emperorDivide::initPlayer()
+void EmperorDivide::initPlayer()
 {
 	init(LEVEL_WIDTH * 2, LEVEL_HEIGHT * 2, SCREEN_HEIGHT / 7, -1);
 	speed = BULLET_SPEED / ratio;
@@ -33,7 +33,7 @@ void emperorDivide::initPlayer()
 	lifeTimeCounter = 0.0f;
 }
 
-void emperorDivide::move()
+void EmperorDivide::move()
 {
 	lifeTimeCounter += deltaTimer.getDeltaTime();
 	entranceTimeCounter += deltaTimer.getDeltaTime();
@@ -78,7 +78,7 @@ void emperorDivide::move()
 	setRenderPosition(px, py);
 }
 
-void emperorDivide::calPosition(player& myPlayer, float distance)
+void EmperorDivide::calPosition(player& myPlayer, float distance)
 {
 	float angleInRadians = (rotation + 90) * (M_PI / 180);
 
@@ -86,13 +86,13 @@ void emperorDivide::calPosition(player& myPlayer, float distance)
 	py = myPlayer.py + distance * sin(angleInRadians) - SCREEN_HEIGHT / 2;
 }
 
-void emperorDivide::setAnimation(LTexture& targetTexture, SDL_Rect& targetClip)
+void EmperorDivide::setAnimation(LTexture& targetTexture, SDL_Rect& targetClip)
 {
 	currentTexture = &targetTexture;
 	currentClip = &targetClip;
 }
 
-void emperorDivide::render(SDL_Rect& camera)
+void EmperorDivide::render(SDL_Rect& camera)
 {
 	currentTexture->render(rx - camera.x, ry - camera.y, size, size,
 		currentClip, 0, NULL, isFlipped ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);

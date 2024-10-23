@@ -12,7 +12,7 @@
 #include "SDL.h"
 
 #pragma region Call_Of_The_Forge_God
-callOfTheForgeGod::callOfTheForgeGod()
+CallOfTheForgeGod::CallOfTheForgeGod()
 {
 	init(LEVEL_WIDTH * 2, LEVEL_HEIGHT * 2, PLAYER_SIZE * ratioScale, -1);
 	speed = PLAYER_SPEED * ratioSpeed;
@@ -23,7 +23,7 @@ callOfTheForgeGod::callOfTheForgeGod()
 	moveTimeCounter = 0.0f;
 	lifeTimeCounter = 0.0f;
 }
-void callOfTheForgeGod::initPlayer()
+void CallOfTheForgeGod::initPlayer()
 {
 	init(LEVEL_WIDTH * 2, LEVEL_HEIGHT * 2, PLAYER_SIZE * ratioScale, -1);
 	speed == PLAYER_SPEED * ratioSpeed;
@@ -35,7 +35,7 @@ void callOfTheForgeGod::initPlayer()
 	lifeTimeCounter = 0.0f;
 }
 
-void callOfTheForgeGod::move(player& myPlayer)
+void CallOfTheForgeGod::move(player& myPlayer)
 {
 	if (isRecasted == false)
 	{
@@ -82,7 +82,7 @@ void callOfTheForgeGod::move(player& myPlayer)
 	setRenderPosition(px, py);
 }
 
-void callOfTheForgeGod::calRotation(SDL_Rect& camera, int x, int y)
+void CallOfTheForgeGod::calRotation(SDL_Rect& camera, int x, int y)
 {
 	int deltaX;
 	int deltaY;
@@ -101,7 +101,7 @@ void callOfTheForgeGod::calRotation(SDL_Rect& camera, int x, int y)
 	rotation = 180 + (atan2(deltaY, deltaX) * 180.0000) / M_PI;
 }
 
-void callOfTheForgeGod::calPosition(player& myPlayer)
+void CallOfTheForgeGod::calPosition(player& myPlayer)
 {
 	float angleInRadians = (rotation) * (M_PI / 180);
 
@@ -109,13 +109,13 @@ void callOfTheForgeGod::calPosition(player& myPlayer)
 	py = myPlayer.py + distance * sin(angleInRadians);
 }
 
-void callOfTheForgeGod::setAnimation(LTexture& targetTexture, SDL_Rect& targetClip)
+void CallOfTheForgeGod::setAnimation(LTexture& targetTexture, SDL_Rect& targetClip)
 {
 	currentTexture = &targetTexture;
 	currentClip = &targetClip;
 }
 
-void callOfTheForgeGod::render(SDL_Rect& camera)
+void CallOfTheForgeGod::render(SDL_Rect& camera)
 {
 	currentTexture->render(rx - camera.x, ry - camera.y, 404, 160,
 		currentClip, 0, NULL, isFlipped ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);

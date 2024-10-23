@@ -34,8 +34,13 @@ public:
 	std::vector<signal> signals;
 	std::vector<gameObject> signalZones;
 	std::vector<gameObject> healthPickUps;
+	std::vector<Warden> wardens;
 #pragma endregion
 	
+	//boss
+	///warden
+	Warden myWarden;
+
 	bool loadMedia(SpriteSheet& m_SpriteSheet); //check load medias
 
 	bool canSpawnZombie = true;
@@ -55,6 +60,15 @@ public:
 		GameObjective& m_GameObjective,
 		SDL_Rect& camera
 	);
+	void spawnBoss(player& myPlayer);
+	void updateBoss(
+		SpriteSheet& m_SpriteSheet,
+		player& myPlayer,
+		playerSkill& myPlayerSkill,
+		GameObjective& m_GameObjective,
+		SDL_Rect& camera
+	);
+
 	void updateBullet(
 		player& myPlayer,
 		GameObjective& m_GameObjective

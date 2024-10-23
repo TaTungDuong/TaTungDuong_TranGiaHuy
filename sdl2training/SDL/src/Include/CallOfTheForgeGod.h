@@ -6,7 +6,7 @@
 #include "Include/PlayerEffect.h"
 
 //Call Of The Forge God
-class callOfTheForgeGod : public gameObject
+class CallOfTheForgeGod : public gameObject
 {
 public:
 	float vx;
@@ -28,7 +28,7 @@ public:
 	int currentFrame;
 	int currentTotalFrame;
 
-	callOfTheForgeGod();
+	CallOfTheForgeGod();
 	void initPlayer();
 	void move(player& myPlayer);
 	void setAnimation(LTexture& targetTexture, SDL_Rect& targetClip);

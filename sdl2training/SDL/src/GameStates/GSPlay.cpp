@@ -342,6 +342,10 @@ bool GSPlay::loadMedia()
 	//load Signal's
 	success = m_SpriteSheet.loadSignalMedia();
 
+	//load Boss
+	///Warden's
+	success = m_SpriteSheet.loadWardenMedia();
+
 #pragma endregion
 
 #pragma region Load_audio
@@ -956,6 +960,7 @@ void GSPlay::Game()
 			m_GameEnvironment.harmZones,
 			m_GameEnvironment.bloodpools,
 			m_GameEnvironment.zombies,
+			m_GameEnvironment.myWarden,
 			m_GameEnvironment.bullets,
 			m_GameEnvironment.signals,
 			m_GameEnvironment.healthPickUps,
@@ -965,6 +970,15 @@ void GSPlay::Game()
 		//Update and render zombie
 		m_GameEnvironment.updateZombie(
 			m_SpriteSheet, 
+			myPlayer,
+			myPlayerSkill,
+			m_GameObjective,
+			camera
+		);
+
+		//Update and render Boss
+		m_GameEnvironment.updateBoss(
+			m_SpriteSheet,
 			myPlayer,
 			myPlayerSkill,
 			m_GameObjective,
@@ -1004,6 +1018,7 @@ void GSPlay::Game()
 			myPlayerSkill,
 			m_GameEnvironment.zombies,
 			m_GameEnvironment.zombieEffects,
+			m_GameEnvironment.myWarden,
 			m_GameEnvironment.signals,
 			deltaTimer
 		);

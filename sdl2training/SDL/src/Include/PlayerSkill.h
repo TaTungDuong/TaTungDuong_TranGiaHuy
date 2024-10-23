@@ -39,8 +39,8 @@ public:
 	void activateSkill(player& myPlayer);
 
 	Dominus myDominus;
-	std::vector<emperorDivide> myEmperorDivide; //store Sand Soldiers
-	callOfTheForgeGod myCat; //the cat
+	std::vector<EmperorDivide> myEmperorDivide; //store Sand Soldiers
+	CallOfTheForgeGod myCat; //the cat
 private:
 	float COOLDOWN_TIME_STEP;
 

@@ -127,6 +127,22 @@ void SpriteSheet::loadSpritesheet(
 	}
 }
 
+//load Sprite Sheet for Warden
+void SpriteSheet::loadSpritesheet(
+	enum WardenState state,
+	std::map<WardenState, LTexture>& spritesheet,
+	std::map<WardenState, std::vector <SDL_Rect>>& spritesheetClip,
+	int totalFrame
+)
+{
+	int w = spritesheet[state].getWidth() / totalFrame;
+	int h = spritesheet[state].getHeight();
+	for (int i = 0; i < totalFrame; i++)
+	{
+		spritesheetClip[state].push_back({ i * w, 0, w , h });
+	}
+}
+
 void SpriteSheet::loadSpritesheet(
 	LTexture& spritesheet, 
 	std::vector <SDL_Rect>& spritesheetClip, 
@@ -664,6 +680,46 @@ bool SpriteSheet::loadSignalMedia()
 }
 #pragma endregion
 
+#pragma region Load Boss Stuff
+bool SpriteSheet::loadWardenMedia()
+{
+	bool success = true;
+	//warden states
+	///idle
+	if (!gWardenTexture[WardenState::IDLE].loadFromFile("assets-main/sprites/characters/bosses/warden/warden_idle.png"))
+	{
+		printf("Failed to load warden idle texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(WardenState::IDLE, gWardenTexture, gWardenClips, BOSS_WARDEN_IDLE_ANIMATION_FRAMES);
+	}
+	///walk
+	if (!gWardenTexture[WardenState::WALK].loadFromFile("assets-main/sprites/characters/bosses/warden/warden_walk.png"))
+	{
+		printf("Failed to load warden walk texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(WardenState::WALK, gWardenTexture, gWardenClips, BOSS_WARDEN_WALK_ANIMATION_FRAMES);
+	}
+	///dead
+	if (!gWardenTexture[WardenState::DEAD].loadFromFile("assets-main/sprites/characters/bosses/warden/warden_death.png"))
+	{
+		printf("Failed to load warden dead texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(WardenState::DEAD, gWardenTexture, gWardenClips, BOSS_WARDEN_DEAD_ANIMATION_FRAMES);
+	}
+
+	return success;
+}
+#pragma endregion
+
 #pragma region Set Animations for Player
 void SpriteSheet::setPlayerAnimation(player& myPlayer)
 {
@@ -902,6 +958,45 @@ void SpriteSheet::setSignalAnimation(signal& source)
 }
 #pragma endregion
 
+#pragma region Set Animation for Boss
+void SpriteSheet::setWardenAnimation(Warden& source)
+{
+	if (source.health <= 0)
+	{
+		source.currentState = WardenState::DEAD;
+	}
+	switch (source.currentState)
+	{
+	case WardenState::IDLE:
+		if (source.currentFrame > BOSS_WARDEN_IDLE_ANIMATION_FRAMES - 1)
+		{
+			source.currentFrame = 0;
+		}
+		source.currentTotalFrame = BOSS_WARDEN_IDLE_ANIMATION_FRAMES;
+		break;
+	case WardenState::WALK:
+		if (source.currentFrame > BOSS_WARDEN_WALK_ANIMATION_FRAMES - 1)
+		{
+			source.currentFrame = 0;
+		}
+		source.currentTotalFrame = BOSS_WARDEN_WALK_ANIMATION_FRAMES;
+		break;
+	case WardenState::DEAD:
+		if (source.currentFrame > BOSS_WARDEN_DEAD_ANIMATION_FRAMES - 1)
+		{
+			source.currentFrame = 0;
+		}
+		source.currentTotalFrame = BOSS_WARDEN_DEAD_ANIMATION_FRAMES;
+		break;
+	default:
+		break;
+	}
+
+	source.setAnimation(gWardenTexture[source.currentState],
+		gWardenClips[source.currentState][source.currentFrame]);
+}
+#pragma endregion
+
 void SpriteSheet::updateAnimation(
 	player& myPlayer,
 	playerAnimation& myPlayerAnimation,
@@ -909,6 +1004,7 @@ void SpriteSheet::updateAnimation(
 	playerSkill& myPlayerSkill,
 	std::vector<zombie>& zombies,
 	std::vector<zombieEffect>& zombieEffects,
+	Warden& myWarden,
 	std::vector<signal>& signals,
 	LTimer deltaTimer
 )
@@ -953,6 +1049,8 @@ void SpriteSheet::updateAnimation(
 				sS.currentFrame++;
 			}
 		}
+
+		myWarden.currentFrame++;
 	}
 
 	//Cycle player animation
@@ -981,6 +1079,7 @@ void SpriteSheet::updatePlayer(
 	std::vector<gameObject>& harmZones,
 	std::vector<gameObject>& bloodpools,
 	std::vector<zombie>& zombies,
+	Warden& myWarden,
 	std::vector<bullet>& bullets,
 	std::vector<signal>& signals,
 	std::vector<gameObject>& healthPickUps,
@@ -1044,6 +1143,14 @@ void SpriteSheet::updatePlayer(
 			myPlayer.py -= dirY;
 			break;
 		}
+	}
+
+	//boss
+	///warden
+	if (myWarden.currentState != WardenState::DEAD && myPlayer.checkCollision(myWarden))
+	{
+		myPlayer.px -= dirX;
+		myPlayer.py -= dirY;
 	}
 
 	//health pickups

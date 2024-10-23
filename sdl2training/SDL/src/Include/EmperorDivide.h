@@ -6,7 +6,7 @@
 #include "Include/PlayerEffect.h"
 
 //Emperor Divide
-class emperorDivide : public gameObject
+class EmperorDivide : public gameObject
 {
 public:
 	float vx;
@@ -30,7 +30,7 @@ public:
 	int currentFrame;
 	int currentTotalFrame;
 
-	emperorDivide();
+	EmperorDivide();
 	void initPlayer();
 	void move();
 	void setAnimation(LTexture& targetTexture, SDL_Rect& targetClip);

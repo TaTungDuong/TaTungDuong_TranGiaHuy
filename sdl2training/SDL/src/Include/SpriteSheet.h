@@ -14,6 +14,8 @@
 
 #include "Include/Signal.h"
 
+#include "Include/Warden.h"
+
 class SpriteSheet {
 public:
 #pragma region Animations
@@ -75,6 +77,14 @@ public:
 		std::map<signalState, std::vector <SDL_Rect>>& spritesheetClip,
 		int totalFrame
 	);
+	//load Sprite Sheet for Boss
+	///Warden
+	void loadSpritesheet(
+		enum WardenState state,
+		std::map<WardenState, LTexture>& spritesheet,
+		std::map<WardenState, std::vector <SDL_Rect>>& spritesheetClip,
+		int totalFrame
+	);
 
 	void loadSpritesheet(LTexture& spritesheet, std::vector <SDL_Rect>& spritesheetClip, int totalFrame);
 	//Load Clips
@@ -110,6 +120,11 @@ public:
 	std::map<signalState, LTexture> gSignalTexture;
 	std::map<signalState, std::vector <SDL_Rect>> gSignalClips;
 
+	//boss
+	//warden
+	std::map<WardenState, LTexture> gWardenTexture;
+	std::map<WardenState, std::vector<SDL_Rect>> gWardenClips;
+
 	//Check load media
 	///load player
 	bool loadPlayerAnimationMedia();
@@ -124,6 +139,10 @@ public:
 
 	///load signal
 	bool loadSignalMedia();
+
+	//load boss
+	//warden
+	bool loadWardenMedia();
 
 	//set animations
 	///set player's
@@ -140,6 +159,10 @@ public:
 	///set signal's
 	void setSignalAnimation(signal& source);
 
+	///set boss'
+	////warden
+	void setWardenAnimation(Warden& source);
+
 	//update animation
 	void updateAnimation(
 		player& myPlayer, 
@@ -148,6 +171,7 @@ public:
 		playerSkill& myPlayerSkill,
 		std::vector<zombie>& zombies,
 		std::vector<zombieEffect>& zombieEffects,
+		Warden& myWarden,
 		std::vector<signal>& signals,
 		LTimer deltaTimer
 	);
@@ -162,6 +186,7 @@ public:
 		std::vector<gameObject>& harmZones,
 		std::vector<gameObject>& bloodpools,
 		std::vector<zombie>& zombies,
+		Warden& myWarden,
 		std::vector<bullet>& bullets,
 		std::vector<signal>& signals,
 		std::vector<gameObject>& healthPickUps,

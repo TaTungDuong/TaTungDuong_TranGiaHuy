@@ -16,7 +16,7 @@ void playerSkill::initPlayer(player& myPlayer)
 	myEmperorDivide.clear();
 	for (int i = 0; i < 6; i++)
 	{
-		emperorDivide soldier;
+		EmperorDivide soldier;
 		soldier.initPlayer();
 		myEmperorDivide.push_back(soldier);
 	}

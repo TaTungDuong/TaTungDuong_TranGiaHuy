@@ -64,6 +64,12 @@
     <Filter Include="Header Files\Signal">
       <UniqueIdentifier>{89bbf987-86e8-40b0-99f9-ab646e0fe82c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Boss">
+      <UniqueIdentifier>{2d4085f6-7dc6-46c5-b8aa-c7c0b173395e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameFeatures\Boss">
+      <UniqueIdentifier>{c978409c-c925-423b-a5d8-f783b1fffa20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameManager\ResourceManagers.h">
@@ -198,6 +204,9 @@
     <ClInclude Include="src\Include\Dominus.h">
       <Filter>Header Files\Player\PlayerSkills</Filter>
     </ClInclude>
+    <ClInclude Include="src\Include\Warden.h">
+      <Filter>Header Files\Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameManager\ResourceManagers.cpp">
@@ -322,6 +331,9 @@
     </ClCompile>
     <ClCompile Include="src\GameFeatures\Dominus.cpp">
       <Filter>Source Files\GameFeatures\Player\PlayerSkills</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Warden.cpp">
+      <Filter>Source Files\GameFeatures\Boss</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

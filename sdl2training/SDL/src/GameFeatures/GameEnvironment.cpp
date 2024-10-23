@@ -168,18 +168,6 @@ void GameEnvironment::updateZombie(
 		{
 //			Sound::GetInstance()->playZombieShoot();
 		}
-		//attack player if close
-		if (zombies[i].calDistance(myPlayer) <= zombies[i].attackRange * 20.0f + myPlayer.size)
-		{
-
-			if (false)
-				if (zombies[i].attack(myPlayer))
-				{
-					//printf("HIT BY ZOMBIES\n");
-					Sound::GetInstance()->playZombieAttack();
-					Sound::GetInstance()->playPlayerHurt();
-				}
-		}
 		
 		//check collision with player skills
 		/// Emperor Divide
@@ -241,6 +229,71 @@ void GameEnvironment::updateZombie(
 		i++;
 	}//
 }
+
+void GameEnvironment::spawnBoss(player& myPlayer)
+{
+	//check if there is alive signal and there is boss
+	//if false, the boss can be spawned
+	bool hasSignal = false;
+	for (auto s : signals)
+	{
+		if (s.currentState != signalState::DEAD)
+		{
+			hasSignal = true;
+			break;
+		}
+	}
+
+	if (hasSignal && wardens.size() == 0)
+	{
+		myWarden.initWarden(myPlayer);
+		wardens.push_back(myWarden);
+		printf("--- Boss: Warden---\n");
+	}
+}
+void GameEnvironment::updateBoss(
+	SpriteSheet& m_SpriteSheet,
+	player& myPlayer,
+	playerSkill& myPlayerSkill,
+	GameObjective& m_GameObjective,
+	SDL_Rect& camera
+)
+{
+	spawnBoss(myPlayer);
+	if (wardens.size() == 0) return;
+	if (myWarden.attack(myPlayer))
+	{
+
+	}
+	//check collision with player skills
+	/// Emperor Divide
+	for (auto soldier : myPlayerSkill.myEmperorDivide)
+	{
+		if (myWarden.checkCollision(soldier) && soldier.isActive)
+		{
+			myWarden.health -= soldier.damage;
+			Sound::GetInstance()->playHitZombie();
+
+			break;
+		}
+	}
+	/// Call Of The Forge God
+	if (myWarden.checkCollision(myPlayerSkill.myCat))
+	{
+		myWarden.health -= myPlayerSkill.myCat.damage;
+	}
+
+	///Change to DEAD if Warden health <= 0
+	if (myWarden.health <= 0)
+	{
+		myWarden.currentState = WardenState::DEAD;
+	}
+
+	myWarden.move(myPlayer);
+	m_SpriteSheet.setWardenAnimation(myWarden);
+	myWarden.render(camera);
+}
+
 void GameEnvironment::updateBullet(
 	player& myPlayer, 
 	GameObjective& m_GameObjective
@@ -278,8 +331,11 @@ void GameEnvironment::updateBullet(
 				if (bullets[i].checkCollision(zombies[j]))
 				{
 					collised = (zombies[j].health > 0);
+					if (collised)
+					{
+						Sound::GetInstance()->playHitZombie();
+					}
 					zombies[j].hurt();
-					Sound::GetInstance()->playHitZombie();
 
 					//remove zombie if it's health is below 0
 					if (zombies[j].health <= 0 && collised)
@@ -310,6 +366,21 @@ void GameEnvironment::updateBullet(
 						m_GameObjective.obj_zones--;
 					}
 					if (collised) break;
+				}
+			}
+
+			//boss
+			//warden
+			if (bullets[i].checkCollision(myWarden))
+			{
+				collised = (myWarden.health > 0);
+				myWarden.hurt(myPlayer);
+				printf("HIT WARDEN: %f\n", myWarden.health);
+
+				//remove if Warden health is below 0
+				if (myWarden.health <= 0 && collised)
+				{
+					myWarden.currentState = WardenState::DEAD;
 				}
 			}
 
@@ -478,3 +549,5 @@ void createGameObjectRandom(
 	}
 }
 #pragma endregion
+
+
