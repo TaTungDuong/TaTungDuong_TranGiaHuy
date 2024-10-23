@@ -595,7 +595,6 @@ void GSPlay::initLevel()
 	createGameObjectRandom(mySignalZone, m_GameEnvironment.signalZones,
 		TOTAL_SIGNAL_ZONE, 512, 512, 0, -1); //random objective zone
 	m_GameObjective.obj_zones = m_GameEnvironment.signalZones.size();
-	m_GameEnvironment.spawnSignal();
 	for (int i = 0; i < m_GameEnvironment.signalZones.size(); i++)
 	{
 		printf("signalZones[%i] px = %f, py = %f\n", i, m_GameEnvironment.signalZones[i].px, m_GameEnvironment.signalZones[i].py);
@@ -919,7 +918,7 @@ void GSPlay::Game()
 		m_GameEnvironment.renderGround(camera);
 
 		//Render blood pool
-		m_GameEnvironment.renderBloodPool(camera);
+		m_GameEnvironment.renderBloodPool(m_SpriteSheet, camera);
 
 		//create health pickups
 		//always maintain a constant number of heals on the map
@@ -928,7 +927,8 @@ void GSPlay::Game()
 		//render health pickups
 		renderGameObject(camera, m_GameEnvironment.gHealthPickUpTexture, m_GameEnvironment.healthPickUps);
 
-		//render signals
+		//spawn and render signals
+		m_GameEnvironment.spawnSignal(m_GameObjective);
 		for (auto& s : m_GameEnvironment.signals)
 		{
 			m_SpriteSheet.setSignalAnimation(s);

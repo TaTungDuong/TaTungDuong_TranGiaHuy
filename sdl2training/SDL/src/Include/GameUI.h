@@ -54,6 +54,7 @@ public:
 	void drawTimer(GameResource& m_GameResource, GameObjective& m_GameObjective);
 	void drawPosition(player& myPlayer, GameResource& m_GameResource, GameObjective& m_GameObjective);
 	void drawHealth(player& myPlayer, GameResource& m_GameResource);
+	void drawBossHealth(GameEnvironment& m_GameEnvironment, GameResource& m_GameResource);
 	void drawSkill(GameResource& m_GameResource);
 	void drawDialogue(
 		GameResource& m_GameResource,

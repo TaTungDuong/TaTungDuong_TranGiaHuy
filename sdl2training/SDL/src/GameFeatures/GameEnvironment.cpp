@@ -72,10 +72,8 @@ bool GameEnvironment::loadMedia(SpriteSheet& m_SpriteSheet)
 }
 
 //render and update environment
-void GameEnvironment::renderBloodPool(SDL_Rect& camera)
+void GameEnvironment::renderBloodPool(SpriteSheet& m_SpriteSheet, SDL_Rect& camera)
 {
-	int i = 0;
-
 	//delete old blood pool
 	if (bloodpools.size() > MAX_BLOOD_POOL_NUM)
 	{
@@ -83,11 +81,21 @@ void GameEnvironment::renderBloodPool(SDL_Rect& camera)
 	}
 
 	//render blood pool
-	while (i < bloodpools.size())
+	for (auto& bp : bloodpools)
 	{
-		gBloodPoolTexture.render(camera, bloodpools[i].px, bloodpools[i].py, 
-			bloodpools[i].size, bloodpools[i].size, NULL, bloodpools[i].rotation);
-		i++;
+		gBloodPoolTexture.render(camera, bp.px, bp.py, 
+			bp.size, bp.size, NULL, bp.rotation);
+	}
+
+	//render enemy bodies
+	for (auto zb : zombies)
+	{
+		if (zb.health <= 0)
+		{
+			zb.currentState = zombieState::DEAD;
+			m_SpriteSheet.setZombieAnimation(zb);
+			zb.render(camera);
+		}
 	}
 }
 void GameEnvironment::renderGround(SDL_Rect& camera)
@@ -100,8 +108,9 @@ void GameEnvironment::renderGround(SDL_Rect& camera)
 		}
 	}
 }
-void GameEnvironment::spawnSignal()
+void GameEnvironment::spawnSignal(GameObjective& m_GameObjective)
 {
+	if (signals.size() >= signalZones.size() || m_GameObjective.currentObjective != 4) return;
 	for (auto sZ : signalZones)
 	{
 		signal mySignal;
@@ -109,7 +118,7 @@ void GameEnvironment::spawnSignal()
 		signals.push_back(mySignal);
 	}
 }
-void GameEnvironment::spawnZombie()
+void GameEnvironment::spawnZombie(GameObjective& m_GameObjective)
 {
 	//check if there is alive signal
 	//if false, the zombie can not be spawned anymore
@@ -123,7 +132,7 @@ void GameEnvironment::spawnZombie()
 		}
 	}
 
-	if (canSpawnZombie && hasSignal)
+	if (canSpawnZombie && (hasSignal || m_GameObjective.currentObjective < 4))
 	{
 		int zombieAliveCnt = 0;
 		for (auto z : zombies)
@@ -159,11 +168,11 @@ void GameEnvironment::updateZombie(
 	SDL_Rect& camera
 )
 {
-	spawnZombie();
-	int i = 0;
-
-	while (i < zombies.size())
+	spawnZombie(m_GameObjective);
+	for (int i = 0; i < zombies.size(); i++)
 	{
+		if (zombies[i].health <= 0) continue;
+
 		if (zombieWeapons[i].attack(myPlayer, zombies[i], zombieBullets, (zombies[i].health > 0)))
 		{
 //			Sound::GetInstance()->playZombieShoot();
@@ -173,7 +182,7 @@ void GameEnvironment::updateZombie(
 		/// Emperor Divide
 		for (auto soldier : myPlayerSkill.myEmperorDivide)
 		{
-			if (zombies[i].checkCollision(soldier) && soldier.isActive)
+			if (zombies[i].checkCollision(soldier) && soldier.isActive && zombies[i].health > 0)
 			{
 				zombies[i].health -= soldier.damage;
 				Sound::GetInstance()->playHitZombie();
@@ -182,7 +191,7 @@ void GameEnvironment::updateZombie(
 			}
 		}
 		/// Call Of The Forge God
-		if (zombies[i].checkCollision(myPlayerSkill.myCat))
+		if (zombies[i].checkCollision(myPlayerSkill.myCat) && zombies[i].health > 0)
 		{
 			zombies[i].health -= myPlayerSkill.myCat.damage;
 			zombies[i].isActive = 0;
@@ -226,11 +235,10 @@ void GameEnvironment::updateZombie(
 		zombies[i].render(camera);
 		zombieWeapons[i].render(camera, (zombies[i].health > 0));
 		zombieEffects[i].render(camera);
-		i++;
 	}//
 }
 
-void GameEnvironment::spawnBoss(player& myPlayer)
+void GameEnvironment::spawnBoss(player& myPlayer, GameObjective& m_GameObjective)
 {
 	//check if there is alive signal and there is boss
 	//if false, the boss can be spawned
@@ -244,7 +252,7 @@ void GameEnvironment::spawnBoss(player& myPlayer)
 		}
 	}
 
-	if (hasSignal && wardens.size() == 0)
+	if (!hasSignal && wardens.size() == 0 && m_GameObjective.currentObjective >= 4)
 	{
 		myWarden.initWarden(myPlayer);
 		wardens.push_back(myWarden);
@@ -259,7 +267,7 @@ void GameEnvironment::updateBoss(
 	SDL_Rect& camera
 )
 {
-	spawnBoss(myPlayer);
+	spawnBoss(myPlayer, m_GameObjective);
 	if (wardens.size() == 0) return;
 	if (myWarden.attack(myPlayer))
 	{
@@ -375,7 +383,7 @@ void GameEnvironment::updateBullet(
 			{
 				collised = (myWarden.health > 0);
 				myWarden.hurt(myPlayer);
-				printf("HIT WARDEN: %f\n", myWarden.health);
+				//printf("HIT WARDEN: %f\n", myWarden.health);
 
 				//remove if Warden health is below 0
 				if (myWarden.health <= 0 && collised)
@@ -481,6 +489,7 @@ void GameEnvironment::init()
 	zombieWeapons.clear();
 	zombieEffects.clear();
 	zombieBullets.clear();
+	wardens.clear();
 	bloodpools.clear();
 	bullets.clear();
 	signals.clear();
@@ -502,6 +511,7 @@ void GameEnvironment::close()
 	zombieWeapons.clear();
 	zombieEffects.clear();
 	zombieBullets.clear();
+	wardens.clear();
 	bloodpools.clear();
 	bullets.clear();
 	signals.clear();
@@ -527,9 +537,9 @@ void createGameObjectRandom(
 		while (!ok)
 		{
 			randomSize = GetRandomInt(minSize, maxSize, 1);
-			randomX = GetRandomInt(randomSize, LEVEL_WIDTH - randomSize, 1);
-			randomY = GetRandomInt(randomSize, LEVEL_HEIGHT - randomSize, 1);
-			if (calDistance(randomX, randomY, myPlayer.px, myPlayer.py) > randomSize + myPlayer.size)
+			randomX = GetRandomInt(std::min(randomSize, LEVEL_WIDTH - randomSize), std::max(randomSize, LEVEL_WIDTH - randomSize), 1);
+			randomY = GetRandomInt(std::min(randomSize, LEVEL_WIDTH - randomSize), std::max(randomSize, LEVEL_WIDTH - randomSize), 1);
+			if (calDistance(randomX, randomY, myPlayer.px, myPlayer.py) >= std::max(randomSize - myPlayer.size, 0))
 			{
 				ok = true;
 			}

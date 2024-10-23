@@ -400,6 +400,41 @@ void GameUI::drawHealth(player& myPlayer, GameResource& m_GameResource)
 	gWhiteTexture.setColor(255, 255, 255, 255);
 	gWhiteTexture.render(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
 }
+
+void GameUI::drawBossHealth(GameEnvironment& m_GameEnvironment, GameResource& m_GameResource)
+{
+	if (m_GameEnvironment.wardens.size() == 0) return;
+
+	//set health to 0 if it drop below 0
+	if (m_GameEnvironment.myWarden.health <= 0)
+	{
+		return;
+	}
+
+	//size of icons
+	int healthBarWidth = map(m_GameEnvironment.myWarden.health, 0, 100, 0, SCREEN_WIDTH / 2.5); //map player's current health to the health bar width
+	int healthBarHeight = SCREEN_HEIGHT / 75;
+	
+	//position of icons
+	int nameX = V_BORDER;
+	int nameY = H_BORDER + 32;
+	int healthBarOffset = SCREEN_HEIGHT / 20;
+	int healthBarX = V_BORDER;
+	int healthBarY = nameY + 40;
+
+	//draw boss name
+	drawText(nameX, nameY, m_GameResource.boldFont, m_GameResource.UIColor, "Boss: ", 0);
+	drawText(nameX + 72, nameY, m_GameResource.regularFont, m_GameResource.UIColor, "Warden", 0);
+	//draw boss position
+	std::string wardenPosition = "[X:" + std::to_string(int(m_GameEnvironment.myWarden.px)) 
+								+ ", Y:" + std::to_string(int(m_GameEnvironment.myWarden.py)) + "]";
+	drawText(nameX, nameY + 48 + healthBarHeight, m_GameResource.boldFont, m_GameResource.UIColor, wardenPosition, 0);
+
+	//draw heath bar
+	gWhiteTexture.setColor(255, 255, 255, 255);
+	gWhiteTexture.render(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
+}
+
 void GameUI::drawSkill(GameResource& m_GameResource)
 {
 	//set cooldown time counter to max
@@ -527,6 +562,7 @@ void GameUI::drawUI(
 		m_GameObjective
 	);
 	drawHealth(myPlayer, m_GameResource);
+	drawBossHealth(m_GameEnvironment, m_GameResource);
 	drawSkill(m_GameResource);
 	drawDialogue(
 		m_GameResource,

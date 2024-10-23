@@ -49,7 +49,7 @@ const int H_BORDER = SCREEN_HEIGHT / 50;
 
 //dimensions of the level
 const int GROUND_TILE_SIZE = 512;
-const int LEVEL_SIZE = 15;// 25;
+const int LEVEL_SIZE = 5;// 25;
 const int LEVEL_WIDTH = GROUND_TILE_SIZE * LEVEL_SIZE;
 const int LEVEL_HEIGHT = GROUND_TILE_SIZE * LEVEL_SIZE;
 
@@ -59,27 +59,27 @@ const int CROSSHAIR_SIZE = SCREEN_HEIGHT / 35;
 
 //level elements' properties
 static int DIFFICULTY = 1; //difficulty will increase the maximum zombie numbers when spawning
-const int DIFFICULTY_REQUIREMENT = 10; //the required zombies to kill in order to advance to next level
-const int ZOMBIE_NUMBER_STEP = 3; //how many zombie added for each difficulty
+const int DIFFICULTY_REQUIREMENT = 5; //10; //the required zombies to kill in order to advance to next level
+const int ZOMBIE_NUMBER_STEP = 1; //3; //how many zombie added for each difficulty
 const int COLLIDER_TOLERANCE = 2; //the collider size tolerance for the game objects
 //trees
-const int MAX_TREE_NUM = 10;// *LEVEL_SIZE;
+const int MAX_TREE_NUM = 0;// *LEVEL_SIZE;
 static int MIN_TREE_SIZE = SCREEN_HEIGHT / 3;
 static int MAX_TREE_SIZE = SCREEN_HEIGHT / 2;
 //harm zones
-const int MAX_HARM_ZONE_NUM = 5;// *LEVEL_SIZE;
+const int MAX_HARM_ZONE_NUM = 0;// *LEVEL_SIZE;
 const int MIN_HARM_ZONE_SIZE = SCREEN_HEIGHT / 2;
 const int MAX_HARM_ZONE_SIZE = SCREEN_HEIGHT;
 const int MAX_HARM_ZONE_DAMAGE = 20;
 //blood pool
-const int MAX_BLOOD_POOL_NUM = 50;
-const int MAX_DEAD_ZOMBIE_NUM = MAX_BLOOD_POOL_NUM / 2;
+const int MAX_BLOOD_POOL_NUM = 10;
+const int MAX_DEAD_ZOMBIE_NUM = MAX_BLOOD_POOL_NUM;
 
 //objectives
 const int TIME_LIMIT = 300; //total game time in second
 const int TOTAL_OBJECTIVE = 5;
 const int ZOMBIE_NEEDED_TO_KILL = 1;// 10;
-const int TOTAL_SIGNAL_ZONE = 1;// 3;
+const int TOTAL_SIGNAL_ZONE = 3;
 
 //pickupables
 //health pickup
@@ -144,7 +144,7 @@ const float SIGNAL_HEALTH = 160;
 
 //boss properties
 //warden
-const float BOSS_WARDEN_HEALTH = 250;
+const float BOSS_WARDEN_HEALTH = 900;
 const float BOSS_WARDEN_SPEED = PLAYER_SPEED * 0.35;
 
 //animations properties

@@ -13,7 +13,7 @@ public:
 	float vy;
 
 	float speed;
-	float damage = 2.0f;
+	float damage = 1.0f;
 	bool isActive; //if true, the soldier can move and damage the enemies
 
 	const float distance = SCREEN_WIDTH * 2 / 3; // spawn distance to player

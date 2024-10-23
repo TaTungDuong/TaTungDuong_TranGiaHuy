@@ -32,7 +32,6 @@ public:
 	void	Draw(SDL_Renderer* renderer) override;
 
 	bool	loadMedia(); //check load medias
-	void	Menu();
 	void	handleMenuEvent(int& choice);
 
 private:

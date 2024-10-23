@@ -6,7 +6,12 @@
 
 enum class WardenState
 {
-	IDLE, WALK, DEAD
+	IDLE, 
+	WALK, 
+	IDLE_TO_STUNT, 
+	STUNT,
+	STUNT_TO_IDLE,
+	DEAD
 };
 
 class Warden : public gameObject

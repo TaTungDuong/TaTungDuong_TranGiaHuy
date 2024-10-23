@@ -10,11 +10,12 @@ Warden::Warden()
 	type = 0;
 	attackTimer = 0;
 	speed = BOSS_WARDEN_SPEED;
-	health = BOSS_WARDEN_HEALTH;
+	health = 100.0f;
 }
 
 void Warden::initWarden(player& myPlayer)
 {
+	health = 100.0f;
 	isActive = 1;
 	//set random position
 	bool ok = false;
@@ -31,16 +32,24 @@ void Warden::initWarden(player& myPlayer)
 			ok = true;
 		}
 	}
+	px = myPlayer.px + 512; py = myPlayer.py + 512;
 	init(px, py, size, 0);
 	setRenderPosition(px, py);
 }
 
 void Warden::move(player& myPlayer)
 {
+	if (health <= 0)
+	{
+		currentState = WardenState::DEAD;
+		return;
+	}
+
 	calRotation(myPlayer.px, myPlayer.py);
 
-	if (calDistance(myPlayer) < size / 4 + myPlayer.size || health <= 0)
+	if (calDistance(myPlayer) < size / 4 + myPlayer.size)
 	{
+		currentState = WardenState::IDLE;
 		return;
 	}
 
@@ -79,7 +88,7 @@ void Warden::hurt(player& myPlayer)
 {
 	if (health > 0)
 	{
-		health -= myPlayer.myWeapon[myPlayer.currentWeapon].getDamage();
+		health -= myPlayer.myWeapon[myPlayer.currentWeapon].getDamage() * 100.0f / BOSS_WARDEN_HEALTH;
 	}
 	else
 	{
@@ -95,6 +104,6 @@ void Warden::setAnimation(LTexture& targetTexture, SDL_Rect& targetClip)
 
 void Warden::render(SDL_Rect& camera)
 {
-	currentTexture->render(rx - camera.x, ry - camera.y, size, size,
+	currentTexture->render(rx - camera.x - 32, ry - camera.y - 72, size, size,
 		currentClip, 0, NULL, isFlipped == false ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }

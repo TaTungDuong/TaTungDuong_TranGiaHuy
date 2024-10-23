@@ -13,7 +13,7 @@ public:
 	float vy;
 
 	float speed;
-	float damage = 10.0f;
+	float damage = 2.0f;
 	bool isReady; //if true, the soldier has finished the entrance and ready to attack
 	bool isActive; //if true, the soldier can move and damage the enemies
 

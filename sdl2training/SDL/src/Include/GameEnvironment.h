@@ -50,9 +50,9 @@ public:
 
 #pragma region Render and Update functions
 	void renderGround(SDL_Rect& camera);
-	void renderBloodPool(SDL_Rect& camera);
-	void spawnSignal();
-	void spawnZombie();
+	void renderBloodPool(SpriteSheet& m_SpriteSheet, SDL_Rect& camera);
+	void spawnSignal(GameObjective& m_GameObjective);
+	void spawnZombie(GameObjective& m_GameObjective);
 	void updateZombie(
 		SpriteSheet& m_SpriteSheet, 
 		player& myPlayer, 
@@ -60,7 +60,7 @@ public:
 		GameObjective& m_GameObjective,
 		SDL_Rect& camera
 	);
-	void spawnBoss(player& myPlayer);
+	void spawnBoss(player& myPlayer, GameObjective& m_GameObjective);
 	void updateBoss(
 		SpriteSheet& m_SpriteSheet,
 		player& myPlayer,
