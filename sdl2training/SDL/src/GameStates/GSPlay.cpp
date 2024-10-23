@@ -335,7 +335,6 @@ bool GSPlay::loadMedia()
 	success = m_SpriteSheet.loadPlayerSkillMedia();
 
 	///Load Enemy's
-	success = m_SpriteSheet.loadPlayerMedia();
 	success = m_SpriteSheet.loadZombieMedia();
 	success = m_SpriteSheet.loadZombieWeaponMedia();
 	success = m_SpriteSheet.loadZombieEffectMedia();
@@ -574,6 +573,7 @@ void GSPlay::initLevel()
 	//create weapon
 	myPlayer.myWeapon[0].init(PISTOL_NAME, PISTOL_DAMAGE, PISTOL_RATE_OF_FIRE, PISTOL_CLIP_SIZE, PISTOL_CLIP_SIZE, PISTOL_RELOAD_TIME);
 	myPlayer.myWeapon[1].init(RIFLE_NAME, RIFLE_DAMAGE, RIFLE_RATE_OF_FIRE, RIFLE_CLIP_SIZE, RIFLE_CLIP_SIZE, RIFLE_RELOAD_TIME);
+	myPlayer.myWeapon[2].init(CHAINGUN_NAME, CHAINGUN_DAMAGE, CHAINGUN_RATE_OF_FIRE, CHAINGUN_CLIP_SIZE, CHAINGUN_CLIP_SIZE, CHAINGUN_RELOAD_TIME);
 
 	//create trees
 	createGameObjectRandom(myTree, m_GameEnvironment.trees,
@@ -688,24 +688,6 @@ void GSPlay::handleGameEvent()
 					myPlayerSkill.initSkill(myPlayer);
 					//for objective 3
 					m_GameObjective.checkObjective2();
-				}
-			}
-			if (event.key.keysym.sym == SDLK_1) //weapon 1
-			{
-				if (myPlayer.currentWeapon != 0)
-				{
-					myPlayer.currentWeapon = 0;
-					Sound::GetInstance()->playSwapWeapon();
-					Sound::GetInstance()->stopReload();
-				}
-			}
-			if (event.key.keysym.sym == SDLK_2) //weapon 2
-			{
-				if (myPlayer.currentWeapon != 1)
-				{
-					myPlayer.currentWeapon = 1;
-					Sound::GetInstance()->playSwapWeapon();
-					Sound::GetInstance()->stopReload();
 				}
 			}
 			if (event.key.keysym.sym == SDLK_ESCAPE) //esc
@@ -875,19 +857,9 @@ void GSPlay::handleGameInput()
 	//check mouse input
 	if (mouses & SDL_BUTTON(SDL_BUTTON_LEFT))
 	{
-		if (myPlayer.myWeapon[myPlayer.currentWeapon].checkRateOfFire() &&
-			myPlayer.myWeapon[myPlayer.currentWeapon].checkAmmo() &&
-			!myPlayer.myWeapon[myPlayer.currentWeapon].checkReload() &&
-			myPlayer.isActive)
+		if (myPlayer.checkWeapon())
 		{
-			myPlayer.currentState = playerState::FIRE;
-			myPlayer.currentFrame = 0;
-			//			myPlayer.myWeapon[myPlayer.currentWeapon].ammo--;
-
-			SDL_GetMouseState(&mouseX, &mouseY);
-			bullet myBullet(camera, myPlayer, mouseX, mouseY);
-			m_GameEnvironment.bullets.push_back(myBullet);
-			Sound::GetInstance()->playGunshot();
+			m_GameEnvironment.bullets.push_back(myPlayer.attack(camera, myPlayer));
 
 			//for objective 2
 			m_GameObjective.checkObjective1();
@@ -945,6 +917,10 @@ void GSPlay::Game()
 		//Render blood pool
 		m_GameEnvironment.renderBloodPool(camera);
 
+		//create health pickups
+		//always maintain a constant number of heals on the map
+		createGameObjectRandom(myHealthPickup, m_GameEnvironment.healthPickUps,
+			MAX_HEALTH_PICKUP_NUM, HEALTH_PICKUP_SIZE, HEALTH_PICKUP_SIZE, 0, -1);
 		//render health pickups
 		renderGameObject(camera, m_GameEnvironment.gHealthPickUpTexture, m_GameEnvironment.healthPickUps);
 

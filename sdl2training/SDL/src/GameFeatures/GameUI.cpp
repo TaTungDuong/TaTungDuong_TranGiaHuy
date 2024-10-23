@@ -202,6 +202,9 @@ void GameUI::drawWeapon(player& myPlayer, GameResource m_GameResource)
 	case 1:
 		gRifleIconTexture.render(weaponIconX, weaponIconY, weaponIconSize, weaponIconSize);
 		break;
+	default:
+		gRifleIconTexture.render(weaponIconX, weaponIconY, weaponIconSize, weaponIconSize);
+		break;
 	}
 
 	//weaponIconTexture.free();

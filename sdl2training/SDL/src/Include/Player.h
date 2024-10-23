@@ -1,5 +1,7 @@
 #pragma once
 #include "Include/GameObject.h"
+#include "Sound.h"
+
 #include "Include/Weapon.h"
 
 class SpriteSheet;
@@ -34,9 +36,11 @@ public:
 
 	player();
 	void initPlayer();
+	bullet attack(SDL_Rect& camera, player& myPlayer); //return true if player just attack
 	void cycleWeapon();
 	void setAnimation(LTexture& targetTexture, SDL_Rect& targetClip);
 	void render(SDL_Rect& camera);
 	void calRotation(SDL_Rect& camera, int x, int y);
 
+	bool checkWeapon();//check if weapon can fire
 };

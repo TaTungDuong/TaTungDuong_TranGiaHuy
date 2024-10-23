@@ -86,3 +86,35 @@ void player::render(SDL_Rect& camera)
 	}
 	currentTexture->render(rx - camera.x, ry - camera.y, size, size, currentClip, rotation, NULL, isFlipped? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
 }
+
+bool player::checkWeapon()
+{
+	return myWeapon[currentWeapon].checkRateOfFire() &&
+		myWeapon[currentWeapon].checkAmmo() &&
+		!myWeapon[currentWeapon].checkReload() &&
+		isActive;
+}
+bullet player::attack(SDL_Rect& camera, player& myPlayer)
+{
+	Sound::GetInstance()->playGunshot();
+	currentState = playerState::FIRE;
+	currentFrame = 0;
+	//	myWeapon[currentWeapon].ammo--;
+
+	int mouseX, mouseY;
+	SDL_GetMouseState(&mouseX, &mouseY);
+
+	bullet myBullet;
+	//set rotatio for bullet based on weapon
+	myBullet.rotation = rotation;
+	switch (currentWeapon)
+	{
+	case 2:
+		myBullet.rotation += GetRandomFloat(0.0f, 10.0f, 0.1f);
+	default:
+		break;
+	}
+	myBullet.initBullet(camera, myPlayer, mouseX, mouseY);
+
+	return myBullet;
+}

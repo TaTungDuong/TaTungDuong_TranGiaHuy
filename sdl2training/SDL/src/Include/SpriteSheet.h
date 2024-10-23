@@ -89,10 +89,8 @@ public:
 	std::map<playerEffectState, LTexture> gPlayerEffectTexture;
 	std::map<playerEffectState, std::vector <SDL_Rect>> gPlayerEffectClips;
 	///weapons
-	std::map<playerState, LTexture> gPlayerPistolTexture;
-	std::map<playerState, std::vector <SDL_Rect>> gPlayerPistolClips;
-	std::map<playerState, LTexture> gPlayerRifleTexture;
-	std::map<playerState, std::vector <SDL_Rect>> gPlayerRifleClips;
+	std::map<playerState, LTexture> gPlayerTexture[PLAYER_WEAPON_SLOT];
+	std::map<playerState, std::vector <SDL_Rect>> gPlayerClips[PLAYER_WEAPON_SLOT];
 	///player skills
 	std::map<playerSkillState, LTexture> gPlayerSkillTexture;
 	std::map<playerSkillState, std::vector <SDL_Rect>> gPlayerSkillClips;

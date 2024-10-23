@@ -292,6 +292,9 @@ void Sound::playSkillSfx(int weapon)
     case 1://heavy cannon
         sfx = p_EmperorDivide;
         break;
+    case 2://pistol
+        sfx = p_CallOfTheForgeGod;
+        break;
     default:
         break;
     }

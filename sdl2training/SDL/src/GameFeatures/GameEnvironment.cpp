@@ -436,6 +436,7 @@ void createGameObjectRandom(
 {
 	for (int i = 0; i < total; i++)
 	{
+		if (vectorList.size() >= total) break; // if vector is full of sourceObject, break
 		bool ok = false;
 		int randomSize = 0;
 		int randomX = 0;

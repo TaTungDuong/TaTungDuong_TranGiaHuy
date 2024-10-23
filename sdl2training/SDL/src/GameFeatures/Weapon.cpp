@@ -1,11 +1,9 @@
 #include "Include/Weapon.h"
 
 #pragma region bullets
-bullet::bullet(SDL_Rect& camera, gameObject source, int targetX, int targetY)
+void bullet::initBullet(SDL_Rect& camera, gameObject source, int targetX, int targetY)
 {
 	size = BULLET_SIZE;
-
-//	printf("Rotation: %f\n", source.rotation);
 
 	//set fire rotation
 	float offsetX = -20;
@@ -48,8 +46,6 @@ bullet::bullet(SDL_Rect& camera, gameObject source, int targetX, int targetY)
 	}
 	setRenderPosition(px, py);
 	speed = BULLET_SPEED * deltaTimer.getDeltaTime();
-
-	rotation = source.rotation; //set bullet rotation
 /*	
 	float screenX = calOnScreenXPosition(camera, px);
 	float screenY = calOnScreenYPosition(camera, py);
@@ -171,18 +167,6 @@ bool weapon::getReloadFlag()
 	return reloadFlag;
 }
 
-bool weapon::fire()
-{
-	if (checkRateOfFire() && checkAmmo())
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
 void weapon::reload()
 {
 	if (!reloadFlag)
@@ -204,3 +188,8 @@ void weapon::resetTimer()
 	rateOfFireTimer = rateOfFire;
 }
 
+
+void weapon::fire()
+{
+
+}

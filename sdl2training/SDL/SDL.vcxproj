@@ -41,6 +41,7 @@
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Include\Button.h" />
     <ClInclude Include="src\Include\CallOfTheForgeGod.h" />
+    <ClInclude Include="src\Include\Dominus.h" />
     <ClInclude Include="src\Include\EmperorDivide.h" />
     <ClInclude Include="src\Include\GameDialogue.h" />
     <ClInclude Include="src\Include\GameEnvironment.h" />
@@ -66,6 +67,7 @@
   <ItemGroup>
     <ClCompile Include="src\GameFeatures\Button.cpp" />
     <ClCompile Include="src\GameFeatures\CallOfTheForgeGod.cpp" />
+    <ClCompile Include="src\GameFeatures\Dominus.cpp" />
     <ClCompile Include="src\GameFeatures\EmperorDivide.cpp" />
     <ClCompile Include="src\GameFeatures\GameDialogue.cpp" />
     <ClCompile Include="src\GameFeatures\GameEnvironment.cpp" />

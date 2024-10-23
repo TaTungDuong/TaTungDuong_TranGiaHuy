@@ -8,6 +8,10 @@ void playerSkill::initPlayer(player& myPlayer)
 	COOLDOWN_TIME_STEP = 0.0f;
 	COOLDOWN_TIME_COUNTER = COOLDOWN_TIME_INTERVAL;
 	myPlayer.skill = SCREEN_WIDTH / 5;
+
+	//set up Dominus Shield
+	myDominus.initPlayer();
+
 	//set up 6 Sand Soldiers for Emperor Divide
 	myEmperorDivide.clear();
 	for (int i = 0; i < 6; i++)
@@ -25,6 +29,11 @@ void playerSkill::setAnimation(
 	std::map<playerSkillState, std::vector <SDL_Rect>>& gPlayerSkillClips
 )
 {
+	//Dominus
+	myDominus.currentTotalFrame = 1;
+	myDominus.setAnimation(gPlayerSkillTexture[playerSkillState::DOMINUS],
+		gPlayerSkillClips[playerSkillState::DOMINUS][myDominus.currentFrame]);
+
 	//Emperor Divide
 	for (auto& soldier : myEmperorDivide)
 	{
@@ -40,6 +49,9 @@ void playerSkill::setAnimation(
 }
 void playerSkill::updateAnimation()
 {
+	//Dominus
+	myDominus.currentFrame = 0;
+
 	//Emperor Divide
 	for (auto& soldier : myEmperorDivide)
 	{
@@ -70,12 +82,16 @@ bool playerSkill::initSkill(player& myPlayer)
 	switch (myPlayer.currentWeapon)
 	{
 	case 0:// pistol
-		currentState = playerSkillState::CALL_OF_THE_FORGE_GOD;
+		currentState = playerSkillState::DOMINUS;
 		break;
 	case 1:// heavy cannon
 		currentState = playerSkillState::EMPEROR_DIVIDE;
 		break;
+	case 2:// chaingun
+		currentState = playerSkillState::CALL_OF_THE_FORGE_GOD;
+		break;
 	default:
+		currentState = playerSkillState::CALL_OF_THE_FORGE_GOD;
 		break;
 	}
 
@@ -83,6 +99,9 @@ bool playerSkill::initSkill(player& myPlayer)
 	Sound::GetInstance()->playSkillSfx(myPlayer.currentWeapon);
 	switch (currentState)
 	{
+	case playerSkillState::DOMINUS:
+		initDominus(myPlayer);
+		break;
 	case playerSkillState::EMPEROR_DIVIDE:
 		initEmperorDivide(myPlayer);
 		break;
@@ -90,6 +109,7 @@ bool playerSkill::initSkill(player& myPlayer)
 		initCallOfTheForgeGod(myPlayer);
 		break;
 	default:
+		initCallOfTheForgeGod(myPlayer);
 		break;
 	}
 	return true;
@@ -116,6 +136,9 @@ void playerSkill::activateSkill(player& myPlayer)
 	if (COOLDOWN_TIME_COUNTER >= COOLDOWN_TIME_INTERVAL) return;
 	switch (currentState)
 	{
+	case playerSkillState::DOMINUS:
+		activateDominus(myPlayer);
+		break;
 	case playerSkillState::EMPEROR_DIVIDE:
 		activateEmperorDivide(myPlayer);
 		break;
@@ -126,6 +149,21 @@ void playerSkill::activateSkill(player& myPlayer)
 		break;
 	}
 }
+
+#pragma region Dominus
+void playerSkill::initDominus(player& myPlayer)
+{
+	myDominus.px = myPlayer.px;
+	myDominus.py = myPlayer.py;
+	myDominus.lifeTimeCounter = 0.0f;
+}
+void playerSkill::activateDominus(player& myPlayer)
+{
+	myDominus.move();
+	myDominus.updateRenderPosition();
+	myDominus.render(camera);
+}
+#pragma endregion
 
 #pragma region Emperor Divide
 void playerSkill::initEmperorDivide(player& myPlayer)

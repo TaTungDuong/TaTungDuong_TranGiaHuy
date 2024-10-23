@@ -39,6 +39,7 @@ public:
 	void move(gameObject target);
 	bool attack(player& target);
 	void hurt();
+	void drop(); // drop Loots (heals, assists, weapons, nothing)
 	void setAnimation(LTexture& targetTexture, SDL_Rect& targetClip);
 	void render(SDL_Rect& camera);
 

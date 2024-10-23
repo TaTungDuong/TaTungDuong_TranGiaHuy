@@ -7,11 +7,14 @@
 #include "Include/Player.h"
 #include "Include/PlayerEffect.h"
 
+//skill headers
 #include "Include/EmperorDivide.h"
 #include "Include/CallOfTheForgeGod.h"
+#include "Include/Dominus.h"
 
 enum class playerSkillState
 {
+	DOMINUS,
 	EMPEROR_DIVIDE,
 	CALL_OF_THE_FORGE_GOD
 };
@@ -35,10 +38,14 @@ public:
 	bool initSkill(player& myPlayer);
 	void activateSkill(player& myPlayer);
 
+	Dominus myDominus;
 	std::vector<emperorDivide> myEmperorDivide; //store Sand Soldiers
 	callOfTheForgeGod myCat; //the cat
 private:
 	float COOLDOWN_TIME_STEP;
+
+	void initDominus(player& myPlayer);
+	void activateDominus(player& myPlayer);
 
 	void initEmperorDivide(player& myPlayer);
 	void activateEmperorDivide(player& myPlayer);

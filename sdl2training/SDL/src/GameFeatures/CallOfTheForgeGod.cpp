@@ -1,5 +1,5 @@
 /// <summary>
-/// Call Of The Forge God (Pistol)
+/// Call Of The Forge God (Chaingun)
 /// Player summons a massive elemental at a location which travels toward him with increasing speed. 
 /// Enemies run over by the elemental take damage, are slowed and are made Brittle. 
 /// Player can recast the ability to charge into the elemental, 

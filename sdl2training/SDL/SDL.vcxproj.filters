@@ -195,6 +195,9 @@
     <ClInclude Include="src\Include\Signal.h">
       <Filter>Header Files\Signal</Filter>
     </ClInclude>
+    <ClInclude Include="src\Include\Dominus.h">
+      <Filter>Header Files\Player\PlayerSkills</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameManager\ResourceManagers.cpp">
@@ -316,6 +319,9 @@
     </ClCompile>
     <ClCompile Include="src\GameFeatures\Signal.cpp">
       <Filter>Source Files\GameFeatures\Signal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Dominus.cpp">
+      <Filter>Source Files\GameFeatures\Player\PlayerSkills</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

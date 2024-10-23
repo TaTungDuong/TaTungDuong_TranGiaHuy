@@ -116,6 +116,11 @@ void zombie::hurt()
 	}
 }
 
+void zombie::drop()
+{
+
+}
+
 void zombie::setAnimation(LTexture& targetTexture, SDL_Rect& targetClip)
 {
 	currentTexture = &targetTexture;
@@ -124,21 +129,6 @@ void zombie::setAnimation(LTexture& targetTexture, SDL_Rect& targetClip)
 
 void zombie::render(SDL_Rect& camera)
 {
-	//change color based on the type
-	/*
-	switch (type)
-	{
-	case 0:
-		currentTexture->setColor(255, 255, 255);
-		break;
-	case 1:
-		currentTexture->setColor(100, 255, 100);
-		break;
-	case 2:
-		currentTexture->setColor(100, 100, 255);
-		break;
-	}
-	*/
 	currentTexture->render(rx - camera.x, ry - camera.y, size, size,
 		currentClip, 0, NULL, isFlipped == false ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
 }

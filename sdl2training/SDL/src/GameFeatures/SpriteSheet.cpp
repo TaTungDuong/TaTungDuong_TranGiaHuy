@@ -255,88 +255,134 @@ bool SpriteSheet::loadPlayerEffectMedia()
 bool SpriteSheet::loadPlayerMedia()
 {
 	bool success = true;
+	int cnt;
 	//pistol
+	cnt = 0;
 	//idle
-	if (!gPlayerPistolTexture[playerState::IDLE].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_idle_128.png"))
+	if (!gPlayerTexture[cnt][playerState::IDLE].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_idle_128.png"))
 	{
 		printf("Failed to load player pistol idle texture!\n");
 		success = false;
 	}
 	else
 	{
-		loadSpritesheet(playerState::IDLE, gPlayerPistolTexture, gPlayerPistolClips, PLAYER_PISTOL_IDLE_ANIMATION_FRAMES);
+		loadSpritesheet(playerState::IDLE, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_PISTOL_IDLE_ANIMATION_FRAMES);
 	}
 	//walk
-	if (!gPlayerPistolTexture[playerState::WALK].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_walk_128.png"))
+	if (!gPlayerTexture[cnt][playerState::WALK].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_walk_128.png"))
 	{
 		printf("Failed to load player pistol walk texture!\n");
 		success = false;
 	}
 	else
 	{
-		loadSpritesheet(playerState::WALK, gPlayerPistolTexture, gPlayerPistolClips, PLAYER_PISTOL_WALK_ANIMATION_FRAMES);
+		loadSpritesheet(playerState::WALK, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_PISTOL_WALK_ANIMATION_FRAMES);
 	}
 	//fire
-	if (!gPlayerPistolTexture[playerState::FIRE].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_fire_128.png"))
+	if (!gPlayerTexture[cnt][playerState::FIRE].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_fire_128.png"))
 	{
 		printf("Failed to load player pistol fire texture!\n");
 		success = false;
 	}
 	else
 	{
-		loadSpritesheet(playerState::FIRE, gPlayerPistolTexture, gPlayerPistolClips, PLAYER_PISTOL_FIRE_ANIMATION_FRAMES);
+		loadSpritesheet(playerState::FIRE, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_PISTOL_FIRE_ANIMATION_FRAMES);
 	}
 	//reload
-	if (!gPlayerPistolTexture[playerState::RELOAD].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_reload_128.png"))
+	if (!gPlayerTexture[cnt][playerState::RELOAD].loadFromFile("assets-main/sprites/weapons/shotgun/shotgun_reload_128.png"))
 	{
 		printf("Failed to load player pistol reload texture!\n");
 		success = false;
 	}
 	else
 	{
-		loadSpritesheet(playerState::RELOAD, gPlayerPistolTexture, gPlayerPistolClips, PLAYER_PISTOL_RELOAD_ANIMATION_FRAMES);
+		loadSpritesheet(playerState::RELOAD, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_PISTOL_RELOAD_ANIMATION_FRAMES);
 	}
 
 	//rifle
+	cnt = 1;
 	//idle
-	if (!gPlayerRifleTexture[playerState::IDLE].loadFromFile("assets-main/sprites/weapons/heavy_cannon/heavy_cannon_full_auto_idle_128.png"))
+	if (!gPlayerTexture[cnt][playerState::IDLE].loadFromFile("assets-main/sprites/weapons/heavy_cannon/heavy_cannon_full_auto_idle_128.png"))
 	{
 		printf("Failed to load player rifle idle texture!\n");
 		success = false;
 	}
 	else
 	{
-		loadSpritesheet(playerState::IDLE, gPlayerRifleTexture, gPlayerRifleClips, PLAYER_RIFLE_IDLE_ANIMATION_FRAMES);
+		loadSpritesheet(playerState::IDLE, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_RIFLE_IDLE_ANIMATION_FRAMES);
 	}
 	//walk
-	if (!gPlayerRifleTexture[playerState::WALK].loadFromFile("assets-main/sprites/weapons/heavy_cannon/heavy_cannon_full_auto_walk_128.png"))
+	if (!gPlayerTexture[cnt][playerState::WALK].loadFromFile("assets-main/sprites/weapons/heavy_cannon/heavy_cannon_full_auto_walk_128.png"))
 	{
 		printf("Failed to load player rifle walk texture!\n");
 		success = false;
 	}
 	else
 	{
-		loadSpritesheet(playerState::WALK, gPlayerRifleTexture, gPlayerRifleClips, PLAYER_RIFLE_WALK_ANIMATION_FRAMES);
+		loadSpritesheet(playerState::WALK, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_RIFLE_WALK_ANIMATION_FRAMES);
 	}
 	//fire
-	if (!gPlayerRifleTexture[playerState::FIRE].loadFromFile("assets-main/sprites/weapons/heavy_cannon/heavy_cannon_full_auto_fire_128.png"))
+	if (!gPlayerTexture[cnt][playerState::FIRE].loadFromFile("assets-main/sprites/weapons/heavy_cannon/heavy_cannon_full_auto_fire_128.png"))
 	{
 		printf("Failed to load player rifle fire texture!\n");
 		success = false;
 	}
 	else
 	{
-		loadSpritesheet(playerState::FIRE, gPlayerRifleTexture, gPlayerRifleClips, PLAYER_RIFLE_FIRE_ANIMATION_FRAMES);
+		loadSpritesheet(playerState::FIRE, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_RIFLE_FIRE_ANIMATION_FRAMES);
 	}
 	//reload
-	if (!gPlayerRifleTexture[playerState::RELOAD].loadFromFile("assets-main/sprites/weapons/heavy_cannon/heavy_cannon_full_auto_reload_128.png"))
+	if (!gPlayerTexture[cnt][playerState::RELOAD].loadFromFile("assets-main/sprites/weapons/heavy_cannon/heavy_cannon_full_auto_reload_128.png"))
 	{
 		printf("Failed to load player rifle reload texture!\n");
 		success = false;
 	}
 	else
 	{
-		loadSpritesheet(playerState::RELOAD, gPlayerRifleTexture, gPlayerRifleClips, PLAYER_RIFLE_RELOAD_ANIMATION_FRAMES);
+		loadSpritesheet(playerState::RELOAD, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_RIFLE_RELOAD_ANIMATION_FRAMES);
+	}
+
+	//chaingun
+	cnt = 2;
+	//idle
+	if (!gPlayerTexture[cnt][playerState::IDLE].loadFromFile("assets-main/sprites/weapons/chaingun/chaingun_128.png"))
+	{
+		printf("Failed to load player chaingun idle texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(playerState::IDLE, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_CHAINGUN_IDLE_ANIMATION_FRAMES);
+	}
+	//walk
+	if (!gPlayerTexture[cnt][playerState::WALK].loadFromFile("assets-main/sprites/weapons/chaingun/chaingun_128.png"))
+	{
+		printf("Failed to load player chaingun walk texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(playerState::WALK, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_CHAINGUN_WALK_ANIMATION_FRAMES);
+	}
+	//fire
+	if (!gPlayerTexture[cnt][playerState::FIRE].loadFromFile("assets-main/sprites/weapons/chaingun/chaingun_128.png"))
+	{
+		printf("Failed to load player chaingun fire texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(playerState::FIRE, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_CHAINGUN_FIRE_ANIMATION_FRAMES);
+	}
+	//reload
+	if (!gPlayerTexture[cnt][playerState::RELOAD].loadFromFile("assets-main/sprites/weapons/chaingun/chaingun_128.png"))
+	{
+		printf("Failed to load player chaingun reload texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(playerState::RELOAD, gPlayerTexture[cnt], gPlayerClips[cnt], PLAYER_CHAINGUN_RELOAD_ANIMATION_FRAMES);
 	}
 
 	return success;
@@ -344,6 +390,18 @@ bool SpriteSheet::loadPlayerMedia()
 bool SpriteSheet::loadPlayerSkillMedia()
 {
 	bool success = true;
+	//Dominus
+	if (!gPlayerSkillTexture[playerSkillState::DOMINUS].loadFromFile(
+		"assets-main/sprites/objects/bullets/skills/dominus/1.png"))
+	{
+		printf("Failed to load player skill: Dominus texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(playerSkillState::DOMINUS, gPlayerSkillTexture, gPlayerSkillClips, 1);
+	}
+
 	//Emperor's Divide
 	if (!gPlayerSkillTexture[playerSkillState::EMPEROR_DIVIDE].loadFromFile(
 		"assets-main/sprites/objects/bullets/skills/emperor_divide/emperor_divide_128.png"))
@@ -634,6 +692,10 @@ void SpriteSheet::setPlayerAnimation(player& myPlayer)
 		{
 			myPlayer.currentTotalFrame = PLAYER_RIFLE_IDLE_ANIMATION_FRAMES;
 		}
+		else if (myPlayer.myWeapon[myPlayer.currentWeapon].getName() == "chaingun")
+		{
+			myPlayer.currentTotalFrame = PLAYER_CHAINGUN_IDLE_ANIMATION_FRAMES;
+		}
 		break;
 	case playerState::WALK:
 		if (myPlayer.myWeapon[myPlayer.currentWeapon].getName() == "pistol")
@@ -643,6 +705,10 @@ void SpriteSheet::setPlayerAnimation(player& myPlayer)
 		else if (myPlayer.myWeapon[myPlayer.currentWeapon].getName() == "assault rifle")
 		{
 			myPlayer.currentTotalFrame = PLAYER_RIFLE_WALK_ANIMATION_FRAMES;
+		}
+		else if (myPlayer.myWeapon[myPlayer.currentWeapon].getName() == "chaingun")
+		{
+			myPlayer.currentTotalFrame = PLAYER_CHAINGUN_WALK_ANIMATION_FRAMES;
 		}
 		break;
 	case playerState::FIRE:
@@ -654,6 +720,10 @@ void SpriteSheet::setPlayerAnimation(player& myPlayer)
 		{
 			myPlayer.currentTotalFrame = PLAYER_RIFLE_FIRE_ANIMATION_FRAMES;
 		}
+		else if (myPlayer.myWeapon[myPlayer.currentWeapon].getName() == "chaingun")
+		{
+			myPlayer.currentTotalFrame = PLAYER_CHAINGUN_FIRE_ANIMATION_FRAMES;
+		}
 		break;
 	case playerState::RELOAD:
 		if (myPlayer.myWeapon[myPlayer.currentWeapon].getName() == "pistol")
@@ -664,22 +734,19 @@ void SpriteSheet::setPlayerAnimation(player& myPlayer)
 		{
 			myPlayer.currentTotalFrame = PLAYER_RIFLE_RELOAD_ANIMATION_FRAMES;
 		}
+		else if (myPlayer.myWeapon[myPlayer.currentWeapon].getName() == "chaingun")
+		{
+			myPlayer.currentTotalFrame = PLAYER_CHAINGUN_RELOAD_ANIMATION_FRAMES;
+		}
 		break;
 	case playerState::DEAD:
 
 		break;
 	}
-
-	if (myPlayer.myWeapon[myPlayer.currentWeapon].getName() == "pistol")
-	{
-		myPlayer.setAnimation(gPlayerPistolTexture[myPlayer.currentState],
-			gPlayerPistolClips[myPlayer.currentState][myPlayer.currentFrame]);
-	}
-	else if (myPlayer.myWeapon[myPlayer.currentWeapon].getName() == "assault rifle")
-	{
-		myPlayer.setAnimation(gPlayerRifleTexture[myPlayer.currentState],
-			gPlayerRifleClips[myPlayer.currentState][myPlayer.currentFrame]);
-	}
+	
+	//printf("current weapon: %d, current frame: %d\n", myPlayer.currentWeapon, myPlayer.currentFrame);
+	myPlayer.setAnimation(gPlayerTexture[myPlayer.currentWeapon][myPlayer.currentState],
+			gPlayerClips[myPlayer.currentWeapon][myPlayer.currentState][myPlayer.currentFrame]);
 }
 void SpriteSheet::setPlayerAnimationAnimation(playerAnimation& myPlayerAnimation)
 {

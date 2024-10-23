@@ -12,7 +12,7 @@ public:
 	float vx;
 	float vy;
 
-	bullet(SDL_Rect& camera, gameObject source, int targetX, int targetY);
+	void initBullet(SDL_Rect& camera, gameObject source, int targetX, int targetY);
 	//~bullet();
 	/*void create(gameObject source, int targetX, int targetY);*/
 };
@@ -35,7 +35,7 @@ public:
 	bool checkReload();
 	bool getReloadFlag();
 	void stopReload();
-	bool fire();
+	void fire();
 	void reload();
 	void resetTimer();
 
