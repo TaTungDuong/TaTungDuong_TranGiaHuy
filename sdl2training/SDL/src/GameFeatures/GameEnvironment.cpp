@@ -331,7 +331,11 @@ void GameEnvironment::updateBullet(
 	}
 }
 
-void GameEnvironment::updateZombieBullet(player& myPlayer, playerEffect& myPlayerEffect)
+void GameEnvironment::updateZombieBullet(
+	player& myPlayer,
+	playerSkill& myPlayerSkill,
+	playerEffect& myPlayerEffect
+)
 {
 	int i = 0;
 	while (i < zombieBullets.size())
@@ -369,6 +373,13 @@ void GameEnvironment::updateZombieBullet(player& myPlayer, playerEffect& myPlaye
 				myPlayerEffect.currentState = playerEffectState::HURT;
 				myPlayerEffect.gPlayerEffectTimeCounter[myPlayerEffect.currentState] = 0.0f;
 				Sound::GetInstance()->playPlayerHurt();
+			}
+
+			//player skills
+			//Dominus
+			if (zombieBullets[i].checkCollision(myPlayerSkill.myDominus))
+			{
+				collised = true;
 			}
 
 			//delete current bullet if it's collided with something

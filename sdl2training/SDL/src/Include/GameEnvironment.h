@@ -59,7 +59,11 @@ public:
 		player& myPlayer,
 		GameObjective& m_GameObjective
 	);
-	void updateZombieBullet(player& myPlayer, playerEffect& myPlayerEffect);
+	void updateZombieBullet(
+		player& myPlayer, 
+		playerSkill& myPlayerSkill,
+		playerEffect& myPlayerEffect
+	);
 #pragma endregion
 
 	//free

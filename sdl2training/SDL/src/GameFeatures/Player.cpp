@@ -78,11 +78,11 @@ void player::render(SDL_Rect& camera)
 	SDL_GetMouseState(&mouseX, &mouseY);
 
 	// If the mouse is to the left of the player, flip horizontally
-	if (mouseX < SCREEN_WIDTH / 2) {
-		isFlipped = true;
+	if ((0 < rotation && rotation < 90)||(270 < rotation && rotation < 360)) {
+		isFlipped = false;
 	}
 	else {
-		isFlipped = false;
+		isFlipped = true;
 	}
 	currentTexture->render(rx - camera.x, ry - camera.y, size, size, currentClip, rotation, NULL, isFlipped? SDL_FLIP_VERTICAL : SDL_FLIP_NONE);
 }

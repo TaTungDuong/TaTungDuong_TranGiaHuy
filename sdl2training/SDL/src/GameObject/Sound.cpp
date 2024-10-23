@@ -287,7 +287,7 @@ void Sound::playSkillSfx(int weapon)
     switch (weapon)
     {
     case 0://pistol
-        sfx = p_CallOfTheForgeGod;
+        sfx = p_Dominus;
         break;
     case 1://heavy cannon
         sfx = p_EmperorDivide;

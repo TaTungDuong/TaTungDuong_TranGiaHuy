@@ -110,7 +110,7 @@ static int RIFLE_CLIP_SIZE = 30;
 static float RIFLE_RELOAD_TIME = 2.0f;
 //chaingun
 static std::string CHAINGUN_NAME = "chaingun";
-static float CHAINGUN_DAMAGE = 0.5f;
+static float CHAINGUN_DAMAGE = 1.5f;
 static float CHAINGUN_RATE_OF_FIRE = 0.1f;
 static int CHAINGUN_CLIP_SIZE = 30;
 static float CHAINGUN_RELOAD_TIME = 2.0f;
@@ -171,6 +171,7 @@ const float COOLDOWN_TIME_INTERVAL = 10.0f;
 static float COOLDOWN_TIME_COUNTER = COOLDOWN_TIME_INTERVAL;
 const int PLAYER_EMPEROR_DIVIDE_ANIMATION_FRAMES = 8;
 const int PLAYER_CALL_OF_THE_FORGE_GOD_ANIMATION_FRAMES = 8;
+const int PLAYER_DOMINUS_SHIELD_FRAMES = 6;
 
 //player effects
 const int PLAYER_EFFECT_ANIMATION_FRAMES = 16;

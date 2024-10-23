@@ -936,7 +936,9 @@ void GSPlay::Game()
 			myPlayer, m_GameObjective
 		);
 		m_GameEnvironment.updateZombieBullet(
-			myPlayer, myPlayerEffect
+			myPlayer, 
+			myPlayerSkill,
+			myPlayerEffect
 		);
 
 		//Update player's skill

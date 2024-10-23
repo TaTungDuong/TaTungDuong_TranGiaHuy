@@ -81,6 +81,7 @@ private:
 	};
 	const std::string p_ZombieShoot = "sfx/npcs/enemy_shoot.mp3";
 	const std::string p_PlayerSkill = "sfx/skills/_skill.mp3";
+	const std::string p_Dominus = "sfx/skills/dominus.mp3";
 	const std::string p_EmperorDivide = "sfx/skills/emperor_divide.mp3";
 	const std::string p_CallOfTheForgeGod = "sfx/skills/call_of_the_forge_god.mp3";
 

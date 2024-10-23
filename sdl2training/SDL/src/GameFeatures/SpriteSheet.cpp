@@ -392,14 +392,14 @@ bool SpriteSheet::loadPlayerSkillMedia()
 	bool success = true;
 	//Dominus
 	if (!gPlayerSkillTexture[playerSkillState::DOMINUS].loadFromFile(
-		"assets-main/sprites/objects/bullets/skills/dominus/1.png"))
+		"assets-main/sprites/objects/bullets/skills/dominus/dominus_shield.png"))
 	{
 		printf("Failed to load player skill: Dominus texture!\n");
 		success = false;
 	}
 	else
 	{
-		loadSpritesheet(playerSkillState::DOMINUS, gPlayerSkillTexture, gPlayerSkillClips, 1);
+		loadSpritesheet(playerSkillState::DOMINUS, gPlayerSkillTexture, gPlayerSkillClips, PLAYER_DOMINUS_SHIELD_FRAMES);
 	}
 
 	//Emperor's Divide
@@ -1100,10 +1100,8 @@ void SpriteSheet::updatePlayer(
 	}
 
 	//render player++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	myPlayerSkill.activateSkill(myPlayer);
 	myPlayerAnimation.render(camera);
 	myPlayer.render(camera);
 	myPlayerEffect.render(camera);
-	
-
-	myPlayerSkill.activateSkill(myPlayer);
 }

@@ -50,7 +50,7 @@ void playerSkill::setAnimation(
 void playerSkill::updateAnimation()
 {
 	//Dominus
-	myDominus.currentFrame = 0;
+//	myDominus.currentFrame = 0;
 
 	//Emperor Divide
 	for (auto& soldier : myEmperorDivide)
@@ -153,9 +153,11 @@ void playerSkill::activateSkill(player& myPlayer)
 #pragma region Dominus
 void playerSkill::initDominus(player& myPlayer)
 {
+	srand(static_cast<unsigned int>(time(0)));
 	myDominus.px = myPlayer.px;
 	myDominus.py = myPlayer.py;
 	myDominus.lifeTimeCounter = 0.0f;
+	myDominus.currentFrame = rand() % 6;
 }
 void playerSkill::activateDominus(player& myPlayer)
 {
@@ -174,7 +176,7 @@ void playerSkill::initEmperorDivide(player& myPlayer)
 		// Get mouse position
 		SDL_GetMouseState(&mouseX, &mouseY);
 
-		soldier.isFlipped = (mouseX < SCREEN_WIDTH / 2);
+		soldier.isFlipped = !((0 < myPlayer.rotation && myPlayer.rotation < 90) || (270 < myPlayer.rotation && myPlayer.rotation < 360));
 
 		soldier.rotation = myPlayer.rotation;
 	}
@@ -191,11 +193,6 @@ void playerSkill::initEmperorDivide(player& myPlayer)
 		soldier.entranceTimeCounter = 0.0f;
 		soldier.moveTimeCounter = 0.0f;
 	}
-	//for (auto& soldier : myEmperorDivide)
-	//{
-	//	soldier.vx = myPlayer.vx;
-	//	soldier.vy = myPlayer.vy;
-	//}
 }
 void playerSkill::activateEmperorDivide(player& myPlayer)
 {
