@@ -15,7 +15,7 @@ void signal::initSignal(gameObject& source)
 
 void signal::hurt(player& myPlayer)
 {
-	if (currentState == signalState::DEAD) return;
+	if (currentState == signalState::DEAD || currentState == signalState::INTRO) return;
 	health -= myPlayer.myWeapon[myPlayer.currentWeapon].getDamage();
 	if (health <= 0)
 	{

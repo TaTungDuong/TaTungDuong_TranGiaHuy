@@ -79,7 +79,7 @@ const int MAX_DEAD_ZOMBIE_NUM = MAX_BLOOD_POOL_NUM;
 const int TIME_LIMIT = 300; //total game time in second
 const int TOTAL_OBJECTIVE = 5;
 const int ZOMBIE_NEEDED_TO_KILL = 1;// 10;
-const int TOTAL_SIGNAL_ZONE = 3;
+const int TOTAL_SIGNAL_ZONE = 1;// 3;
 
 //pickupables
 //health pickup
@@ -194,9 +194,13 @@ const int SIGNAL_DEAD_ANIMATION_FRAMES = 1;
 
 //boss
 //warden
-const int BOSS_WARDEN_IDLE_ANIMATION_FRAMES = 14;
+const int BOSS_WARDEN_INTRO_ANIMATION_FRAMES = 16;
+const int BOSS_WARDEN_IDLE_ANIMATION_FRAMES = 16;
 const int BOSS_WARDEN_WALK_ANIMATION_FRAMES = 16;
-const int BOSS_WARDEN_DEAD_ANIMATION_FRAMES = 1;
+const int BOSS_WARDEN_DIVE_ANIMATION_FRAMES = 16;
+const int BOSS_WARDEN_HIDE_ANIMATION_FRAMES = 1;
+const int BOSS_WARDEN_HURT_ANIMATION_FRAMES = 6;
+const int BOSS_WARDEN_DEAD_ANIMATION_FRAMES = 24;
 
 //settings
 static bool setting_Music = true;

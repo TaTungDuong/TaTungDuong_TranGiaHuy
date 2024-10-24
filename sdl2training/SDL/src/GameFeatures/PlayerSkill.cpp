@@ -225,6 +225,7 @@ void playerSkill::activateEmperorDivide(player& myPlayer)
 #pragma region Call_Of_The_Forge_God
 void playerSkill::initCallOfTheForgeGod(player& myPlayer)
 {
+	myCat.lifeTimeCounter = 0;
 	myPlayer.isActive = 0;
 	myCat.rotation = myPlayer.rotation;
 	myCat.isRecasted = false;

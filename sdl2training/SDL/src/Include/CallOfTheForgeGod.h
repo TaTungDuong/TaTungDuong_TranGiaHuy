@@ -17,7 +17,7 @@ public:
 	bool isActive; //if true, the soldier can move and damage the enemies
 
 	const float distance = SCREEN_WIDTH * 2 / 3; // spawn distance to player
-	const float lifeTimeInterval = 3.0f;
+	const float lifeTimeInterval = 7.5f;
 	float lifeTimeCounter;
 	const float moveTimeInterval = 0.5f;
 	float moveTimeCounter;

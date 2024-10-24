@@ -279,7 +279,7 @@ void GameEnvironment::updateBoss(
 	{
 		if (myWarden.checkCollision(soldier) && soldier.isActive)
 		{
-			myWarden.health -= soldier.damage;
+			myWarden.hurt(soldier.damage);
 			Sound::GetInstance()->playHitZombie();
 
 			break;
@@ -288,7 +288,7 @@ void GameEnvironment::updateBoss(
 	/// Call Of The Forge God
 	if (myWarden.checkCollision(myPlayerSkill.myCat))
 	{
-		myWarden.health -= myPlayerSkill.myCat.damage;
+		myWarden.hurt(myPlayerSkill.myCat.damage);
 	}
 
 	///Change to DEAD if Warden health <= 0
@@ -379,10 +379,10 @@ void GameEnvironment::updateBullet(
 
 			//boss
 			//warden
-			if (bullets[i].checkCollision(myWarden))
+			if (bullets[i].checkCollision(myWarden) && myWarden.canCollide() == true)
 			{
 				collised = (myWarden.health > 0);
-				myWarden.hurt(myPlayer);
+				myWarden.hurt(myPlayer.myWeapon[myPlayer.currentWeapon].getDamage());
 				//printf("HIT WARDEN: %f\n", myWarden.health);
 
 				//remove if Warden health is below 0

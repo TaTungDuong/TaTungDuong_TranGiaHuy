@@ -208,7 +208,7 @@ zombieBullet::zombieBullet(SDL_Rect& camera, gameObject source)
 		break;
 	case 1:
 		size = 28;
-		max_lifeTime = 3;
+		max_lifeTime = 10;
 		damage = FAST_ZOMBIE_DAMAGE;
 		break;
 	case 2:
@@ -262,7 +262,7 @@ zombieBullet::zombieBullet(SDL_Rect& camera, gameObject source)
 
 	}
 	setRenderPosition(px, py);
-	speed = BULLET_SPEED * deltaTimer.getDeltaTime() / 5.0f;
+	speed = BULLET_SPEED * deltaTimer.getDeltaTime() / 7.5f;
 
 	rotation = source.rotation + 180; //set bullet rotation
 	float dirX = 0;

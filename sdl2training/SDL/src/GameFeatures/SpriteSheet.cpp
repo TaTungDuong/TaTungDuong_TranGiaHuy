@@ -685,8 +685,17 @@ bool SpriteSheet::loadWardenMedia()
 {
 	bool success = true;
 	//warden states
+	if (!gWardenTexture[WardenState::INTRO].loadFromFile("assets-main/sprites/characters/bosses/sir_verdant/sir_verdant_intro.png"))
+	{
+		printf("Failed to load warden intro texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(WardenState::INTRO, gWardenTexture, gWardenClips, BOSS_WARDEN_INTRO_ANIMATION_FRAMES);
+	}
 	///idle
-	if (!gWardenTexture[WardenState::IDLE].loadFromFile("assets-main/sprites/characters/bosses/warden/warden_idle.png"))
+	if (!gWardenTexture[WardenState::IDLE].loadFromFile("assets-main/sprites/characters/bosses/sir_verdant/sir_verdant_idle.png"))
 	{
 		printf("Failed to load warden idle texture!\n");
 		success = false;
@@ -696,7 +705,7 @@ bool SpriteSheet::loadWardenMedia()
 		loadSpritesheet(WardenState::IDLE, gWardenTexture, gWardenClips, BOSS_WARDEN_IDLE_ANIMATION_FRAMES);
 	}
 	///walk
-	if (!gWardenTexture[WardenState::WALK].loadFromFile("assets-main/sprites/characters/bosses/warden/warden_walk.png"))
+	if (!gWardenTexture[WardenState::WALK].loadFromFile("assets-main/sprites/characters/bosses/sir_verdant/sir_verdant_walk.png"))
 	{
 		printf("Failed to load warden walk texture!\n");
 		success = false;
@@ -705,8 +714,38 @@ bool SpriteSheet::loadWardenMedia()
 	{
 		loadSpritesheet(WardenState::WALK, gWardenTexture, gWardenClips, BOSS_WARDEN_WALK_ANIMATION_FRAMES);
 	}
+	///hurt
+	if (!gWardenTexture[WardenState::HURT].loadFromFile("assets-main/sprites/characters/bosses/sir_verdant/sir_verdant_hurt.png"))
+	{
+		printf("Failed to load warden hurt texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(WardenState::HURT, gWardenTexture, gWardenClips, BOSS_WARDEN_HURT_ANIMATION_FRAMES);
+	}
+	///dive
+	if (!gWardenTexture[WardenState::DIVE].loadFromFile("assets-main/sprites/characters/bosses/sir_verdant/sir_verdant_dive.png"))
+	{
+		printf("Failed to load warden dive texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(WardenState::DIVE, gWardenTexture, gWardenClips, BOSS_WARDEN_DIVE_ANIMATION_FRAMES);
+	}
+	///hide
+	if (!gWardenTexture[WardenState::HIDE].loadFromFile("assets-main/sprites/characters/bosses/sir_verdant/sir_verdant_hide.png"))
+	{
+		printf("Failed to load warden hide texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(WardenState::HIDE, gWardenTexture, gWardenClips, BOSS_WARDEN_HIDE_ANIMATION_FRAMES);
+	}
 	///dead
-	if (!gWardenTexture[WardenState::DEAD].loadFromFile("assets-main/sprites/characters/bosses/warden/warden_death.png"))
+	if (!gWardenTexture[WardenState::DEAD].loadFromFile("assets-main/sprites/characters/bosses/sir_verdant/sir_verdant_death.png"))
 	{
 		printf("Failed to load warden dead texture!\n");
 		success = false;
@@ -967,6 +1006,18 @@ void SpriteSheet::setWardenAnimation(Warden& source)
 	}
 	switch (source.currentState)
 	{
+	case WardenState::INTRO:
+		if (source.currentFrame > BOSS_WARDEN_INTRO_ANIMATION_FRAMES - 1)
+		{
+			source.currentState = WardenState::IDLE;
+			source.currentFrame = 0;
+			source.currentTotalFrame = BOSS_WARDEN_IDLE_ANIMATION_FRAMES;
+		}
+		else
+		{
+			source.currentTotalFrame = BOSS_WARDEN_INTRO_ANIMATION_FRAMES;
+		}
+		break;
 	case WardenState::IDLE:
 		if (source.currentFrame > BOSS_WARDEN_IDLE_ANIMATION_FRAMES - 1)
 		{
@@ -981,10 +1032,41 @@ void SpriteSheet::setWardenAnimation(Warden& source)
 		}
 		source.currentTotalFrame = BOSS_WARDEN_WALK_ANIMATION_FRAMES;
 		break;
+	case WardenState::HURT:
+		if (source.currentFrame > BOSS_WARDEN_HURT_ANIMATION_FRAMES - 1)
+		{
+			source.currentState = WardenState::IDLE;
+			source.currentFrame = 0;
+			source.currentTotalFrame = BOSS_WARDEN_IDLE_ANIMATION_FRAMES;
+		}
+		else
+		{
+			source.currentTotalFrame = BOSS_WARDEN_HURT_ANIMATION_FRAMES;
+		}
+		break;
+	case WardenState::DIVE:
+		if (source.currentFrame > BOSS_WARDEN_DIVE_ANIMATION_FRAMES - 1)
+		{
+			source.currentState = WardenState::HIDE;
+			source.currentFrame = 0;
+			source.currentTotalFrame = BOSS_WARDEN_HIDE_ANIMATION_FRAMES;
+		}
+		else
+		{
+			source.currentTotalFrame = BOSS_WARDEN_DIVE_ANIMATION_FRAMES;
+		}
+		break;
+	case WardenState::HIDE:
+		if (source.currentFrame > BOSS_WARDEN_HIDE_ANIMATION_FRAMES - 1)
+		{
+			source.currentFrame = BOSS_WARDEN_HIDE_ANIMATION_FRAMES - 1;
+		}
+		source.currentTotalFrame = BOSS_WARDEN_HIDE_ANIMATION_FRAMES;
+		break;
 	case WardenState::DEAD:
 		if (source.currentFrame > BOSS_WARDEN_DEAD_ANIMATION_FRAMES - 1)
 		{
-			source.currentFrame = 0;
+			source.currentFrame = BOSS_WARDEN_DEAD_ANIMATION_FRAMES - 1;
 		}
 		source.currentTotalFrame = BOSS_WARDEN_DEAD_ANIMATION_FRAMES;
 		break;
@@ -1147,7 +1229,7 @@ void SpriteSheet::updatePlayer(
 
 	//boss
 	///warden
-	if (myWarden.currentState != WardenState::DEAD && myPlayer.checkCollision(myWarden))
+	if (myWarden.canCollide() && myPlayer.checkCollision(myWarden))
 	{
 		myPlayer.px -= dirX;
 		myPlayer.py -= dirY;

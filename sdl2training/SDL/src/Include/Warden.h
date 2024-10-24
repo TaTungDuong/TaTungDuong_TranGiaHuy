@@ -6,11 +6,12 @@
 
 enum class WardenState
 {
+	INTRO,
 	IDLE, 
 	WALK, 
-	IDLE_TO_STUNT, 
-	STUNT,
-	STUNT_TO_IDLE,
+	HURT,
+	DIVE,
+	HIDE,
 	DEAD
 };
 
@@ -39,13 +40,29 @@ public:
 	void initWarden(player& myPlayer);
 	void move(player& myPlayer);
 	bool attack(player& target);
-	void hurt(player& myPlayer);
+	void hurt(float damage);
 	void setAnimation(LTexture& targetTexture, SDL_Rect& targetClip);
 	void render(SDL_Rect& camera);
+
+	bool canCollide(); // return true if warden can collide with objects
 
 private:
 	float attackTimer;
 	bool isFlipped;
+
+	//warden's skill sets
+	void cooldown();
+	/// <summary>
+	/// Skill: Dive
+	/// Warden dive into ground to hide from player's attacks
+	/// </summary>
+	bool canDive;//return true if warden can dive
+	float diveTimeCounter; 
+	const float diveTimeInterval = 5.0f;
+	float diveCooldownCounter;
+	const float diveCooldownInterval = 5.0;// 10.0f;
+	void initDive();
+	void attackDive();
 };
 
 

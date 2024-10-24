@@ -142,7 +142,7 @@ void Sound::PlaySfx(const std::string& name, int repeat)
 	if (chunk!= nullptr)
 	{
 		Mix_PlayChannel(-1, chunk, repeat);
-        printf("Play sfx: %s\n", name.c_str());
+       // printf("Play sfx: %s\n", name.c_str());
 	}
     else
     {

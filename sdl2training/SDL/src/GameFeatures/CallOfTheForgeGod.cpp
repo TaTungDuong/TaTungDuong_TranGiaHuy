@@ -37,6 +37,7 @@ void CallOfTheForgeGod::initPlayer()
 
 void CallOfTheForgeGod::move(player& myPlayer)
 {
+	lifeTimeCounter += deltaTimer.getDeltaTime();
 	if (isRecasted == false)
 	{
 		if (calDistance(myPlayer) <= PLAYER_SIZE && px <= myPlayer.px)
@@ -48,16 +49,16 @@ void CallOfTheForgeGod::move(player& myPlayer)
 			SDL_GetMouseState(&mouseX, &mouseY);
 			if (isFlipped)
 			{
-				isFlipped = !(mouseX * 2 >= SCREEN_WIDTH);
+				isFlipped = !((0 < rotation && rotation < 90) || (270 < rotation && rotation < 360));
 			}
 			else
 			{
-				isFlipped = !(mouseX * 2 <= SCREEN_WIDTH);
+				isFlipped = !((0 < rotation && rotation < 90) || (270 < rotation && rotation < 360));
 			}
 		}
 	}
 
-	if (calDistance(myPlayer) <= SCREEN_WIDTH)
+	if (lifeTimeCounter < lifeTimeInterval)
 	{
 		float dirX = 0;
 		float dirY = 0;
