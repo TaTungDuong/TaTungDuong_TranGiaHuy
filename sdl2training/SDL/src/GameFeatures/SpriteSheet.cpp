@@ -986,7 +986,10 @@ void SpriteSheet::setSignalAnimation(signal& source)
 		}
 		break;
 	case signalState::DEAD:
-		source.currentFrame = 0;
+		if (source.currentFrame > SIGNAL_DEAD_ANIMATION_FRAMES - 1)
+		{
+			source.currentFrame = SIGNAL_DEAD_ANIMATION_FRAMES - 1;
+		}
 		break;
 	default:
 		break;
@@ -1105,16 +1108,7 @@ void SpriteSheet::updateAnimation(
 		for (auto& zZ : zombies)
 		{
 			// increase Animation Frame for Zombie
-			if (zZ.currentState != zombieState::DEAD)
-			{
-				zZ.currentFrame++;
-				continue;
-			}
-
-			if (zZ.currentFrame <= ZOMBIE_WALK_ANIMATION_FRAMES - 1)
-			{
-				zZ.currentFrame++;
-			}
+			zZ.currentFrame++;
 		}
 
 		for (auto& zEffect : zombieEffects)
@@ -1126,10 +1120,7 @@ void SpriteSheet::updateAnimation(
 		}
 		for (auto& sS : signals)
 		{
-			if (sS.currentState != signalState::DEAD)
-			{
-				sS.currentFrame++;
-			}
+			sS.currentFrame++;
 		}
 
 		myWarden.currentFrame++;
@@ -1157,6 +1148,7 @@ void SpriteSheet::updatePlayer(
 	playerSkill& myPlayerSkill,
 	int mouseX,
 	int mouseY,
+	std::vector<gameObject>& borders,
 	std::vector<gameObject>& trees,
 	std::vector<gameObject>& harmZones,
 	std::vector<gameObject>& bloodpools,
@@ -1203,6 +1195,30 @@ void SpriteSheet::updatePlayer(
 	myPlayerEffect.py = myPlayer.py;
 
 	//check collision with game objects
+	// walls
+	for (int i = 0; i < borders.size(); i++)
+	{
+		if (myPlayer.checkCollision(borders[i]))
+		{
+			int Pleft = myPlayer.px - PLAYER_SIZE / 2;
+			int Pright = myPlayer.px + PLAYER_SIZE / 2;
+			int Ptop = myPlayer.py - PLAYER_SIZE / 2;
+			int Pbottom = myPlayer.py + PLAYER_SIZE / 2;
+
+			int Bleft = borders[i].px - borders[i].size / 2;
+			int Bright = borders[i].px + borders[i].size / 2;
+			int Btop = borders[i].py - borders[i].size / 2;
+			int Bbottom = borders[i].py + borders[i].size / 2;
+
+			bool horizontalCollision = (Pright > Bleft) && (Pleft < Bright);
+			bool verticalCollision = (Pbottom > Btop) && (Ptop < Bbottom);
+
+			if (horizontalCollision) myPlayer.px -= dirX;
+			if (verticalCollision) myPlayer.py -= dirY;
+			break;
+		}
+	}
+	 
 	//zombies
 	/*for (int i = 0; i < zombies.size(); i++)
 	{

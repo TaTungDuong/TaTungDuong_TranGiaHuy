@@ -916,6 +916,7 @@ void GSPlay::Game()
 
 		//Render ground
 		m_GameEnvironment.renderGround(camera);
+		m_GameEnvironment.renderTilemap(camera);
 
 		//Render blood pool
 		m_GameEnvironment.renderBloodPool(m_SpriteSheet, camera);
@@ -956,6 +957,7 @@ void GSPlay::Game()
 			myPlayerSkill,
 			mouseX,
 			mouseY,
+			m_GameEnvironment.borders,
 			m_GameEnvironment.trees,
 			m_GameEnvironment.harmZones,
 			m_GameEnvironment.bloodpools,

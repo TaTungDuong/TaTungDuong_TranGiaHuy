@@ -207,6 +207,9 @@
     <ClInclude Include="src\Include\Warden.h">
       <Filter>Header Files\Boss</Filter>
     </ClInclude>
+    <ClInclude Include="src\Include\Tilemap.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameManager\ResourceManagers.cpp">
@@ -334,6 +337,9 @@
     </ClCompile>
     <ClCompile Include="src\GameFeatures\Warden.cpp">
       <Filter>Source Files\GameFeatures\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\Tilemap.cpp">
+      <Filter>Source Files\GameFeatures\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

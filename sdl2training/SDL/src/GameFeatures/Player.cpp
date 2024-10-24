@@ -2,7 +2,7 @@
 #include "SDL.h"
 player::player()
 {
-	init(LEVEL_WIDTH / 2, LEVEL_HEIGHT / 2, PLAYER_SIZE, -1);
+	init(PLAYER_START_X, PLAYER_START_Y, PLAYER_SIZE, -1);
 	speed = PLAYER_SPEED;
 	health = 100;
 	skill = SCREEN_WIDTH / 5.0f;
@@ -22,7 +22,7 @@ player::player()
 
 void player::initPlayer()
 {
-	init(LEVEL_WIDTH / 2, LEVEL_HEIGHT / 2, SCREEN_HEIGHT / 7, -1);
+	init(PLAYER_START_X, PLAYER_START_Y, SCREEN_HEIGHT / 7, -1);
 	speed = PLAYER_SPEED;
 	isActive = 1;
 	health = 100;
@@ -117,4 +117,10 @@ bullet player::attack(SDL_Rect& camera, player& myPlayer)
 	myBullet.initBullet(camera, myPlayer, mouseX, mouseY);
 
 	return myBullet;
+}
+
+bool player::checkSpawnZone()
+{
+	return ((1950 <= px && px <= 3500) && (9700 <= py && py <= 10900)) ||
+		((1350 <= px && px <= 4100) && (6900 <= py && py <= 8100));
 }

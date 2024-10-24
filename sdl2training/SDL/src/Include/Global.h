@@ -49,9 +49,11 @@ const int H_BORDER = SCREEN_HEIGHT / 50;
 
 //dimensions of the level
 const int GROUND_TILE_SIZE = 512;
-const int LEVEL_SIZE = 5;// 25;
-const int LEVEL_WIDTH = GROUND_TILE_SIZE * LEVEL_SIZE;
-const int LEVEL_HEIGHT = GROUND_TILE_SIZE * LEVEL_SIZE;
+const int LEVEL_SIZE = 40;// 25;
+const int LEVEL_SIZE_X = 12;// 25;
+const int LEVEL_SIZE_Y = 40;// 25;
+const int LEVEL_WIDTH = GROUND_TILE_SIZE * LEVEL_SIZE_X;
+const int LEVEL_HEIGHT = GROUND_TILE_SIZE * LEVEL_SIZE_Y;
 
 //texture related
 const int TREES_CLIP = 14;
@@ -79,7 +81,7 @@ const int MAX_DEAD_ZOMBIE_NUM = MAX_BLOOD_POOL_NUM;
 const int TIME_LIMIT = 300; //total game time in second
 const int TOTAL_OBJECTIVE = 5;
 const int ZOMBIE_NEEDED_TO_KILL = 1;// 10;
-const int TOTAL_SIGNAL_ZONE = 1;// 3;
+const int TOTAL_SIGNAL_ZONE = 3;
 
 //pickupables
 //health pickup
@@ -123,21 +125,21 @@ const float NORMAL_ZOMBIE_HEALTH = 20;
 const float NORMAL_ZOMBIE_SPEED = PLAYER_SPEED * 0.75;
 const float NORMAL_ZOMBIE_DAMAGE = 5.0f;
 const float NORMAL_ZOMBIE_ATTACK_RANGE = 50.0f;
-const float NORMAL_ZOMBIE_ATTACK_SPEED = 1.5f;// 0.35f;
+const float NORMAL_ZOMBIE_ATTACK_SPEED = 7.5f;
 //fast zombie
 const int FAST_ZOMBIE_CHANCE = 3;
 const float FAST_ZOMBIE_HEALTH = 15;
 const float FAST_ZOMBIE_SPEED = PLAYER_SPEED * 1.0;
 const float FAST_ZOMBIE_DAMAGE = 10.0f;
 const float FAST_ZOMBIE_ATTACK_RANGE = 50.0f;
-const float FAST_ZOMBIE_ATTACK_SPEED = 3.0f;// 0.15f;
+const float FAST_ZOMBIE_ATTACK_SPEED = 5.0f;
 //tank zombie
 const int TANK_ZOMBIE_CHANCE = 2;
 const float TANK_ZOMBIE_HEALTH = 50;
 const float TANK_ZOMBIE_SPEED = PLAYER_SPEED * 0.5;
 const float TANK_ZOMBIE_DAMAGE = 15.0f;
 const float TANK_ZOMBIE_ATTACK_RANGE = 50.0f;
-const float TANK_ZOMBIE_ATTACK_SPEED = 2.0f;// 0.75f;
+const float TANK_ZOMBIE_ATTACK_SPEED = 5.5f;
 
 //signal properties
 const float SIGNAL_HEALTH = 160;
@@ -190,7 +192,7 @@ const int ZOMBIE_ATTACK_ANIMATION_FRAMES = 9;
 const int SIGNAL_INTRO_ANIMATION_FRAMES = 16;
 const int SIGNAL_IDLE_ANIMATION_FRAMES = 16;
 const int SIGNAL_HURT_ANIMATION_FRAMES = 4;
-const int SIGNAL_DEAD_ANIMATION_FRAMES = 1;
+const int SIGNAL_DEAD_ANIMATION_FRAMES = 8;
 
 //boss
 //warden

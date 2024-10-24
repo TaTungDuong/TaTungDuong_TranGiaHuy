@@ -58,6 +58,7 @@
     <ClInclude Include="src\Include\PopUpText.h" />
     <ClInclude Include="src\Include\Signal.h" />
     <ClInclude Include="src\Include\SpriteSheet.h" />
+    <ClInclude Include="src\Include\Tilemap.h" />
     <ClInclude Include="src\Include\Timer.h" />
     <ClInclude Include="src\Include\Warden.h" />
     <ClInclude Include="src\Include\Weapon.h" />
@@ -85,6 +86,7 @@
     <ClCompile Include="src\GameFeatures\PopUpText.cpp" />
     <ClCompile Include="src\GameFeatures\Signal.cpp" />
     <ClCompile Include="src\GameFeatures\SpriteSheet.cpp" />
+    <ClCompile Include="src\GameFeatures\Tilemap.cpp" />
     <ClCompile Include="src\GameFeatures\Timer.cpp" />
     <ClCompile Include="src\GameFeatures\Warden.cpp" />
     <ClCompile Include="src\GameFeatures\Weapon.cpp" />

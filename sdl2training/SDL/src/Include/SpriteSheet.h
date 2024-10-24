@@ -182,6 +182,7 @@ public:
 		playerSkill& myPlayerSkill,
 		int mouseX,
 		int mouseY,
+		std::vector<gameObject>& borders,
 		std::vector<gameObject>& trees,
 		std::vector<gameObject>& harmZones,
 		std::vector<gameObject>& bloodpools,
