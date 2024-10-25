@@ -42,9 +42,5 @@ public:
 	void render(SDL_Rect& camera);
 	void calRotation(SDL_Rect& camera, int x, int y);
 
-	bool checkWeapon();// check if weapon can fire
-	bool checkSpawnZone();//return true if the player is in spawn zone so the enemies can be spawned
-private:
-	const int PLAYER_START_X = 2750;
-	const int PLAYER_START_Y = 13185;
+	bool checkWeapon();//check if weapon can fire
 };

@@ -7,26 +7,10 @@ bool GameEnvironment::loadMedia(SpriteSheet& m_SpriteSheet)
 
 #pragma region Load_static_textures
 	//Load static texture
-	///Tile
-	if (!gTilesetTexture.loadFromFile("assets-main/sprites/tilemap/tilemap_128.png"))
-	{
-		printf("Failed to load tileset texture!\n");
-		success = false;
-	}
-	else
-	{
-		int w = gTilesetTexture.getWidth() / 32;
-		int h = gTilesetTexture.getHeight();
-		for (int i = 0; i < 32; i++)
-		{
-			tiles.push_back({ i * w, 0, w , h });
-		}
-	}
 	///Ground
-	//if (!gGroundTexture.loadFromFile("assets-main/sprites/tilemap/ground.png"))
-	if (!gGroundTexture.loadFromFile("assets-main/sprites/tilemap/background.png"))
+	if (!gGroundTexture.loadFromFile("assets-main/sprites/tilemap/ground.png"))
 	{
-		printf("Failed to load ground texture!\n");
+		printf("Failed to load player texture!\n");
 		success = false;
 	}
 	
@@ -124,44 +108,8 @@ void GameEnvironment::renderGround(SDL_Rect& camera)
 		}
 	}
 }
-void GameEnvironment::renderTilemap(SDL_Rect& camera)
-{
-	int offsetX = LEVEL_WIDTH / 5;
-	int offsetY = LEVEL_HEIGHT / 5;
-	for (int y = 0; y < TILEMAP_HEIGHT; y++)
-	{
-		for (int x = 0; x < TILEMAP_WIDTH; x++)
-		{
-			if (myTilemap.ground[y * TILEMAP_WIDTH + x])
-			{
-				gTilesetTexture.render(x * 64 - camera.x + offsetX, y * 64 - camera.y + offsetY, 128, 128,
-					&tiles[myTilemap.ground[y * TILEMAP_WIDTH + x] - 1], 0, NULL, SDL_FLIP_NONE);
-			}
-		}
-	}
-	for (int y = 0; y < TILEMAP_HEIGHT; y++)
-	{
-		for (int x = 0; x < TILEMAP_WIDTH; x++)
-		{
-			if (myTilemap.wall[y * TILEMAP_WIDTH + x])
-			{
-				gTilesetTexture.render(x * 64 - camera.x + offsetX, y * 64 - camera.y + offsetY, 128, 128,
-					&tiles[myTilemap.wall[y * TILEMAP_WIDTH + x] - 1], 0, NULL, SDL_FLIP_NONE);
-				if (borders.size() < myTilemap.number_of_wall_tiles)
-				{
-					myTile.init(x * 64 + offsetX + 64, y * 64 + offsetY + 64, 128, 0, -1);
-					borders.push_back(myTile);
-				}
-			}
-		}
-	}
-}
-
 void GameEnvironment::spawnSignal(GameObjective& m_GameObjective)
 {
-	signalZones[0].init(2040, 7500, 512, 0, -1);
-	signalZones[1].init(2730, 7500, 512, 0, -1);
-	signalZones[2].init(3420, 7500, 512, 0, -1);
 	if (signals.size() >= signalZones.size() || m_GameObjective.currentObjective != 4) return;
 	for (auto sZ : signalZones)
 	{
@@ -170,8 +118,7 @@ void GameEnvironment::spawnSignal(GameObjective& m_GameObjective)
 		signals.push_back(mySignal);
 	}
 }
-void GameEnvironment::spawnZombie(
-	player& myPlayer, GameObjective& m_GameObjective)
+void GameEnvironment::spawnZombie(GameObjective& m_GameObjective)
 {
 	//check if there is alive signal
 	//if false, the zombie can not be spawned anymore
@@ -185,7 +132,7 @@ void GameEnvironment::spawnZombie(
 		}
 	}
 
-	if (canSpawnZombie && (hasSignal || m_GameObjective.currentObjective < 4) && myPlayer.checkSpawnZone())
+	if (canSpawnZombie && (hasSignal || m_GameObjective.currentObjective < 4))
 	{
 		int zombieAliveCnt = 0;
 		for (auto z : zombies)
@@ -221,7 +168,7 @@ void GameEnvironment::updateZombie(
 	SDL_Rect& camera
 )
 {
-	spawnZombie(myPlayer, m_GameObjective);
+	spawnZombie(m_GameObjective);
 	for (int i = 0; i < zombies.size(); i++)
 	{
 		if (zombies[i].health <= 0) continue;
@@ -257,6 +204,7 @@ void GameEnvironment::updateZombie(
 			if (zombies[i].health <= 0)
 			{
 				zombies[i].currentState = zombieState::DEAD;
+				zombies[i].currentFrame = 0;
 				bloodpools.push_back(zombies[i]);
 				canSpawnZombie = true;
 				m_GameObjective.totalZombieKilled++;
@@ -283,7 +231,6 @@ void GameEnvironment::updateZombie(
 		{
 			zombieEffects[i].currentState = zombieEffectState::IDLE;
 		}
-		zombieWeapons[i].isActive = zombies[i].isActive;
 		m_SpriteSheet.setZombieEffectAnimation(zombieEffects[i]);
 
 		zombies[i].render(camera);
@@ -311,6 +258,13 @@ void GameEnvironment::spawnBoss(player& myPlayer, GameObjective& m_GameObjective
 		myWarden.initWarden(myPlayer);
 		wardens.push_back(myWarden);
 		printf("--- Boss: Warden---\n");
+
+		for (int i = 0; i < myWarden.number_of_turrets; i++)
+		{
+			turret myTurret;
+			myTurret.initTurret(myPlayer);
+			turrets.push_back(myTurret);
+		}
 	}
 }
 void GameEnvironment::updateBoss(
@@ -323,7 +277,7 @@ void GameEnvironment::updateBoss(
 {
 	spawnBoss(myPlayer, m_GameObjective);
 	if (wardens.size() == 0) return;
-	if (myWarden.attack(myPlayer))
+	if (myWarden.attack(myPlayer, turrets, zombieBullets))
 	{
 
 	}
@@ -387,16 +341,6 @@ void GameEnvironment::updateBullet(
 					break;
 				}
 			}
-			// walls
-			for (int j = 0; j < borders.size(); j++)
-			{
-				if (bullets[i].checkCollision(borders[j]))
-				{
-					collised = true;
-					//Sound::GetInstance()->playHitTree();
-					break;
-				}
-			}
 			//zombie
 			for (int j = 0; j < zombies.size(); j++)
 			{
@@ -413,6 +357,7 @@ void GameEnvironment::updateBullet(
 					if (zombies[j].health <= 0 && collised)
 					{
 						zombies[j].currentState = zombieState::DEAD;
+						zombies[j].currentFrame = 0;
 						bloodpools.push_back(zombies[j]);
 						canSpawnZombie = true;
 						m_GameObjective.totalZombieKilled++;
@@ -504,15 +449,6 @@ void GameEnvironment::updateZombieBullet(
 				if (zombieBullets[i].checkCollision(trees[j]))
 				{
 					//collised = true;
-					break;
-				}
-			}
-			// walls
-			for (int j = 0; j < borders.size(); j++)
-			{
-				if (zombieBullets[i].checkCollision(borders[j]))
-				{
-					collised = true;
 					break;
 				}
 			}

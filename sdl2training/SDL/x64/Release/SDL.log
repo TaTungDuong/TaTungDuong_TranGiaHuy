@@ -1,0 +1,358 @@
+﻿cl : command line  warning D9035: option 'Zc:forScope-' has been deprecated and will be removed in a future release
+  Button.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Button.cpp(11,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Button.cpp(12,10): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Button.cpp(13,10): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Button.cpp(83,15): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Button.cpp(83,11): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  CallOfTheForgeGod.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(17,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(28,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(29,8): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(40,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(68,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(69,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(70,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(71,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(72,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(93,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(94,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(107,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Dominus.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Dominus.cpp(29,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  EmperorDivide.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/EmperorDivide.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(38,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(39,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(45,45): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(52,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(53,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(54,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(55,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(56,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(69,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(70,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(71,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(72,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(73,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\EmperorDivide.cpp(83,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  GameDialogue.cpp
+  GameEnvironment.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/GameEnvironment.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\Turret.h(21,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/GameEnvironment.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameEnvironment.cpp(86,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameEnvironment.cpp(86,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameEnvironment.cpp(159,10): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'unsigned __int64'
+      C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameEnvironment.cpp(159,10):
+      consider using '%zi' in the format string
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameEnvironment.cpp(394,70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameEnvironment.cpp(551,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameEnvironment.cpp(551,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameEnvironment.cpp(562,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameEnvironment.cpp(562,21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  GameObject.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameObject.cpp(27,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameObject.cpp(28,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameObject.cpp(34,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  GameObjective.cpp
+  GameResource.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\GameResource.h(18,42): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+  (compiling source file 'src/GameFeatures/GameResource.cpp')
+  
+  GameUI.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/GameUI.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\Turret.h(21,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/GameUI.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\GameResource.h(18,42): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+  (compiling source file 'src/GameFeatures/GameUI.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(101,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(102,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(109,12): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(108,12): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(118,12): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(117,12): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(130,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(131,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(138,4): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(137,4): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(147,4): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(146,4): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(326,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(380,21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(415,21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(447,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\GameUI.cpp(447,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Global.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Global.cpp(13,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Global.cpp(25,55): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Global.cpp(30,54): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Global.cpp(35,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Graphics.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Graphics.cpp(143,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Graphics.cpp(144,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Player.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Player.cpp(8,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Player.cpp(45,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Player.cpp(46,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  PlayerAnimation.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\PlayerAnimation.cpp(35,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\PlayerAnimation.cpp(36,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  PlayerEffect.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\PlayerEffect.cpp(54,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\PlayerEffect.cpp(55,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\PlayerEffect.cpp(89,67): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  PlayerSkill.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/PlayerSkill.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\PlayerSkill.cpp(119,50): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\PlayerSkill.cpp(126,47): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  PopUpText.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\PopUpText.cpp(17,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\PopUpText.cpp(24,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\PopUpText.cpp(59,44): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  Signal.cpp
+  SpriteSheet.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/SpriteSheet.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\Turret.h(21,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/SpriteSheet.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\SpriteSheet.cpp(1206,22): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\SpriteSheet.cpp(1207,22): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\SpriteSheet.cpp(1215,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\SpriteSheet.cpp(1216,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\SpriteSheet.cpp(1304,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\SpriteSheet.cpp(1303,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\SpriteSheet.cpp(1304,47): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  Timer.cpp
+  Compiling...
+  Turret.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\Turret.h(21,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/Turret.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(28,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(29,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(40,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(41,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(42,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(43,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(44,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(55,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(56,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(57,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(58,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(59,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(82,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(94,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Turret.cpp(95,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Warden.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\Turret.h(21,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/Warden.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(36,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(36,15): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(71,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(71,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(89,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(90,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(91,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(92,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(93,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(161,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(162,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(163,50): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(179,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(210,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(222,46): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(252,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(257,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(262,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(278,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(279,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(287,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(288,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(296,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(297,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(305,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(306,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(310,51): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(316,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(317,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(326,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(350,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(350,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(355,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Warden.cpp(356,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Weapon.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(16,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(17,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(25,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(26,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(34,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(35,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(43,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(44,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(48,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(59,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(60,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(99,9): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(114,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Weapon.cpp(154,42): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  Zombie.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Zombie.cpp(25,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Zombie.cpp(25,15): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Zombie.cpp(67,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Zombie.cpp(67,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Zombie.cpp(78,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Zombie.cpp(79,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Zombie.cpp(80,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Zombie.cpp(81,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Zombie.cpp(82,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\Zombie.cpp(97,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  ZombieEffect.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieEffect.cpp(17,16): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieEffect.cpp(32,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieEffect.cpp(32,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieEffect.cpp(60,67): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  ZombieWeapon.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(66,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(66,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(85,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(134,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(135,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(166,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(167,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(200,16): error C2065: 'null': undeclared identifier
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(200,46): error C2143: syntax error: missing ')' before ';'
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(209,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(214,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(219,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(224,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(238,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(239,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(247,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(248,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(256,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(257,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(265,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(266,18): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(270,51): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(276,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(277,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(286,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(299,10): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(299,10): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'double'
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(312,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(312,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(317,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameFeatures\ZombieWeapon.cpp(318,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  ResourceManagers.cpp
+  Camera.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Camera.cpp(23,44): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Camera.cpp(24,45): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Camera.cpp(43,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Camera.cpp(43,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  CMath.cpp
+  MouseButton.cpp
+  Renderer.cpp
+  Sound.cpp
+  Sprite2D.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Sprite2D.cpp(24,37): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Sprite2D.cpp(24,37): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Sprite2D.cpp(24,51): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Sprite2D.cpp(24,51): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  SpriteAnimation.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(30,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(31,19): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(32,33): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(32,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(32,61): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(32,61): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(32,86): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(32,86): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(32,96): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(32,96): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(33,37): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(33,37): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(33,92): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\SpriteAnimation.cpp(33,92): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Text.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Text.cpp(21,34): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Text.cpp(21,34): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Text.cpp(21,49): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\Text.cpp(21,49): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  TextureManager.cpp
+  GameStateBase.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\GameResource.h(18,42): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+  (compiling source file 'src/GameStates/GameStateBase.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GameStateBase.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\Turret.h(21,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GameStateBase.cpp')
+  
+  GameStateMachine.cpp
+  GSIntro.cpp
+  GSMenu.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\GameResource.h(18,42): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+  (compiling source file 'src/GameStates/GSMenu.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GSMenu.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\Turret.h(21,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GSMenu.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameStates\GSMenu.cpp(57,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Compiling...
+  GSPlay.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GSPlay.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\Turret.h(21,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GSPlay.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Include\GameResource.h(18,42): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+  (compiling source file 'src/GameStates/GSPlay.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\KeyState.h(15,29): error C7525: inline variables require at least '/std:c++17'
+  (compiling source file 'src/GameStates/GSPlay.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\KeyState.h(15,29): error C2864: 'KeyState::keystate': a static data member with an in-class initializer must have non-volatile const integral type or be specified as 'inline'
+  (compiling source file 'src/GameStates/GSPlay.cpp')
+      C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\KeyState.h(15,40):
+      type is 'const Uint8 *'
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameStates\GSPlay.cpp(166,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameStates\GSPlay.cpp(188,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameStates\GSPlay.cpp(433,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameStates\GSPlay.cpp(597,64): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameStates\GSPlay.cpp(723,39): warning C4305: '=': truncation from 'int' to 'float'
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameStates\GSPlay.cpp(1037,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameStates\GSPlay.cpp(1038,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameStates\GSPlay.cpp(1349,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Game.cpp
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\KeyState.h(15,29): error C7525: inline variables require at least '/std:c++17'
+  (compiling source file 'src/Game/Game.cpp')
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\KeyState.h(15,29): error C2864: 'KeyState::keystate': a static data member with an in-class initializer must have non-volatile const integral type or be specified as 'inline'
+  (compiling source file 'src/Game/Game.cpp')
+      C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\GameObject\KeyState.h(15,40):
+      type is 'const Uint8 *'
+  
+C:\Users\GLSchool\TaTungDuong\[test]\sdl2training-darkzone\sdl2training-darkzone-test-9\SDL\src\Game\Game.cpp(65,27): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
+  main.cpp

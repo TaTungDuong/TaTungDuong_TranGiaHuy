@@ -18,35 +18,12 @@ void zombie::init()
 	int randomX = 0;
 	int randomY = 0;
 
-	//set spawn zones
-	int minX, maxX;
-	int minY, maxY;
-
-	((1950 <= px && px <= 3500) && (9700 <= py && py <= 10900)) ||
-		((1350 <= px && px <= 4100) && (6900 <= py && py <= 8100));
-	if ((1950 <= myPlayer.px && myPlayer.px <= 3500) && (9700 <= myPlayer.py && myPlayer.py <= 10900))
-	{
-		minX = 2040;
-		maxX = 3400;
-		minY = 9760;
-		maxY = 10765;
-	}
-	if ((1350 <= myPlayer.px && myPlayer.px <= 4100) && (6900 <= myPlayer.py && myPlayer.py <= 8100))
-	{
-		minX = 1450;
-		maxX = 4000;
-		minY = 7025;
-		maxY = 8000;
-	}
-
 	while (!ok)
 	{
-		//randomX = GetRandomInt(size, LEVEL_WIDTH - size, 1);
-		//randomY = GetRandomInt(size, LEVEL_HEIGHT - size, 1);
-		randomX = GetRandomInt(minX, maxX, 1);
-		randomY = GetRandomInt(minY, maxY, 1);
+		randomX = GetRandomInt(size, LEVEL_WIDTH - size, 1);
+		randomY = GetRandomInt(size, LEVEL_HEIGHT - size, 1);
 		setPosition(randomX, randomY);
-		if (calDistance(myPlayer) > SCREEN_WIDTH / 3) //to avoid zombie spawning within the camera view
+		if (calDistance(myPlayer) > SCREEN_WIDTH) //to avoid zombie spawning within the camera view
 		{
 			ok = true;
 		}
@@ -129,11 +106,13 @@ bool zombie::attack(player& target)
 
 void zombie::hurt()
 {
-	health -= myPlayer.myWeapon[myPlayer.currentWeapon].getDamage();
-	if (health <= 0 && currentState != zombieState::DEAD)
+	if (health > 0)
+	{
+		health -= myPlayer.myWeapon[myPlayer.currentWeapon].getDamage();
+	}
+	else
 	{
 		currentState = zombieState::DEAD;
-		currentFrame = 0;
 	}
 }
 

@@ -755,6 +755,17 @@ bool SpriteSheet::loadWardenMedia()
 		loadSpritesheet(WardenState::DEAD, gWardenTexture, gWardenClips, BOSS_WARDEN_DEAD_ANIMATION_FRAMES);
 	}
 
+	//Turrets
+	if (!gTurretTexture.loadFromFile("assets-main/sprites/characters/enemies/spawner/capsule.png"))
+	{
+		printf("Failed to load turret texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(gTurretTexture, gTurretClips, 9);
+	}
+
 	return success;
 }
 #pragma endregion
@@ -986,9 +997,11 @@ void SpriteSheet::setSignalAnimation(signal& source)
 		}
 		break;
 	case signalState::DEAD:
+		source.currentTotalFrame = SIGNAL_DEAD_ANIMATION_FRAMES - 1;
 		if (source.currentFrame > SIGNAL_DEAD_ANIMATION_FRAMES - 1)
 		{
 			source.currentFrame = SIGNAL_DEAD_ANIMATION_FRAMES - 1;
+
 		}
 		break;
 	default:
@@ -1090,6 +1103,7 @@ void SpriteSheet::updateAnimation(
 	std::vector<zombie>& zombies,
 	std::vector<zombieEffect>& zombieEffects,
 	Warden& myWarden,
+	std::vector<turret>& turrets,
 	std::vector<signal>& signals,
 	LTimer deltaTimer
 )
@@ -1108,7 +1122,16 @@ void SpriteSheet::updateAnimation(
 		for (auto& zZ : zombies)
 		{
 			// increase Animation Frame for Zombie
-			zZ.currentFrame++;
+			if (zZ.currentState != zombieState::DEAD)
+			{
+				zZ.currentFrame++;
+				continue;
+			}
+
+			if (zZ.currentFrame <= ZOMBIE_WALK_ANIMATION_FRAMES - 1)
+			{
+				zZ.currentFrame++;
+			}
 		}
 
 		for (auto& zEffect : zombieEffects)
@@ -1124,6 +1147,11 @@ void SpriteSheet::updateAnimation(
 		}
 
 		myWarden.currentFrame++;
+		for (auto& tr : turrets)
+		{
+			tr.currentFrame = tr.currentFrame == 8? 0 : tr.currentFrame + 1;
+			tr.setAnimation(gTurretTexture, gTurretClips[tr.currentFrame]);
+		}
 	}
 
 	//Cycle player animation
@@ -1148,7 +1176,6 @@ void SpriteSheet::updatePlayer(
 	playerSkill& myPlayerSkill,
 	int mouseX,
 	int mouseY,
-	std::vector<gameObject>& borders,
 	std::vector<gameObject>& trees,
 	std::vector<gameObject>& harmZones,
 	std::vector<gameObject>& bloodpools,
@@ -1195,30 +1222,6 @@ void SpriteSheet::updatePlayer(
 	myPlayerEffect.py = myPlayer.py;
 
 	//check collision with game objects
-	// walls
-	for (int i = 0; i < borders.size(); i++)
-	{
-		if (myPlayer.checkCollision(borders[i]))
-		{
-			int Pleft = myPlayer.px - PLAYER_SIZE / 2;
-			int Pright = myPlayer.px + PLAYER_SIZE / 2;
-			int Ptop = myPlayer.py - PLAYER_SIZE / 2;
-			int Pbottom = myPlayer.py + PLAYER_SIZE / 2;
-
-			int Bleft = borders[i].px - borders[i].size / 2;
-			int Bright = borders[i].px + borders[i].size / 2;
-			int Btop = borders[i].py - borders[i].size / 2;
-			int Bbottom = borders[i].py + borders[i].size / 2;
-
-			bool horizontalCollision = (Pright > Bleft) && (Pleft < Bright);
-			bool verticalCollision = (Pbottom > Btop) && (Ptop < Bbottom);
-
-			if (horizontalCollision) myPlayer.px -= dirX;
-			if (verticalCollision) myPlayer.py -= dirY;
-			break;
-		}
-	}
-	 
 	//zombies
 	/*for (int i = 0; i < zombies.size(); i++)
 	{
@@ -1235,7 +1238,7 @@ void SpriteSheet::updatePlayer(
 	for (int i = 0; i < signals.size(); i++)
 	{
 		if (signals[i].currentState != signalState::DEAD
-			&& myPlayer.checkCollision(signals[i]))
+			&& myPlayer.checkCollision(signals[i]) && false)
 		{
 			myPlayer.px -= dirX;
 			myPlayer.py -= dirY;
@@ -1245,7 +1248,7 @@ void SpriteSheet::updatePlayer(
 
 	//boss
 	///warden
-	if (myWarden.canCollide() && myPlayer.checkCollision(myWarden))
+	if (myWarden.canCollide() && myPlayer.checkCollision(myWarden) && false)
 	{
 		myPlayer.px -= dirX;
 		myPlayer.py -= dirY;

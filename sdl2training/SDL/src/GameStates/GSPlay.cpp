@@ -916,7 +916,6 @@ void GSPlay::Game()
 
 		//Render ground
 		m_GameEnvironment.renderGround(camera);
-		m_GameEnvironment.renderTilemap(camera);
 
 		//Render blood pool
 		m_GameEnvironment.renderBloodPool(m_SpriteSheet, camera);
@@ -957,7 +956,6 @@ void GSPlay::Game()
 			myPlayerSkill,
 			mouseX,
 			mouseY,
-			m_GameEnvironment.borders,
 			m_GameEnvironment.trees,
 			m_GameEnvironment.harmZones,
 			m_GameEnvironment.bloodpools,
@@ -1021,6 +1019,7 @@ void GSPlay::Game()
 			m_GameEnvironment.zombies,
 			m_GameEnvironment.zombieEffects,
 			m_GameEnvironment.myWarden,
+			m_GameEnvironment.turrets,
 			m_GameEnvironment.signals,
 			deltaTimer
 		);

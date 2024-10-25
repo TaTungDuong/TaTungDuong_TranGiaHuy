@@ -13,6 +13,7 @@
 #include "Include/ZombieEffect.h"
 
 #include "Include/Signal.h"
+#include "Include/Turret.h"
 
 #include "Include/Warden.h"
 
@@ -120,6 +121,10 @@ public:
 	std::map<signalState, LTexture> gSignalTexture;
 	std::map<signalState, std::vector <SDL_Rect>> gSignalClips;
 
+	//turret
+	LTexture gTurretTexture;
+	std::vector <SDL_Rect> gTurretClips;
+
 	//boss
 	//warden
 	std::map<WardenState, LTexture> gWardenTexture;
@@ -172,6 +177,7 @@ public:
 		std::vector<zombie>& zombies,
 		std::vector<zombieEffect>& zombieEffects,
 		Warden& myWarden,
+		std::vector<turret>& turrets,
 		std::vector<signal>& signals,
 		LTimer deltaTimer
 	);
@@ -182,7 +188,6 @@ public:
 		playerSkill& myPlayerSkill,
 		int mouseX,
 		int mouseY,
-		std::vector<gameObject>& borders,
 		std::vector<gameObject>& trees,
 		std::vector<gameObject>& harmZones,
 		std::vector<gameObject>& bloodpools,

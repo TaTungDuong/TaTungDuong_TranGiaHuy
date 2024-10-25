@@ -265,6 +265,12 @@ void Sound::playGunEmpty()
     PlaySfx(p_GunEmpty);
 }
 
+void Sound::playSpawnSignal()
+{
+    LoadSfx(p_SpawnSignal);
+    PlaySfx(p_SpawnSignal);
+}
+
 void Sound::playCollectObject()
 {
     LoadSfx(p_CollectObject);
@@ -275,6 +281,12 @@ void Sound::playDrinkMilk()
 {
     LoadSfx(p_DrinkMilk);
     PlaySfx(p_DrinkMilk);
+}
+
+void Sound::playExplosion()
+{
+    LoadSfx(p_Explosion);
+    PlaySfx(p_Explosion);
 }
 
 void Sound::playSkillActivation()

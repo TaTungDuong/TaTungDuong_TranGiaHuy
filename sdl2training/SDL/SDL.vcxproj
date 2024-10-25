@@ -58,8 +58,8 @@
     <ClInclude Include="src\Include\PopUpText.h" />
     <ClInclude Include="src\Include\Signal.h" />
     <ClInclude Include="src\Include\SpriteSheet.h" />
-    <ClInclude Include="src\Include\Tilemap.h" />
     <ClInclude Include="src\Include\Timer.h" />
+    <ClInclude Include="src\Include\Turret.h" />
     <ClInclude Include="src\Include\Warden.h" />
     <ClInclude Include="src\Include\Weapon.h" />
     <ClInclude Include="src\Include\Zombie.h" />
@@ -86,8 +86,8 @@
     <ClCompile Include="src\GameFeatures\PopUpText.cpp" />
     <ClCompile Include="src\GameFeatures\Signal.cpp" />
     <ClCompile Include="src\GameFeatures\SpriteSheet.cpp" />
-    <ClCompile Include="src\GameFeatures\Tilemap.cpp" />
     <ClCompile Include="src\GameFeatures\Timer.cpp" />
+    <ClCompile Include="src\GameFeatures\Turret.cpp" />
     <ClCompile Include="src\GameFeatures\Warden.cpp" />
     <ClCompile Include="src\GameFeatures\Weapon.cpp" />
     <ClCompile Include="src\GameFeatures\Zombie.cpp" />
@@ -245,6 +245,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)SDLLib\include;$(ProjectDir)src;$(ProjectDir)src\GameManager;$(ProjectDir)src\GameObject;$(ProjectDir)src\GameStates;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

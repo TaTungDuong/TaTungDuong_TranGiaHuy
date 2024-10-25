@@ -1,5 +1,4 @@
 #pragma once
-#include "Include/Tilemap.h"
 #include "Include/GameObject.h"
 #include "Include/Weapon.h"
 #include "Include/SpriteSheet.h"
@@ -19,13 +18,6 @@ public:
 	LTexture gBloodPoolTexture;
 	LTexture gHealthPickUpTexture;
 
-	//Tilemap
-	LTexture gTilesetTexture;
-	std::vector<SDL_Rect> tiles;
-	Tilemap myTilemap;
-	std::vector<gameObject> borders;
-	gameObject myTile;
-
 #pragma region Trees
 	std::vector <SDL_Rect> gTreeClips;
 #pragma endregion
@@ -40,6 +32,7 @@ public:
 	std::vector<zombieBullet> zombieBullets;
 	std::vector<zombieEffect> zombieEffects;
 	std::vector<signal> signals;
+	std::vector<turret> turrets;
 	std::vector<gameObject> signalZones;
 	std::vector<gameObject> healthPickUps;
 	std::vector<Warden> wardens;
@@ -58,13 +51,9 @@ public:
 
 #pragma region Render and Update functions
 	void renderGround(SDL_Rect& camera);
-	void renderTilemap(SDL_Rect& camera);
 	void renderBloodPool(SpriteSheet& m_SpriteSheet, SDL_Rect& camera);
 	void spawnSignal(GameObjective& m_GameObjective);
-	void spawnZombie(
-		player& myPlayer,
-		GameObjective& m_GameObjective
-	);
+	void spawnZombie(GameObjective& m_GameObjective);
 	void updateZombie(
 		SpriteSheet& m_SpriteSheet, 
 		player& myPlayer, 

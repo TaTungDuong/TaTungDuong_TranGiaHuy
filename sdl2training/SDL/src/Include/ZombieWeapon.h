@@ -47,7 +47,6 @@ public:
 	float damage;
 	float attackRange;
 	float attackSpeed; //attack speed in second
-	int isActive;// if true, can attack player
 
 	//animation related
 	LTexture* currentTexture;

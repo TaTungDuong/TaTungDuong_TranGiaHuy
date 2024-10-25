@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "Include/Global.h"
 #include "Include/GameObject.h"
 #include "Include/Player.h"

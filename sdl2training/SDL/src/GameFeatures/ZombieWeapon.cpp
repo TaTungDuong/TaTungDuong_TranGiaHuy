@@ -83,7 +83,7 @@ bool zombieWeapon::attack(
 	currentState = zombieWeaponState::ATTACK;
 
 	attackTimer += deltaTimer.getDeltaTime();
-	if (attackTimer > attackSpeed && isActive)
+	if (attackTimer > attackSpeed)
 	{
 		switch (type)
 		{
@@ -203,7 +203,7 @@ zombieBullet::zombieBullet(SDL_Rect& camera, gameObject source)
 	{
 	case 0:
 		size = 32;
-		max_lifeTime = 7.5;
+		max_lifeTime = 10;
 		damage = NORMAL_ZOMBIE_DAMAGE;
 		break;
 	case 1:
@@ -213,10 +213,13 @@ zombieBullet::zombieBullet(SDL_Rect& camera, gameObject source)
 		break;
 	case 2:
 		size = 48;
-		max_lifeTime = 7.5;
+		max_lifeTime = 10;
 		damage = TANK_ZOMBIE_DAMAGE;
 		break;
 	default:
+		size = 28;
+		max_lifeTime = 10;
+		damage = FAST_ZOMBIE_DAMAGE;
 		break;
 	}
 
@@ -291,6 +294,8 @@ void zombieBullet::updateBullet()
 		updateType2();
 		break;
 	default:
+		printf("X: %d, Y: %d\n", px, py);
+		updateType0();
 		break;
 	}
 

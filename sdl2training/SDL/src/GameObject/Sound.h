@@ -30,8 +30,10 @@ public:
 	void playHitTree();
 	void playReload();
 	void stopReload();
+	void playSpawnSignal();
 	void playCollectObject();
 	void playDrinkMilk();
+	void playExplosion();
 	void playGameLose();
 	void playGameWin();
 	void playZombieAttack();
@@ -54,8 +56,10 @@ private:
 	const std::string p_SwapWeapon = "sfx/weapons/weapon.mp3";
 	const std::string p_Walk = "sfx/player/walk.mp3";
 	const std::string p_HitTree = "sfx/objects/hit_tree.mp3";
+	const std::string p_SpawnSignal = "sfx/objects/big_chest.mp3";
 	const std::string p_CollectObject = "sfx/objects/collect_object.mp3";
 	const std::string p_DrinkMilk = "sfx/effects/drink.mp3";
+	const std::string p_Explosion = "sfx/effects/explosion.mp3";
 	const std::string p_PlayerHit = "sfx/player/hurt.mp3";
 	const std::string p_GameLose = "sfx/effects/game_lose.wav";
 	const std::string p_GameWin = "sfx/effects/game_win.wav";
