@@ -216,10 +216,20 @@ zombieBullet::zombieBullet(SDL_Rect& camera, gameObject source)
 		max_lifeTime = 10;
 		damage = TANK_ZOMBIE_DAMAGE;
 		break;
-	default:
-		size = 28;
+	case 3:
+		size = 20;
 		max_lifeTime = 10;
-		damage = FAST_ZOMBIE_DAMAGE;
+		damage = FAST_ZOMBIE_DAMAGE / 2.0f;
+		break;
+	case 4:
+		size = 32;
+		max_lifeTime = 10;
+		damage = NORMAL_ZOMBIE_DAMAGE / 2.0f;
+		break;
+	default:
+		size = 20;
+		max_lifeTime = 10;
+		damage = FAST_ZOMBIE_DAMAGE / 2.0f;
 		break;
 	}
 
@@ -233,8 +243,8 @@ zombieBullet::zombieBullet(SDL_Rect& camera, gameObject source)
 		offsetX *= -1;
 		offsetY = 20;
 		double theta = source.rotation * (M_PI / 180);
-		px = source.px - (offsetX * cos(theta) + offsetY * sin(theta));
-		py = source.py - (offsetX * sin(theta) + offsetY * cos(theta));
+		px = int(source.px) - (offsetX * cos(theta) + offsetY * sin(theta));
+		py = int(source.py) - (offsetX * sin(theta) + offsetY * cos(theta));
 
 	}
 	if (90 < source.rotation && source.rotation <= 180)
@@ -242,8 +252,8 @@ zombieBullet::zombieBullet(SDL_Rect& camera, gameObject source)
 		offsetX *= 1;
 		offsetY = 20;
 		double theta = source.rotation * (M_PI / 180);
-		px = source.px + (offsetX * cos(theta) - offsetY * sin(theta));
-		py = source.py + (offsetX * sin(theta) + offsetY * cos(theta));
+		px = int(source.px) + (offsetX * cos(theta) - offsetY * sin(theta));
+		py = int(source.py) + (offsetX * sin(theta) + offsetY * cos(theta));
 
 	}
 	if (180 < source.rotation && source.rotation <= 270)
@@ -251,8 +261,8 @@ zombieBullet::zombieBullet(SDL_Rect& camera, gameObject source)
 		offsetX *= -1;
 		offsetY = -20;
 		double theta = source.rotation * (M_PI / 180);
-		px = source.px - (offsetX * cos(theta) + offsetY * sin(theta));
-		py = source.py - (offsetX * sin(theta) + offsetY * cos(theta));
+		px = int(source.px) - (offsetX * cos(theta) + offsetY * sin(theta));
+		py = int(source.py) - (offsetX * sin(theta) + offsetY * cos(theta));
 
 	}
 	if (270 < source.rotation && source.rotation <= 360)
@@ -260,8 +270,8 @@ zombieBullet::zombieBullet(SDL_Rect& camera, gameObject source)
 		offsetX *= 1;
 		offsetY = -20;
 		double theta = source.rotation * (M_PI / 180);
-		px = source.px + (offsetX * cos(theta) - offsetY * sin(theta));
-		py = source.py + (offsetX * sin(theta) + offsetY * cos(theta));
+		px = int(source.px) + (offsetX * cos(theta) - offsetY * sin(theta));
+		py = int(source.py) + (offsetX * sin(theta) + offsetY * cos(theta));
 
 	}
 	setRenderPosition(px, py);
@@ -293,9 +303,13 @@ void zombieBullet::updateBullet()
 	case 2:
 		updateType2();
 		break;
-	default:
-		printf("X: %d, Y: %d\n", px, py);
+	case 3:
 		updateType0();
+		break;
+	case 4:
+		updateType0();
+		break;
+	default:
 		break;
 	}
 

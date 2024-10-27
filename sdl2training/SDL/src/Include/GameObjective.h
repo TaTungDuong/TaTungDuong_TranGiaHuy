@@ -12,6 +12,7 @@ public:
 #pragma region Objectives
 	int totalZombieKilled = 0;
 	bool tutorial = true;
+	bool boss = false;
 	int currentObjective = 4;// -1;
 	bool objective[TOTAL_OBJECTIVE];
 	std::string objectiveText;
@@ -22,7 +23,7 @@ public:
 	int obj_zones;
 #pragma endregion
 
-//	GameObjective();
+	GameObjective();
 	void checkPreObjective();
 	void checkObjective0(int key);
 	void checkObjective1();

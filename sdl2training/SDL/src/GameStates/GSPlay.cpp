@@ -101,7 +101,7 @@ void GSPlay::Init()
 
 void GSPlay::Exit()
 {
-	//exit(0);
+	exit(0);
 }
 
 #pragma region Pause_Screen
@@ -430,7 +430,7 @@ void GSPlay::Menu()
 
 	//add buttons
 	//start button
-	int buttonpy = textY + SCREEN_HEIGHT / 7.5 + 75;
+	int buttonpy = textY + SCREEN_HEIGHT / 7.5 + 100;
 	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Start", m_GameResource.regularFont);
 	buttons.push_back(myButton);
 	//toggle music button
@@ -456,9 +456,6 @@ void GSPlay::Menu()
 
 		//Render black overlay 
 		m_GameUI.gMenuTexture.render(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-		//Render title
-//		drawText(textX, textY, boldFontTitle, UIColor, "Catgirl & Shotgun", 1);
 
 		//set toggle music text
 		if (setting_Music)
@@ -517,6 +514,7 @@ void GSPlay::initLevel()
 	confirmScreen = false;
 	endGameScreen = false;
 	m_GameEnvironment.canSpawnZombie = false;
+	m_GameObjective.boss = false;
 
 	//clear level objects
 	m_GameEnvironment.init();
@@ -615,6 +613,15 @@ void GSPlay::checkEndGame()
 			showEndGamecreen(endState::TIME_OVER);
 		}
 	}
+	if (m_GameObjective.boss && m_GameEnvironment.wardens.size())
+	{
+		if (m_GameEnvironment.myWarden.health <= 0)
+		{
+			if (m_GameEnvironment.myWarden.currentState == WardenState::DEAD 
+				&& m_GameEnvironment.myWarden.currentFrame == BOSS_WARDEN_DEAD_ANIMATION_FRAMES - 1)
+			showEndGamecreen(endState::WIN);
+		}
+	}
 	if (myPlayer.health <= 0)
 	{
 		showEndGamecreen(endState::LOSE);
@@ -624,7 +631,7 @@ void GSPlay::setDifficulty()
 {
 	DIFFICULTY = 1 + m_GameObjective.totalZombieKilled / DIFFICULTY_REQUIREMENT;
 	MAX_ZOMBIE_NUM = DIFFICULTY * ZOMBIE_NUMBER_STEP;
-	myPlayer.health = 100;
+	//myPlayer.health = 100;
 }
 
 void GSPlay::handleGameEvent()
@@ -895,7 +902,26 @@ void GSPlay::Game()
 		SDL_ShowCursor(SDL_DISABLE);
 		myPlayer.previousState = myPlayer.currentState;
 		myPlayerAnimation.previousState = myPlayerAnimation.currentState;
-		m_GameUI.setCamera(camera, myPlayer);
+
+		//normally, the camera is fixed to player
+		if (m_GameEnvironment.wardens.size() == 0)
+		{
+			m_GameUI.setCamera(camera, myPlayer);
+		}
+		else
+		{
+			if (m_GameEnvironment.myWarden.isReady == true)
+			{
+				m_GameUI.setCamera(camera, myPlayer);
+			}
+			else
+			{
+				myPlayer.isActive = false;
+				//camera is fixed to Warden for Boss Cutscene
+				m_GameUI.setCamera(camera, m_GameEnvironment.myWarden);
+				m_GameObjective.boss = true;
+			}
+		}
 
 		//Set the player back to idle mode
 		myPlayer.currentState = playerState::IDLE;
@@ -942,7 +968,8 @@ void GSPlay::Game()
 		m_GameEnvironment.updateZombieBullet(
 			myPlayer, 
 			myPlayerSkill,
-			myPlayerEffect
+			myPlayerEffect,
+			m_GameObjective
 		);
 
 		//Update player's skill
@@ -1019,6 +1046,7 @@ void GSPlay::Game()
 			m_GameEnvironment.zombies,
 			m_GameEnvironment.zombieEffects,
 			m_GameEnvironment.myWarden,
+			m_GameEnvironment.wardenClones,
 			m_GameEnvironment.turrets,
 			m_GameEnvironment.signals,
 			deltaTimer

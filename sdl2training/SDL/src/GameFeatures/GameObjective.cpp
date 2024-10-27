@@ -1,7 +1,8 @@
 #include "Include/GameObjective.h"
-/*
+
 GameObjective::GameObjective()
 {
+	boss = false;
 	currentObjective = -1; 
 	obj_zombieKilled = 0;
 	totalZombieKilled = 0;
@@ -11,7 +12,7 @@ GameObjective::GameObjective()
 	}
 	tutorial = true;
 }
-*/
+
 void GameObjective::checkObjective0(int key)
 {
 	if (currentObjective == 0)

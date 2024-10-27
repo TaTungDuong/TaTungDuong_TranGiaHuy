@@ -63,13 +63,13 @@ const int DIFFICULTY_REQUIREMENT = 5; //10; //the required zombies to kill in or
 const int ZOMBIE_NUMBER_STEP = 1; //3; //how many zombie added for each difficulty
 const int COLLIDER_TOLERANCE = 2; //the collider size tolerance for the game objects
 //trees
-const int MAX_TREE_NUM = 0;// *LEVEL_SIZE;
-static int MIN_TREE_SIZE = SCREEN_HEIGHT / 3;
-static int MAX_TREE_SIZE = SCREEN_HEIGHT / 2;
+const int MAX_TREE_NUM = 2 * LEVEL_SIZE;
+static int MIN_TREE_SIZE = 128;
+static int MAX_TREE_SIZE = 192;
 //harm zones
-const int MAX_HARM_ZONE_NUM = 0;// *LEVEL_SIZE;
-const int MIN_HARM_ZONE_SIZE = SCREEN_HEIGHT / 2;
-const int MAX_HARM_ZONE_SIZE = SCREEN_HEIGHT;
+const int MAX_HARM_ZONE_NUM = 1 * LEVEL_SIZE;
+const int MIN_HARM_ZONE_SIZE = 192;
+const int MAX_HARM_ZONE_SIZE = 256;
 const int MAX_HARM_ZONE_DAMAGE = 20;
 //blood pool
 const int MAX_BLOOD_POOL_NUM = 10;
@@ -78,8 +78,8 @@ const int MAX_DEAD_ZOMBIE_NUM = MAX_BLOOD_POOL_NUM;
 //objectives
 const int TIME_LIMIT = 300; //total game time in second
 const int TOTAL_OBJECTIVE = 5;
-const int ZOMBIE_NEEDED_TO_KILL = 1;// 10;
-const int TOTAL_SIGNAL_ZONE = 1;// 3;
+const int ZOMBIE_NEEDED_TO_KILL = 10;
+const int TOTAL_SIGNAL_ZONE = 3;
 
 //pickupables
 //health pickup
@@ -190,7 +190,7 @@ const int ZOMBIE_ATTACK_ANIMATION_FRAMES = 9;
 const int SIGNAL_INTRO_ANIMATION_FRAMES = 16;
 const int SIGNAL_IDLE_ANIMATION_FRAMES = 16;
 const int SIGNAL_HURT_ANIMATION_FRAMES = 4;
-const int SIGNAL_DEAD_ANIMATION_FRAMES = 20;
+const int SIGNAL_DEAD_ANIMATION_FRAMES = 16;
 
 //boss
 //warden
@@ -200,7 +200,8 @@ const int BOSS_WARDEN_WALK_ANIMATION_FRAMES = 16;
 const int BOSS_WARDEN_DIVE_ANIMATION_FRAMES = 16;
 const int BOSS_WARDEN_HIDE_ANIMATION_FRAMES = 1;
 const int BOSS_WARDEN_HURT_ANIMATION_FRAMES = 6;
-const int BOSS_WARDEN_DEAD_ANIMATION_FRAMES = 24;
+const int BOSS_WARDEN_DEAD_ANIMATION_FRAMES = 10;
+const int BOSS_WARDEN_CLONE_ANIMATION_FRAMES = 8;
 
 //settings
 static bool setting_Music = true;

@@ -79,11 +79,17 @@ public:
 		int totalFrame
 	);
 	//load Sprite Sheet for Boss
-	///Warden
+	///Warden and Warden Clone
 	void loadSpritesheet(
 		enum WardenState state,
 		std::map<WardenState, LTexture>& spritesheet,
 		std::map<WardenState, std::vector <SDL_Rect>>& spritesheetClip,
+		int totalFrame
+	);
+	void loadSpritesheet(
+		enum wardenCloneState state,
+		std::map<wardenCloneState, LTexture>& spritesheet,
+		std::map<wardenCloneState, std::vector <SDL_Rect>>& spritesheetClip,
 		int totalFrame
 	);
 
@@ -129,6 +135,8 @@ public:
 	//warden
 	std::map<WardenState, LTexture> gWardenTexture;
 	std::map<WardenState, std::vector<SDL_Rect>> gWardenClips;
+	std::map<wardenCloneState, LTexture> gWardenCloneTexture;
+	std::map<wardenCloneState, std::vector<SDL_Rect>> gWardenCloneClips;
 
 	//Check load media
 	///load player
@@ -177,6 +185,7 @@ public:
 		std::vector<zombie>& zombies,
 		std::vector<zombieEffect>& zombieEffects,
 		Warden& myWarden,
+		std::vector<wardenClone>& wardenClones,
 		std::vector<turret>& turrets,
 		std::vector<signal>& signals,
 		LTimer deltaTimer

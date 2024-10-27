@@ -14,7 +14,7 @@ public:
 	LTexture gGroundTexture;
 	LTexture gTreeTexture;
 	LTexture gBulletTexture;
-	LTexture gZombieBulletTextures[4];
+	LTexture gZombieBulletTextures[5];
 	LTexture gBloodPoolTexture;
 	LTexture gHealthPickUpTexture;
 
@@ -36,6 +36,7 @@ public:
 	std::vector<gameObject> signalZones;
 	std::vector<gameObject> healthPickUps;
 	std::vector<Warden> wardens;
+	std::vector<wardenClone> wardenClones;
 #pragma endregion
 	
 	//boss
@@ -43,6 +44,7 @@ public:
 	Warden myWarden;
 
 	bool loadMedia(SpriteSheet& m_SpriteSheet); //check load medias
+	bool loadZombieBulletMedia(SpriteSheet& m_SpriteSheet);//check load zombie bullets
 
 	bool canSpawnZombie = true;
 	zombie myZombie;
@@ -52,7 +54,10 @@ public:
 #pragma region Render and Update functions
 	void renderGround(SDL_Rect& camera);
 	void renderBloodPool(SpriteSheet& m_SpriteSheet, SDL_Rect& camera);
+	
 	void spawnSignal(GameObjective& m_GameObjective);
+	bool checkSignal();// return if there is alive signal
+
 	void spawnZombie(GameObjective& m_GameObjective);
 	void updateZombie(
 		SpriteSheet& m_SpriteSheet, 
@@ -77,7 +82,8 @@ public:
 	void updateZombieBullet(
 		player& myPlayer, 
 		playerSkill& myPlayerSkill,
-		playerEffect& myPlayerEffect
+		playerEffect& myPlayerEffect,
+		GameObjective& m_GameObjective
 	);
 #pragma endregion
 

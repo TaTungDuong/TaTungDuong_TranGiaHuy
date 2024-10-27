@@ -16,7 +16,7 @@ void turret::initTurret(gameObject& source)
 	init(LEVEL_WIDTH * 2, LEVEL_HEIGHT * 2, source.size / 2, 0);
 	speed = BULLET_SPEED / ratio;
 	attackTimer = 0.0f;
-	attackSpeed = 0.25f;
+	attackSpeed = 0.15f;
 	currentFrame = 0;
 	currentTotalFrame = 0;
 	entranceTimeCounter = entranceTimeInterval;
@@ -28,11 +28,11 @@ void turret::move()
 	lifeTimeCounter += deltaTimer.getDeltaTime();
 	entranceTimeCounter += deltaTimer.getDeltaTime();
 
-	isReady = (entranceTimeCounter >= entranceTimeInterval);
+	isReady = (entranceTimeCounter >= entranceTimeInterval+ lagTimeInterval);
 
 	if (lifeTimeCounter < lifeTimeInterval)
 	{
-		if (!isReady)
+		if (entranceTimeCounter < entranceTimeInterval)
 		{
 			float dirX = 0;
 			float dirY = 0;
@@ -71,34 +71,14 @@ void turret::calPosition(player& myPlayer, float distance)
 	py = myPlayer.py + distance - SCREEN_HEIGHT / 2;
 }
 
-void turret::attack(//zombie bullet type 2
-	player& target,
-	gameObject source,
-	std::vector<zombieBullet>& zombieBullets
-)
+bool turret::attack()
 {
-	if (!isReady || lifeTimeCounter >= lifeTimeInterval) return;
+	if (!isReady || lifeTimeCounter >= lifeTimeInterval) return false;
 
 	attackTimer += deltaTimer.getDeltaTime();
-	if (attackTimer < attackSpeed) return;
+	if (attackTimer < attackSpeed) return false;
 	attackTimer = 0.0f;
-
-	float fixed_angle = 90;
-	for (int i = 0; i < 4; i++)
-	{
-		zombieBullet myZombieBullet(camera, source);
-		myZombieBullet.rotation += fixed_angle * float(i); //fix bullet rotation
-		float dirX = 0;
-		float dirY = 0;
-
-		dirX = cos(myZombieBullet.rotation * M_PI / 180.0);
-		dirY = sin(myZombieBullet.rotation * M_PI / 180.0);
-
-		myZombieBullet.vx = dirX * myZombieBullet.speed;
-		myZombieBullet.vy = dirY * myZombieBullet.speed;
-
-		zombieBullets.push_back(myZombieBullet);
-	}
+	return true;
 }
 
 void turret::hurt(player& myPlayer)

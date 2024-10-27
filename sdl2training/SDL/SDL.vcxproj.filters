@@ -210,6 +210,15 @@
     <ClInclude Include="src\Include\Turret.h">
       <Filter>Header Files\Boss</Filter>
     </ClInclude>
+    <ClInclude Include="src\Include\WardenClone.h">
+      <Filter>Header Files\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStates\GSIntroCutscene.h">
+      <Filter>Source Files\GameStates\MainStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStates\GSIntroMenu.h">
+      <Filter>Source Files\GameStates\MainStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameManager\ResourceManagers.cpp">
@@ -340,6 +349,15 @@
     </ClCompile>
     <ClCompile Include="src\GameFeatures\Turret.cpp">
       <Filter>Source Files\GameFeatures\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFeatures\WardenClone.cpp">
+      <Filter>Source Files\GameFeatures\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStates\GSIntroCutscene.cpp">
+      <Filter>Source Files\GameStates\MainStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStates\GSIntroMenu.cpp">
+      <Filter>Source Files\GameStates\MainStates</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

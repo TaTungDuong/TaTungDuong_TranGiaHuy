@@ -3,7 +3,8 @@
 #include <SDL_render.h>
 class TextureManager;
 class SpriteAnimation : public BaseObject{
-protected:
+public:
+
 	int			m_iHeight;
 	int			m_iWidth;
 	float			m_numFrames;
@@ -17,7 +18,6 @@ protected:
 	int			m_animSpeed;
 	int m_numAction; //start from 1,2,3...
 
-public:
 	
 	SpriteAnimation(std::shared_ptr<TextureManager> texture, int currentAction, int frameCount, int numAction, float  frameTime);
 	~SpriteAnimation();

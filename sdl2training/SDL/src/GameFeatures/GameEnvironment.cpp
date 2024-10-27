@@ -32,6 +32,30 @@ bool GameEnvironment::loadMedia(SpriteSheet& m_SpriteSheet)
 		success = false;
 	}
 	
+	success = loadZombieBulletMedia(m_SpriteSheet);
+
+	///Blood Pool
+	if (!gBloodPoolTexture.loadFromFile("assets-main/sprites/effects/blood_pool.png"))
+	{
+		printf("Failed to load white texture!\n");
+		success = false;
+	}
+
+	///Milk
+	if (!gHealthPickUpTexture.loadFromFile("assets-main/sprites/objects/items/milk_128.png"))
+	{
+		printf("Failed to load health pickup texture!\n");
+		success = false;
+	}
+#pragma endregion
+
+	return success;
+}
+
+bool GameEnvironment::loadZombieBulletMedia(SpriteSheet& m_SpriteSheet)
+{
+	bool success = true;
+
 	///Zombie Bullets
 	int cnt;
 	cnt = 0;
@@ -52,22 +76,18 @@ bool GameEnvironment::loadMedia(SpriteSheet& m_SpriteSheet)
 		printf("Failed to load bullet texture!\n");
 		success = false;
 	}
-
-	///Blood Pool
-	if (!gBloodPoolTexture.loadFromFile("assets-main/sprites/effects/blood_pool.png"))
+	cnt = 3;
+	if (!gZombieBulletTextures[cnt].loadFromFile("assets-main/sprites/objects/bullets/npc_bullets/square_128.png"))
 	{
-		printf("Failed to load white texture!\n");
+		printf("Failed to load bullet texture!\n");
 		success = false;
 	}
-
-	///Milk
-	if (!gHealthPickUpTexture.loadFromFile("assets-main/sprites/objects/items/milk_128.png"))
+	cnt = 4;
+	if (!gZombieBulletTextures[cnt].loadFromFile("assets-main/sprites/objects/bullets/npc_bullets/ball_128.png"))
 	{
-		printf("Failed to load health pickup texture!\n");
+		printf("Failed to load bullet texture!\n");
 		success = false;
 	}
-#pragma endregion
-
 	return success;
 }
 
@@ -108,6 +128,7 @@ void GameEnvironment::renderGround(SDL_Rect& camera)
 		}
 	}
 }
+
 void GameEnvironment::spawnSignal(GameObjective& m_GameObjective)
 {
 	if (signals.size() >= signalZones.size() || m_GameObjective.currentObjective != 4) return;
@@ -118,21 +139,26 @@ void GameEnvironment::spawnSignal(GameObjective& m_GameObjective)
 		signals.push_back(mySignal);
 	}
 }
-void GameEnvironment::spawnZombie(GameObjective& m_GameObjective)
+bool GameEnvironment::checkSignal()
 {
 	//check if there is alive signal
-	//if false, the zombie can not be spawned anymore
 	bool hasSignal = false;
 	for (auto s : signals)
 	{
-		if (s.currentState != signalState::DEAD)
+		if (s.currentState != signalState::DEAD || s.currentFrame < SIGNAL_DEAD_ANIMATION_FRAMES - 1)
 		{
 			hasSignal = true;
 			break;
 		}
 	}
+	return hasSignal;
+}
 
-	if (canSpawnZombie && (hasSignal || m_GameObjective.currentObjective < 4))
+void GameEnvironment::spawnZombie(GameObjective& m_GameObjective)
+{
+	//check if there is alive signal
+	//if false, the zombie can not be spawned anymore
+	if (canSpawnZombie && (checkSignal() || m_GameObjective.currentObjective < 4))
 	{
 		int zombieAliveCnt = 0;
 		for (auto z : zombies)
@@ -208,6 +234,7 @@ void GameEnvironment::updateZombie(
 				bloodpools.push_back(zombies[i]);
 				canSpawnZombie = true;
 				m_GameObjective.totalZombieKilled++;
+				Sound::GetInstance()->playZombieDie();
 
 				//for objective 4
 				m_GameObjective.checkObjective3();
@@ -243,27 +270,35 @@ void GameEnvironment::spawnBoss(player& myPlayer, GameObjective& m_GameObjective
 {
 	//check if there is alive signal and there is boss
 	//if false, the boss can be spawned
-	bool hasSignal = false;
-	for (auto s : signals)
+	if (!checkSignal() && wardens.size() == 0 && m_GameObjective.currentObjective >= 4)
 	{
-		if (s.currentState != signalState::DEAD)
-		{
-			hasSignal = true;
-			break;
-		}
-	}
+		Sound::GetInstance()->playBossMusic();
 
-	if (!hasSignal && wardens.size() == 0 && m_GameObjective.currentObjective >= 4)
-	{
 		myWarden.initWarden(myPlayer);
 		wardens.push_back(myWarden);
 		printf("--- Boss: Warden---\n");
 
+		//Set up Turrets
 		for (int i = 0; i < myWarden.number_of_turrets; i++)
 		{
 			turret myTurret;
 			myTurret.initTurret(myPlayer);
 			turrets.push_back(myTurret);
+		}
+
+		//Set up Clones
+		for (int i = 0; i < myWarden.number_of_clones; i++)
+		{
+			wardenClone myWardenClone;
+			if (i)
+			{
+				myWardenClone.initWardenClone(myPlayer, wardenCloneState::FAKE);
+			}
+			else
+			{
+				myWardenClone.initWardenClone(myPlayer, wardenCloneState::REAL);
+			}
+			wardenClones.push_back(myWardenClone);
 		}
 	}
 }
@@ -277,7 +312,7 @@ void GameEnvironment::updateBoss(
 {
 	spawnBoss(myPlayer, m_GameObjective);
 	if (wardens.size() == 0) return;
-	if (myWarden.attack(myPlayer, turrets, zombieBullets))
+	if (myWarden.attack(myPlayer, wardenClones, turrets, zombieBullets))
 	{
 
 	}
@@ -308,6 +343,12 @@ void GameEnvironment::updateBoss(
 	myWarden.move(myPlayer);
 	m_SpriteSheet.setWardenAnimation(myWarden);
 	myWarden.render(camera);
+
+	for (int i = 0; i < wardenClones.size(); i++)
+	{
+		wardenClones[i].move(myPlayer);
+		wardenClones[i].updateRenderPosition();
+	}
 }
 
 void GameEnvironment::updateBullet(
@@ -361,7 +402,7 @@ void GameEnvironment::updateBullet(
 						bloodpools.push_back(zombies[j]);
 						canSpawnZombie = true;
 						m_GameObjective.totalZombieKilled++;
-
+						Sound::GetInstance()->playZombieDie();
 						//for objective 4
 						m_GameObjective.checkObjective3();
 					}
@@ -387,7 +428,7 @@ void GameEnvironment::updateBullet(
 			}
 
 			//boss
-			//warden
+			//warden and clones
 			if (bullets[i].checkCollision(myWarden) && myWarden.canCollide() == true)
 			{
 				collised = (myWarden.health > 0);
@@ -398,6 +439,16 @@ void GameEnvironment::updateBullet(
 				if (myWarden.health <= 0 && collised)
 				{
 					myWarden.currentState = WardenState::DEAD;
+				}
+			}
+			for (auto& wc : wardenClones)
+			{
+				if (bullets[i].checkCollision(wc))
+				{
+					collised = true;
+					wc.hurt(myPlayer);
+					Sound::GetInstance()->playGlassBreak();
+					break;
 				}
 			}
 
@@ -422,20 +473,22 @@ void GameEnvironment::updateBullet(
 void GameEnvironment::updateZombieBullet(
 	player& myPlayer,
 	playerSkill& myPlayerSkill,
-	playerEffect& myPlayerEffect
+	playerEffect& myPlayerEffect,
+	GameObjective& m_GameObjective
 )
 {
+	//check if there is alive signal and the bullet belongs to common enemies
+	//if false, the bulltets of common enemies will be inactive
 	int i = 0;
 	while (i < zombieBullets.size())
 	{
 		gZombieBulletTextures[zombieBullets[i].type].setColor(255, 200, 0);
-//		zombieBullets[i].px += zombieBullets[i].vx;
-//		zombieBullets[i].py += zombieBullets[i].vy;
-
 		zombieBullets[i].updateBullet();
 
-		//delete bullet if its out of view or out of lifetime
-		if (zombieBullets[i].calDistance(myPlayer) > SCREEN_WIDTH || zombieBullets[i].lifeTime >= zombieBullets[i].max_lifeTime)
+		//delete bullet if its out of view or out of lifetime or is inactive
+		if ((m_GameObjective.currentObjective >= 4 && !checkSignal() && zombieBullets[i].type < 3)
+			|| zombieBullets[i].calDistance(myPlayer) > SCREEN_WIDTH
+			|| zombieBullets[i].lifeTime >= zombieBullets[i].max_lifeTime)
 		{
 			zombieBullets.erase(zombieBullets.begin() + i);
 		}
@@ -499,6 +552,8 @@ void GameEnvironment::init()
 	zombieEffects.clear();
 	zombieBullets.clear();
 	wardens.clear();
+	wardenClones.clear();
+	turrets.clear();
 	bloodpools.clear();
 	bullets.clear();
 	signals.clear();
@@ -521,6 +576,8 @@ void GameEnvironment::close()
 	zombieEffects.clear();
 	zombieBullets.clear();
 	wardens.clear();
+	wardenClones.clear();
+	turrets.clear();
 	bloodpools.clear();
 	bullets.clear();
 	signals.clear();

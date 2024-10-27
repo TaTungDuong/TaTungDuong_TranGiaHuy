@@ -15,6 +15,7 @@ Warden::Warden()
 
 void Warden::initWarden(player& myPlayer)
 {
+	isReady = false;
 	currentState = WardenState::INTRO;
 	currentFrame = 0;
 	currentTotalFrame = BOSS_WARDEN_INTRO_ANIMATION_FRAMES;
@@ -24,22 +25,9 @@ void Warden::initWarden(player& myPlayer)
 	size = 256;
 	type = 0;
 	attackTimer = 0;
-	//set random position
-	bool ok = false;
-	int randomX = 0;
-	int randomY = 0;
 
-	while (!ok)
-	{
-		randomX = GetRandomInt(size, LEVEL_WIDTH - size, 1);
-		randomY = GetRandomInt(size, LEVEL_HEIGHT - size, 1);
-		setPosition(randomX, randomY);
-		if (calDistance(myPlayer) > SCREEN_WIDTH) //to avoid Warden spawning within the camera view
-		{
-			ok = true;
-		}
-	}
 	px = myPlayer.px + 512; py = myPlayer.py + 512;
+	px = LEVEL_WIDTH / 2; py = LEVEL_HEIGHT / 2;
 	init(px, py, size, 0);
 	setRenderPosition(px, py);
 
@@ -51,11 +39,17 @@ void Warden::initWarden(player& myPlayer)
 	isActive = 1;
 
 	//set skill
+	///fire
+	fireCooldownCounter = 0.0f;
+	fireCooldownInterval = GetRandomFloat(minFireCooldownTimepoint, maxFireCooldownTimepoint, 0.5f);
+	canFire = false;
 	///dive
 	diveCooldownCounter = 0.0f;
+	diveCooldownInterval = GetRandomFloat(minDiveCooldownTimepoint, maxDiveCooldownTimepoint, 0.5f);
 	canDive = false;
-	//summon turret
+	///summon turret
 	turretCooldownCounter = 0.0f;
+	turretCooldownInterval = GetRandomFloat(minTurretCooldownTimepoint, maxTurretCooldownTimepoint, 0.5f);
 	canTurret = false;
 }
 
@@ -67,6 +61,12 @@ void Warden::move(player& myPlayer)
 		currentState = WardenState::DEAD;
 		return;
 	}
+	if (isReady == false)
+	{
+		isReady = true;
+		myPlayer.isActive = true;
+	}
+	isReady = true;
 
 	calRotation(myPlayer.px, myPlayer.py);
 
@@ -132,7 +132,12 @@ void Warden::render(SDL_Rect& camera)
 }
 
 #pragma region Warden Attacks
-bool Warden::attack(player& target, std::vector<turret>& turrets, std::vector<zombieBullet>& zombieBullets)
+bool Warden::attack(
+	player& target,
+	std::vector<wardenClone>& wardenClones,
+	std::vector<turret>& turrets, 
+	std::vector<zombieBullet>& zombieBullets
+)
 {
 	if (currentState == WardenState::INTRO || currentState == WardenState::DEAD) return false;
 
@@ -141,17 +146,27 @@ bool Warden::attack(player& target, std::vector<turret>& turrets, std::vector<zo
 		attackTimer = 0;
 		//return true;
 	}
+	
+	//Fire
+	if (fireCooldownCounter >= fireCooldownInterval)
+	{
+		initFire();
+	}
+	attackFire(zombieBullets);
+
+	//Dive
 	if (diveCooldownCounter >= diveCooldownInterval)
 	{
-		initDive();
+		initDive(myPlayer, wardenClones);
 	}
-	attackDive();
+	attackDive(myPlayer, wardenClones);
 
+	//Summon Turrets
 	if (turretCooldownCounter >= turretCooldownInterval)
 	{
-		initTurret(turrets);
+		initTurret(target, turrets);
 	}
-	attackTurret(turrets, zombieBullets);
+	attackTurret(target, turrets, zombieBullets);
 
 	cooldown();
 	return false;
@@ -159,13 +174,111 @@ bool Warden::attack(player& target, std::vector<turret>& turrets, std::vector<zo
 void Warden::cooldown()
 {
 	attackTimer += deltaTimer.getDeltaTime();
+	fireCooldownCounter += deltaTimer.getDeltaTime();
 	diveCooldownCounter += deltaTimer.getDeltaTime();
 	turretCooldownCounter += deltaTimer.getDeltaTime();
 }
 
 
+//Fire
+void Warden::initFire()
+{
+	//Warden only can fire when the current state is IDLE or WALK or HURT
+	if (canFire == false 
+		&& (currentState == WardenState::IDLE 
+			|| currentState == WardenState::WALK 
+			|| currentState == WardenState::HURT))
+	{
+		canFire = true;
+		fireCounter = 0;
+		fireTimeCounter = fireTimeInterval;
+	}
+}
+void Warden::attackFire(std::vector<zombieBullet>& zombieBullets)
+{
+	if (fireCooldownCounter < fireCooldownInterval || canFire == false) return;
+	//Warden only can fire when the current state is IDLE or WALK or HURT
+	if (currentState != WardenState::IDLE 
+		&& currentState != WardenState::WALK
+		&& currentState != WardenState::HURT) return;
+	//Warden can not fire anymore if it fire enough times
+	if (fireCounter >= number_of_fires)
+	{
+		fireCooldownCounter = 0.0f;
+		fireCooldownInterval = GetRandomFloat(minFireCooldownTimepoint, maxFireCooldownTimepoint, 0.5f);
+		canFire = false;
+		return;
+	}
+
+	fireTimeCounter += deltaTimer.getDeltaTime();
+	if (fireTimeCounter >= fireTimeInterval)
+	{
+		fireTimeCounter = 0.0f;
+		fireCounter++;
+		//printf("Fire Counter: %d\n", fireCounter);
+		gameObject temp;
+		float fixed_angle = 30.0f;
+		//left hand
+		temp.init(px - 128, py - 8, 128, 0, -1);
+		WardenBullet myWardenBulletLeft(camera, temp);
+		for (int j = 0; j < 12; j++)
+		{
+			zombieBullet myZombieBullet(camera, myWardenBulletLeft);
+			//set bullet position
+			myZombieBullet.setPosition(int(myWardenBulletLeft.px), int(myWardenBulletLeft.py));
+			myZombieBullet.setRenderPosition(myZombieBullet.px, myZombieBullet.py);
+
+			//set bullet type
+			myZombieBullet.type = int(myWardenBulletLeft.type);
+			myZombieBullet.size = 32;
+
+			//set bullet rotation
+			myZombieBullet.rotation = fixed_angle * float(j); //fix bullet rotation
+
+			float dirX = 0;
+			float dirY = 0;
+
+			dirX = cos(myZombieBullet.rotation * M_PI / 180.0);
+			dirY = sin(myZombieBullet.rotation * M_PI / 180.0);
+
+			myZombieBullet.vx = dirX * myZombieBullet.speed;
+			myZombieBullet.vy = dirY * myZombieBullet.speed;
+
+			zombieBullets.push_back(myZombieBullet);
+		}
+		//right hand
+		temp.init(px + 128, py - 8, 128, 0, -1);
+		WardenBullet myWardenBulletRight(camera, temp);
+		for (int j = 0; j < 12; j++)
+		{
+			zombieBullet myZombieBullet(camera, myWardenBulletRight);
+			//set bullet position
+			myZombieBullet.setPosition(int(myWardenBulletRight.px), int(myWardenBulletRight.py));
+			myZombieBullet.setRenderPosition(myZombieBullet.px, myZombieBullet.py);
+
+			//set bullet type
+			myZombieBullet.type = int(myWardenBulletRight.type);
+			myZombieBullet.size = 32;
+
+			//set bullet rotation
+			myZombieBullet.rotation = fixed_angle * float(j); //fix bullet rotation
+
+			float dirX = 0;
+			float dirY = 0;
+
+			dirX = cos(myZombieBullet.rotation * M_PI / 180.0);
+			dirY = sin(myZombieBullet.rotation * M_PI / 180.0);
+
+			myZombieBullet.vx = dirX * myZombieBullet.speed;
+			myZombieBullet.vy = dirY * myZombieBullet.speed;
+
+			zombieBullets.push_back(myZombieBullet);
+		}
+	}
+}
+
 //Dive
-void Warden::initDive()
+void Warden::initDive(player& myPlayer, std::vector<wardenClone>& wardenClones)
 {
 	if (canDive == false)
 	{
@@ -173,30 +286,62 @@ void Warden::initDive()
 		canDive = true;
 	}
 }
-void Warden::attackDive()
+void Warden::attackDive(player& myPlayer, std::vector<wardenClone>& wardenClones)
 {
 	if (diveCooldownCounter < diveCooldownInterval || canDive == false) return;
-	diveTimeCounter += deltaTimer.getDeltaTime();
+//	diveTimeCounter += deltaTimer.getDeltaTime();
 	if (diveTimeCounter < diveTimeInterval)
 	{
 		if (currentState != WardenState::DIVE && currentState != WardenState::HIDE)
 		{
 			currentState = WardenState::DIVE;
 			currentFrame = 0;
+			Sound::GetInstance()->playWardenDive(1);
+		}
+		else if (currentState == WardenState::DIVE && currentFrame == BOSS_WARDEN_DIVE_ANIMATION_FRAMES - 3)
+		{
+			for (auto& wc : wardenClones)
+			{
+				wc.lifeTimeCounter = 0.0f;
+				wc.entranceTimeCounter = 0.0f;
+				wc.health = 100.0f;
+				gameObject temp;
+				temp.init(px, py, 512, 0, -1);
+				wc.calPosition(myPlayer, temp);
+				wc.isActive = 1;
+			}
+		}
+		else if (currentState == WardenState::HIDE)
+		{
+			for (auto wc : wardenClones)
+			{
+				if (wc.currentState == wardenCloneState::REAL && wc.health <= 0)
+				{
+					diveTimeCounter = diveTimeInterval;
+					for (auto& wc2 : wardenClones)
+					{
+						wc2.lifeTimeCounter = wc2.lifeTimeInterval;
+						wc2.isActive = 0;
+					}
+					return;
+				}
+			}
 		}
 	}
 	else
 	{
 		currentState = WardenState::INTRO;
 		currentFrame = 0;
+		Sound::GetInstance()->playWardenDive(-1);
 		currentTotalFrame = BOSS_WARDEN_INTRO_ANIMATION_FRAMES;
 		diveCooldownCounter = 0.0f;
+		diveCooldownInterval = GetRandomFloat(minDiveCooldownTimepoint, maxDiveCooldownTimepoint, 0.5f);
 		canDive = false;
 	}
 }
 
 //Summon Turrets
-void Warden::initTurret(std::vector<turret>& turrets)
+void Warden::initTurret(player& myPlayer, std::vector<turret>& turrets)
 {
 	if (turrets.size() == 0) return;
 	if (canTurret == false)
@@ -205,17 +350,17 @@ void Warden::initTurret(std::vector<turret>& turrets)
 		canTurret = true;
 
 		int i = -number_of_turrets / 2;
-		for (auto& tr : turrets)
+		for (int j = 0; j < turrets.size(); j++)
 		{
-			tr.calPosition(myPlayer, 128 * i);
+			turrets[j].calPosition(myPlayer, 208 * i);
 			i++;
-			tr.lifeTimeCounter = 0.0f;
-			tr.entranceTimeCounter = 0.0f;
-			turretTimeInterval = tr.lifeTimeInterval;
+			turrets[j].lifeTimeCounter = 0.0f;
+			turrets[j].entranceTimeCounter = 0.0f;
+			turretTimeInterval = turrets[j].lifeTimeInterval;
 		}
 	}
 }
-void Warden::attackTurret(std::vector<turret>& turrets, std::vector<zombieBullet>& zombieBullets)
+void Warden::attackTurret(player& myPlayer, std::vector<turret>& turrets, std::vector<zombieBullet>& zombieBullets)
 {
 	if (turrets.size() == 0) return;
 	if (turretCooldownCounter < turretCooldownInterval || canTurret == false) return;
@@ -223,16 +368,51 @@ void Warden::attackTurret(std::vector<turret>& turrets, std::vector<zombieBullet
 	if (turretTimeCounter >= turretTimeInterval)
 	{
 		turretCooldownCounter = 0.0f;
+		turretCooldownInterval = GetRandomFloat(minTurretCooldownTimepoint, maxTurretCooldownTimepoint, 0.5f);
 		canTurret = false;
 	}
 	else
 	{
-		for (auto& tr : turrets)
+		for (int i = 0; i < turrets.size(); i++)
 		{
-			tr.move();
-			tr.attack(myPlayer, tr, zombieBullets);
-			tr.updateRenderPosition();
-			tr.render(camera);
+			turrets[i].move();
+			if (turrets[i].attack())
+			{
+				/*printf("Turret %d [type: %d, px: %d, py: %d] || player [px: %d, py: %d]\n", 
+					i + 1, turrets[i].type, int(turrets[i].px), int(turrets[i].py), int(myPlayer.px), int(myPlayer.py));*/
+				float fixed_angle = 90.0f;
+				for (int j = 0; j < 4; j++)
+				{
+					zombieBullet myZombieBullet(camera, turrets[i]);
+					//set bullet position
+					myZombieBullet.setPosition(int(turrets[i].px), int(turrets[i].py));
+					myZombieBullet.setRenderPosition(myZombieBullet.px, myZombieBullet.py);
+
+					//set bullet type
+					myZombieBullet.type = int(turrets[j].type);
+
+					//set bullet rotation
+					myZombieBullet.rotation = fixed_angle * float(j); //fix bullet rotation
+
+					float dirX = 0;
+					float dirY = 0;
+
+					dirX = cos(myZombieBullet.rotation * M_PI / 180.0);
+					dirY = sin(myZombieBullet.rotation * M_PI / 180.0);
+
+					myZombieBullet.vx = dirX * myZombieBullet.speed;
+					myZombieBullet.vy = dirY * myZombieBullet.speed;
+
+					/*printf("Bullet Type: %d, [X: %d, Y: %d, Rotation: %f, vx: %f, vy: %f]\n",
+						int(myZombieBullet.type), int(myZombieBullet.px), int(myZombieBullet.py), 
+						myZombieBullet.rotation,
+						myZombieBullet.vx, myZombieBullet.vy);*/
+
+					zombieBullets.push_back(myZombieBullet);
+				}
+			}
+			turrets[i].updateRenderPosition();
+			turrets[i].render(camera);
 		}
 	}
 }
@@ -242,129 +422,8 @@ void Warden::attackTurret(std::vector<turret>& turrets, std::vector<zombieBullet
 #pragma region WardenBullets
 WardenBullet::WardenBullet(SDL_Rect& camera, gameObject source)
 {
-	type = source.type;
-	lifeTime = 0.0f;
-	switch (type)
-	{
-	case 0:
-		size = 32;
-		max_lifeTime = 10;
-		damage = NORMAL_ZOMBIE_DAMAGE;
-		break;
-	case 1:
-		size = 28;
-		max_lifeTime = 10;
-		damage = FAST_ZOMBIE_DAMAGE;
-		break;
-	case 2:
-		size = 48;
-		max_lifeTime = 10;
-		damage = TANK_ZOMBIE_DAMAGE;
-		break;
-	default:
-		break;
-	}
-
-	//	printf("Rotation: %f\n", source.rotation);
-
-		//set fire rotation
-	float offsetX = 20;
-	float offsetY;
-	if (0 < source.rotation && source.rotation <= 90)
-	{
-		offsetX *= -1;
-		offsetY = 20;
-		double theta = source.rotation * (M_PI / 180);
-		px = source.px - (offsetX * cos(theta) + offsetY * sin(theta));
-		py = source.py - (offsetX * sin(theta) + offsetY * cos(theta));
-
-	}
-	if (90 < source.rotation && source.rotation <= 180)
-	{
-		offsetX *= 1;
-		offsetY = 20;
-		double theta = source.rotation * (M_PI / 180);
-		px = source.px + (offsetX * cos(theta) - offsetY * sin(theta));
-		py = source.py + (offsetX * sin(theta) + offsetY * cos(theta));
-
-	}
-	if (180 < source.rotation && source.rotation <= 270)
-	{
-		offsetX *= -1;
-		offsetY = -20;
-		double theta = source.rotation * (M_PI / 180);
-		px = source.px - (offsetX * cos(theta) + offsetY * sin(theta));
-		py = source.py - (offsetX * sin(theta) + offsetY * cos(theta));
-
-	}
-	if (270 < source.rotation && source.rotation <= 360)
-	{
-		offsetX *= 1;
-		offsetY = -20;
-		double theta = source.rotation * (M_PI / 180);
-		px = source.px + (offsetX * cos(theta) - offsetY * sin(theta));
-		py = source.py + (offsetX * sin(theta) + offsetY * cos(theta));
-
-	}
+	type = 4;
+	setPosition(source.px, source.py);
 	setRenderPosition(px, py);
-	speed = BULLET_SPEED * deltaTimer.getDeltaTime() / 7.5f;
-
-	rotation = source.rotation + 180; //set bullet rotation
-	float dirX = 0;
-	float dirY = 0;
-
-	dirX = cos(rotation * M_PI / 180.0);
-	dirY = sin(rotation * M_PI / 180.0);
-
-	vx = dirX * speed;
-	vy = dirY * speed;
-}
-
-//calculate Warden bullet motions
-void WardenBullet::updateBullet(player& myPlayer)
-{
-	lifeTime += deltaTimer.getDeltaTime();
-	switch (type)
-	{
-	case 0:
-		updateType0(myPlayer);
-		break;
-	case 1:
-		updateType1(myPlayer);
-		break;
-	case 2:
-		updateType2(myPlayer);
-		break;
-	default:
-		break;
-	}
-
-}
-void WardenBullet::updateType0(player& myPlayer)//Warden bullet  type 0
-{
-	px += vx;
-	py += vy;
-}
-void WardenBullet::updateType1(player& myPlayer)//Warden bullet  type 1
-{
-	calRotation(myPlayer.px, myPlayer.py);
-	float dirX = 0;
-	float dirY = 0;
-
-	float ratio = 0.8f;
-	dirX = -cos(rotation * M_PI / 180.0);
-	dirY = -sin(rotation * M_PI / 180.0);
-	vx = dirX * speed * ratio;
-	vy = dirY * speed * ratio;
-
-	px += vx;
-	py += vy;
-
-	setRenderPosition(px, py);
-}
-void WardenBullet::updateType2(player& myPlayer)//Warden bullet  type 2
-{
-	px += vx;
-	py += vy;
 }
 #pragma endregion

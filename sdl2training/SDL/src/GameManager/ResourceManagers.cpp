@@ -72,7 +72,15 @@ std::shared_ptr<TextureManager> ResourceManagers::GetTexture(const std::string& 
 		return it->second;
 	}
 	
-	std::string file = m_TexturePath + name;
+	std::string file;
+	if (name.find("assets-main") == std::string::npos)
+	{
+		file = m_TexturePath + name;
+	}
+	else
+	{
+		file = name;
+	}
 
 	std::shared_ptr<TextureManager> textureLoaded = std::make_shared<TextureManager>();
 	if (textureLoaded->LoadImage(file.c_str()) != nullptr)

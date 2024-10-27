@@ -42,7 +42,7 @@ bool Renderer::Init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("Catgirl & Shotgun Project", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN); //SDL_WINDOW_RESIZABLE
+		gWindow = SDL_CreateWindow("CAAT Project", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN); //SDL_WINDOW_RESIZABLE
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -124,7 +124,7 @@ void Renderer::frameCap()
 		SDL_Delay(SCREEN_TICK_PER_FRAME - frameTicks);
 	}
 
-	std::string title = "Catgirl & Shotgun Project [avg fps: " + std::to_string(int(avgFPS)) + "] ";
+	std::string title = "CAAT Project [avg fps: " + std::to_string(int(avgFPS)) + "] ";
 //		" [X:" + std::to_string(int(myPlayer.px)) + ", Y:" + std::to_string(int(myPlayer.py)) + "]";
 	SDL_SetWindowTitle(gWindow, title.c_str());
 }

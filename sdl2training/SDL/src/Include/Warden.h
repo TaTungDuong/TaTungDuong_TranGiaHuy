@@ -5,24 +5,13 @@
 
 #include "Include/Player.h"
 #include "Include/Turret.h"
+#include "Include/WardenClone.h"
 
 class WardenBullet : public gameObject
 {
 public:
-	int speed;
-	int damage;
-	float vx;
-	float vy;
-	float lifeTime;
-	float max_lifeTime;
-
+	int type;
 	WardenBullet(SDL_Rect& camera, gameObject source);
-
-	//calculate warden bullet motions
-	void updateBullet(player& myPlayer);
-	void updateType0(player& myPlayer);
-	void updateType1(player& myPlayer);
-	void updateType2(player& myPlayer);
 };
 
 enum class WardenState
@@ -39,6 +28,7 @@ enum class WardenState
 class Warden : public gameObject
 {
 public:
+	bool isReady;
 	WardenState currentState;
 
 	float vx;
@@ -66,15 +56,39 @@ public:
 
 	bool canCollide(); // return true if warden can collide with objects
 
-	const int number_of_turrets = 5;
+	const int number_of_fires = 3;
+	const int number_of_turrets = 8;
+	const int number_of_clones = 8;
 
-	bool attack(player& target, std::vector<turret>& turrets, std::vector<zombieBullet>& zombieBullets);
+	bool attack(
+		player& target,
+		std::vector<wardenClone>& wardenClones,
+		std::vector<turret>& turrets, 
+		std::vector<zombieBullet>& zombieBullets
+	);
 private:
 	float attackTimer;
 	bool isFlipped;
 
 	//warden's skill sets
+	///skill cooldown time will be random after each use
 	void cooldown();
+
+	/// <summary>
+	/// Skill: Fire
+	/// Warden fire multiple round bullets from its hands
+	/// </summary>
+	bool canFire;//return true if warden can fire
+	int fireCounter; //calculate the turn of fire (<= number_of_fires)
+	float fireTimeCounter;
+	const float fireTimeInterval = 0.5f;
+	float fireCooldownCounter;
+	float fireCooldownInterval;
+	const float minFireCooldownTimepoint = 5.0f;
+	const float maxFireCooldownTimepoint = 7.5f;
+	void initFire();
+	void attackFire(std::vector<zombieBullet>& zombieBullets);
+
 	/// <summary>
 	/// Skill: Dive
 	/// Warden dive into ground to hide from player's attacks
@@ -83,9 +97,17 @@ private:
 	float diveTimeCounter; 
 	const float diveTimeInterval = 5.0f;
 	float diveCooldownCounter;
-	const float diveCooldownInterval = 5.0;// 10.0f;
-	void initDive();
-	void attackDive();
+	float diveCooldownInterval;
+	const float minDiveCooldownTimepoint = 12.5f;
+	const float maxDiveCooldownTimepoint = 15.0f;
+	void initDive(
+		player& myPlayer,
+		std::vector<wardenClone>& wardenClones
+	);
+	void attackDive(
+		player& myPlayer,
+		std::vector<wardenClone>& wardenClones
+	);
 
 	/// <summary>
 	/// Skill: Summon Turrets
@@ -95,9 +117,11 @@ private:
 	float turretTimeCounter;
 	float turretTimeInterval;
 	float turretCooldownCounter;
-	const float turretCooldownInterval = 10.0f;
-	void initTurret(std::vector<turret>& turrets);
-	void attackTurret(std::vector<turret>& turrets, std::vector<zombieBullet>& zombieBullets);
+	float turretCooldownInterval;
+	const float minTurretCooldownTimepoint = 10.0f;
+	const float maxTurretCooldownTimepoint = 15.0f;
+	void initTurret(player& myPlayer, std::vector<turret>& turrets);
+	void attackTurret(player& myPlayer, std::vector<turret>& turrets, std::vector<zombieBullet>& zombieBullets);
 };
 
 

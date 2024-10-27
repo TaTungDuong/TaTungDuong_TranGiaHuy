@@ -36,6 +36,8 @@
     <ClInclude Include="src\GameStates\GameStateBase.h" />
     <ClInclude Include="src\GameStates\GameStateMachine.h" />
     <ClInclude Include="src\GameStates\GSIntro.h" />
+    <ClInclude Include="src\GameStates\GSIntroCutscene.h" />
+    <ClInclude Include="src\GameStates\GSIntroMenu.h" />
     <ClInclude Include="src\GameStates\GSMenu.h" />
     <ClInclude Include="src\GameStates\GSPlay.h" />
     <ClInclude Include="src\Game\Game.h" />
@@ -61,6 +63,7 @@
     <ClInclude Include="src\Include\Timer.h" />
     <ClInclude Include="src\Include\Turret.h" />
     <ClInclude Include="src\Include\Warden.h" />
+    <ClInclude Include="src\Include\WardenClone.h" />
     <ClInclude Include="src\Include\Weapon.h" />
     <ClInclude Include="src\Include\Zombie.h" />
     <ClInclude Include="src\Include\ZombieEffect.h" />
@@ -89,6 +92,7 @@
     <ClCompile Include="src\GameFeatures\Timer.cpp" />
     <ClCompile Include="src\GameFeatures\Turret.cpp" />
     <ClCompile Include="src\GameFeatures\Warden.cpp" />
+    <ClCompile Include="src\GameFeatures\WardenClone.cpp" />
     <ClCompile Include="src\GameFeatures\Weapon.cpp" />
     <ClCompile Include="src\GameFeatures\Zombie.cpp" />
     <ClCompile Include="src\GameFeatures\ZombieEffect.cpp" />
@@ -106,6 +110,8 @@
     <ClCompile Include="src\GameStates\GameStateBase.cpp" />
     <ClCompile Include="src\GameStates\GameStateMachine.cpp" />
     <ClCompile Include="src\GameStates\GSIntro.cpp" />
+    <ClCompile Include="src\GameStates\GSIntroCutscene.cpp" />
+    <ClCompile Include="src\GameStates\GSIntroMenu.cpp" />
     <ClCompile Include="src\GameStates\GSMenu.cpp" />
     <ClCompile Include="src\GameStates\GSPlay.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />

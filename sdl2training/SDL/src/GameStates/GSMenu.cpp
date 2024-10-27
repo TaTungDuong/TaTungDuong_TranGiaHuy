@@ -39,9 +39,6 @@ void GSMenu::Init()
 		}
 		else
 		{
-			//play background music
-			Sound::GetInstance()->playMenuMusic();
-			Sound::GetInstance()->stopBackgroundLoop();
 
 			//show back the cursor
 			SDL_ShowCursor(SDL_ENABLE);
@@ -54,7 +51,7 @@ void GSMenu::Init()
 
 			//add buttons
 			//start button
-			int buttonpy = textY + SCREEN_HEIGHT / 7.5 + 75;
+			int buttonpy = textY + SCREEN_HEIGHT / 7.5 + 100;
 			myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Start", m_GameResource.regularFont);
 			buttons.push_back(myButton);
 			//toggle music button
@@ -216,9 +213,6 @@ void GSMenu::Draw(SDL_Renderer* renderer)
 
 		//Render black overlay 
 		m_GameUI.gMenuTexture.render(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-		//Render title
-//		drawText(textX, textY, boldFontTitle, UIColor, "Catgirl & Shotgun", 1);
 // 
 		//set toggle music text
 		if (buttons.size() > 0)
@@ -247,7 +241,7 @@ void GSMenu::Draw(SDL_Renderer* renderer)
 	switch (choice)
 	{
 	case 0: //start
-		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
+		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_INTRO_CUTSCENE);
 		break;
 	case 1: //toggle music
 		setting_Music = !setting_Music;

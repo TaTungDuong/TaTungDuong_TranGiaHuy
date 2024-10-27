@@ -40,15 +40,27 @@ bool GameUI::loadMedia()
 		success = false;
 	}
 
-	if (!gPistolIconTexture.loadFromFile("assets-main/sprites/weapons/shotgun/icon_shotgun.png"))//_white.png"))
+	//Load Weapon icon textures
+	int cnt;
+	///pistol
+	cnt = 0;
+	if (!gWeaponIconTexture[cnt].loadFromFile("assets-main/sprites/weapons/shotgun/icon_shotgun.png"))//_white.png"))
 	{
 		printf("Failed to load pistol icon texture!\n");
 		success = false;
 	}
-
-	if (!gRifleIconTexture.loadFromFile("assets-main/sprites/weapons/heavy_cannon/icon_heavy_cannon.png"))//_white.png"))
+	///heavy_cannon
+	cnt = 1;
+	if (!gWeaponIconTexture[cnt].loadFromFile("assets-main/sprites/weapons/heavy_cannon/icon_heavy_cannon.png"))//_white.png"))
 	{
 		printf("Failed to load rifle icon texture!\n");
+		success = false;
+	}
+	///chaingun
+	cnt = 2;
+	if (!gWeaponIconTexture[cnt].loadFromFile("assets-main/sprites/weapons/chaingun/icon_chaingun.png"))//_white.png"))
+	{
+		printf("Failed to load chaingun icon texture!\n");
 		success = false;
 	}
 #pragma endregion
@@ -194,18 +206,7 @@ void GameUI::drawWeapon(player& myPlayer, GameResource m_GameResource)
 	int weaponIconX = SCREEN_WIDTH - V_BORDER - weaponIconSize;
 	int weaponIconY = SCREEN_HEIGHT - H_BORDER - weaponIconSize;
 
-	switch (myPlayer.currentWeapon)
-	{
-	case 0:
-		gPistolIconTexture.render(weaponIconX, weaponIconY, weaponIconSize, weaponIconSize);
-		break;
-	case 1:
-		gRifleIconTexture.render(weaponIconX, weaponIconY, weaponIconSize, weaponIconSize);
-		break;
-	default:
-		gRifleIconTexture.render(weaponIconX, weaponIconY, weaponIconSize, weaponIconSize);
-		break;
-	}
+	gWeaponIconTexture[myPlayer.currentWeapon].render(weaponIconX, weaponIconY, weaponIconSize, weaponIconSize);
 
 	//weaponIconTexture.free();
 
@@ -251,7 +252,7 @@ void GameUI::updateObjective(
 		m_GameObjective.objectiveText = "Activate the skill by pressing R";
 		break;
 	case 3: //objective 4: kill required amount of zombies (tutorial ended, zombie start spawning now)
-		m_GameObjective.objectiveText = "Kill " 
+		m_GameObjective.objectiveText = "Taste your first blood, kill " 
 			+ std::to_string(ZOMBIE_NEEDED_TO_KILL) + " enemies, " 
 			+ std::to_string(ZOMBIE_NEEDED_TO_KILL - m_GameObjective.obj_zombieKilled) 
 			+ "/" + std::to_string(ZOMBIE_NEEDED_TO_KILL) + " left";
@@ -268,7 +269,7 @@ void GameUI::updateObjective(
 		break;
 
 	case TOTAL_OBJECTIVE: //objective 5: All objective finished
-		m_GameObjective.objectiveText = "Survive!";
+		m_GameObjective.objectiveText = "Rip and tear!";
 		break;
 	}
 
@@ -321,7 +322,10 @@ void GameUI::drawTimer(GameResource& m_GameResource, GameObjective& m_GameObject
 {
 	static float timeCounter = 0;
 	//calulate countdown time
-	if (!systemTimer.isPaused() && !m_GameObjective.tutorial && m_GameObjective.timeLeft > 0)
+	if (!systemTimer.isPaused() 
+		&& !m_GameObjective.tutorial //When game is not on tutorial
+		&& m_GameObjective.timeLeft > 0 
+		&& !m_GameObjective.boss) //When game is not on boss fight
 	{
 		timeCounter += systemTimer.getDeltaTime();
 	}
@@ -346,6 +350,10 @@ void GameUI::drawTimer(GameResource& m_GameResource, GameObjective& m_GameObject
 	if (!m_GameObjective.tutorial)
 	{
 		sprintf_s(timerText, "%02i:%02i", m, s);
+	}
+	if (m_GameObjective.boss)
+	{
+		sprintf_s(timerText, "until it is done");
 	}
 
 	//draw timer
@@ -584,8 +592,10 @@ void GameUI::close()
 	gMenuTexture.free();
 	//Free loaded UI textures
 	gHealthIconTexture.free();
-	gPistolIconTexture.free();
-	gRifleIconTexture.free();
+	for (auto& texture : gWeaponIconTexture)
+	{
+		texture.free();
+	}
 	gCrosshairTexture.free();
 
 	//Free loaded screen effect textures

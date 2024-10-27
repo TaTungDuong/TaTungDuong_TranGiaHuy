@@ -142,6 +142,20 @@ void SpriteSheet::loadSpritesheet(
 		spritesheetClip[state].push_back({ i * w, 0, w , h });
 	}
 }
+void SpriteSheet::loadSpritesheet(
+	enum wardenCloneState state,
+	std::map<wardenCloneState, LTexture>& spritesheet,
+	std::map<wardenCloneState, std::vector <SDL_Rect>>& spritesheetClip,
+	int totalFrame
+)
+{
+	int w = spritesheet[state].getWidth() / totalFrame;
+	int h = spritesheet[state].getHeight();
+	for (int i = 0; i < totalFrame; i++)
+	{
+		spritesheetClip[state].push_back({ i * w, 0, w , h });
+	}
+}
 
 void SpriteSheet::loadSpritesheet(
 	LTexture& spritesheet, 
@@ -766,6 +780,28 @@ bool SpriteSheet::loadWardenMedia()
 		loadSpritesheet(gTurretTexture, gTurretClips, 9);
 	}
 
+	//Clones
+	///fake
+	if (!gWardenCloneTexture [wardenCloneState::FAKE] .loadFromFile("assets-main/sprites/characters/bosses/sir_verdant/sir_verdant_clone_fake.png"))
+	{
+		printf("Failed to load warden clone fake texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(wardenCloneState::FAKE, gWardenCloneTexture, gWardenCloneClips, BOSS_WARDEN_CLONE_ANIMATION_FRAMES);
+	}
+	///real
+	if (!gWardenCloneTexture[wardenCloneState::REAL].loadFromFile("assets-main/sprites/characters/bosses/sir_verdant/sir_verdant_clone_real.png"))
+	{
+		printf("Failed to load warden clone real texture!\n");
+		success = false;
+	}
+	else
+	{
+		loadSpritesheet(wardenCloneState::REAL, gWardenCloneTexture, gWardenCloneClips, BOSS_WARDEN_CLONE_ANIMATION_FRAMES);
+	}
+
 	return success;
 }
 #pragma endregion
@@ -1103,6 +1139,7 @@ void SpriteSheet::updateAnimation(
 	std::vector<zombie>& zombies,
 	std::vector<zombieEffect>& zombieEffects,
 	Warden& myWarden,
+	std::vector<wardenClone>& wardenClones,
 	std::vector<turret>& turrets,
 	std::vector<signal>& signals,
 	LTimer deltaTimer
@@ -1141,17 +1178,31 @@ void SpriteSheet::updateAnimation(
 				zEffect.currentFrame++;
 			}
 		}
+
+
+		// increase Animation Frame for Signals
 		for (auto& sS : signals)
 		{
 			sS.currentFrame++;
 		}
 
+		// increase Animation Frame for Warden
 		myWarden.currentFrame++;
 		for (auto& tr : turrets)
 		{
 			tr.currentFrame = tr.currentFrame == 8? 0 : tr.currentFrame + 1;
 			tr.setAnimation(gTurretTexture, gTurretClips[tr.currentFrame]);
 		}
+
+		for (auto& wc : wardenClones)
+		{
+			wc.currentFrame++;
+			if (wc.currentFrame > BOSS_WARDEN_CLONE_ANIMATION_FRAMES - 1)
+			{
+				wc.currentFrame = 0;
+			}
+		}
+
 	}
 
 	//Cycle player animation
@@ -1166,6 +1217,13 @@ void SpriteSheet::updateAnimation(
 	if (myPlayerEffect.currentFrame > myPlayerEffect.currentTotalFrame - 1)
 	{
 		myPlayerEffect.currentFrame = 0;
+	}
+
+	//Cycle warden clones animation
+	for (auto& wc : wardenClones)
+	{
+		wc.setAnimation(gWardenCloneTexture[wc.currentState], gWardenCloneClips[wc.currentState][wc.currentFrame]);
+		wc.render(camera);
 	}
 }
 

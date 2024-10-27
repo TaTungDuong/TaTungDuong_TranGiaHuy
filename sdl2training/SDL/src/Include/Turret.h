@@ -16,7 +16,8 @@ public:
 	float health;
 	float speed;
 
-	const float lifeTimeInterval = 5.0f;
+	const float lagTimeInterval = 1.5f; // the time between entrance and attack
+	const float lifeTimeInterval = 5.0f + lagTimeInterval;
 	float lifeTimeCounter;
 	const float entranceTimeInterval = 0.432; // time value of turret sliding into action
 	float entranceTimeCounter;
@@ -30,11 +31,7 @@ public:
 	turret();
 	void initTurret(gameObject& source);
 	void move();
-	void attack(//zombie bullet type 2
-		player& target,
-		gameObject source,
-		std::vector<zombieBullet>& zombieBullets
-	);
+	bool attack(); //return true if turret can shoot
 	void hurt(player& myPlayer);
 	void setAnimation(LTexture& targetTexture, SDL_Rect& targetClip);
 	void render(SDL_Rect& camera);

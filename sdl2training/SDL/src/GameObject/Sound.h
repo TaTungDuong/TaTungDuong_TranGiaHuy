@@ -21,8 +21,15 @@ public:
 	void PlaySfx(const std::string& name, int repeat = 0);
 	void CleanUp();
 
+	//Bgm
 	void playMenuMusic();
 	void playMainMusic();
+	void playBossMusic();
+
+	//Voicelines
+	void playVoiceIntro(int voiceline);
+
+	//Sfx
 	void playBackgroundLoop();
 	void stopBackgroundLoop();
 	void playRadio();
@@ -39,16 +46,26 @@ public:
 	void playZombieAttack();
 	void playZombieShoot();
 	void playHitZombie();
+	void playZombieDie();
 	void playGunshot();
 	void playSwapWeapon();
 	void playGunEmpty();
 	void playSkillActivation();
 	void playSkillSfx(int weapon);
+	void playGlassBreak();
+	void playWardenDive(int direction);
 
 private:
 	//Bgm
 	const std::string p_MenuMusic = "bgm/blue.mp3";
 	const std::string p_MainMusic = "bgm/silence.mp3";
+	const std::string p_BossMusic = "bgm/crypt.mp3";
+	//Voicelines
+	const std::string p_VoiceIntro[2] = { 
+		"voicelines/intro.mp3", 
+		"voicelines/intro_2.mp3" 
+	};
+	
 	//Sfx
 	const std::string p_Radio = "sfx/objects/radio_beep.mp3";
 	const std::string p_GunEmpty = "sfx/weapons/gun_empty.mp3";
@@ -84,10 +101,20 @@ private:
 		"sfx/npcs/hit_zombie(4).wav"
 	};
 	const std::string p_ZombieShoot = "sfx/npcs/enemy_shoot.mp3";
+	const std::string p_ZombieDie = "sfx/npcs/enemy_die.mp3";
 	const std::string p_PlayerSkill = "sfx/skills/_skill.mp3";
 	const std::string p_Dominus = "sfx/skills/dominus.mp3";
 	const std::string p_EmperorDivide = "sfx/skills/emperor_divide.mp3";
 	const std::string p_CallOfTheForgeGod = "sfx/skills/call_of_the_forge_god.mp3";
+
+	const std::string p_WardenDive1 = "sfx/npcs/enemy_dive_1.mp3";
+	const std::string p_WardenDive2 = "sfx/npcs/enemy_dive_2.mp3";
+
+	const std::string p_GlassBreak[3] = {
+		"sfx/objects/glass_break(1).mp3",
+		"sfx/objects/glass_break(2).mp3",
+		"sfx/objects/glass_break(3).mp3"
+	};
 
 	//Fixed channel for some sound effect
 	const int AMBIENT_CHANNEL = 0;

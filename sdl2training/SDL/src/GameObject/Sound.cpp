@@ -169,7 +169,7 @@ void Sound::CleanUp()
 	SDL_QuitSubSystem(SDL_INIT_AUDIO);
 }
 
-#pragma region Play_Audio
+#pragma region Bgm
 void Sound::playMenuMusic()
 {
     //Play the menu music
@@ -186,7 +186,24 @@ void Sound::playMainMusic()
     PlaySound(p_MainMusic);
 }
 
+void Sound::playBossMusic()
+{
+    //Play the boss music
+    StopSound();
+    LoadSound(p_BossMusic);
+    PlaySound(p_BossMusic);
+}
+#pragma endregion
 
+#pragma region Voicelines
+void Sound::playVoiceIntro(int voiceline)
+{
+    LoadSfx(p_VoiceIntro[voiceline]);
+    PlaySfx(p_VoiceIntro[voiceline]);
+}
+#pragma endregion
+
+#pragma region Sfx
 void Sound::playBackgroundLoop()
 {
     //Play ambient sound and walk loop
@@ -237,13 +254,15 @@ void Sound::playSwapWeapon() {
 }
 
 void Sound::playGunshot() {
-    int i = GetRandomInt(0, GUNSHOT_VARIATION - 2, 1);
+    srand(static_cast<unsigned int>(time(0)));
+    int i = rand() % GUNSHOT_VARIATION;
     LoadSfx(p_GunShot[i]);
     PlaySfx(p_GunShot[i]);
 }
 
 void Sound::playZombieAttack() {
-    int i = GetRandomInt(0, ZOMBIE_ATTACK_VARIATION - 2, 1);
+    srand(static_cast<unsigned int>(time(0)));
+    int i = rand() % ZOMBIE_ATTACK_VARIATION;
     LoadSfx(p_ZombieAttack[i]);
     PlaySfx(p_ZombieAttack[i]);
 }
@@ -254,15 +273,44 @@ void Sound::playZombieShoot() {
 }
 
 void Sound::playHitZombie() {
-    int i = GetRandomInt(0, HIT_ZOMBIE_VARIATION - 2, 1);
+    srand(static_cast<unsigned int>(time(0)));
+    int i = rand() % HIT_ZOMBIE_VARIATION;
     LoadSfx(p_ZombieHit[i]);
     PlaySfx(p_ZombieHit[i]);
+}
+
+void Sound::playZombieDie() {
+    LoadSfx(p_ZombieDie);
+    PlaySfx(p_ZombieDie);
+}
+
+void Sound::playWardenDive(int direction)
+{
+    std::string sfx;
+    if (direction == 1)
+    {
+        sfx = p_WardenDive1;
+    }
+    if (direction == -1)
+    {
+        sfx = p_WardenDive2;
+    }
+    LoadSfx(sfx);
+    PlaySfx(sfx);
 }
 
 void Sound::playGunEmpty()
 {
     LoadSfx(p_GunEmpty);
     PlaySfx(p_GunEmpty);
+}
+
+void Sound::playGlassBreak()
+{
+    srand(static_cast<unsigned int>(time(0)));
+    int i = rand() % 3;
+    LoadSfx(p_GlassBreak[i]);
+    PlaySfx(p_GlassBreak[i]);
 }
 
 void Sound::playSpawnSignal()

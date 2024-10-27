@@ -14,10 +14,10 @@ GSIntro::~GSIntro()
 
 void GSIntro::Init()
 {
-
-	auto texture = ResourceManagers::GetInstance()->GetTexture("logo.tga");
+	int logo_size = 920;
+	auto texture = ResourceManagers::GetInstance()->GetTexture("assets-main/sprites/ui/boot_splash/logo.png");
 	m_logo = std::make_shared<Sprite2D>(texture, SDL_FLIP_NONE);
-	m_logo->SetSize(150, 150);
+	m_logo->SetSize(logo_size, logo_size);
 	m_logo->Set2DPosition((float)(SCREEN_WIDTH - m_logo->GetWidth())/2 , (float)(SCREEN_HEIDHT - m_logo->GetHeight())/2);
 
 }
@@ -58,7 +58,7 @@ void GSIntro::Update(float deltaTime)
 	m_time += deltaTime;
 	if (m_time > INTRO_TIME)
 	{
-		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_MENU);
+		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_INTRO_MENU);
 		m_time = 0;
 	}
 }

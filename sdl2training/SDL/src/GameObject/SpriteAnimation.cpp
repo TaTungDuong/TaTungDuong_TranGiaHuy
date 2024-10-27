@@ -29,7 +29,12 @@ void SpriteAnimation::Draw(SDL_Renderer* renderer, SDL_Rect * clip)
 	{
 		float srcWidth =  m_pTexture->GetOriginalWidth() / m_frameCount;
 		float srcHeight = m_pTexture->GetOriginalHeight() / m_numAction;
-		SDL_Rect srcRect = { srcWidth * m_currentFrame, srcHeight * (m_currentAction - 1), srcWidth, srcHeight }; //pointer to source rect(the area and position where you get the sprite on the texture).
+		SDL_Rect srcRect = { 
+			srcWidth * m_currentFrame, 
+			srcHeight * (m_currentAction - 1), 
+			srcWidth, 
+			srcHeight 
+		}; //pointer to source rect(the area and position where you get the sprite on the texture).
 		SDL_Rect dstRect = { m_position.x - Camera::GetInstance()->GetPosition().x, m_position.y - Camera::GetInstance()->GetPosition().y, m_iWidth , m_iHeight }; // pointer to dest rect(the area and position on the renderer you are going to draw).
 		SDL_RenderCopyEx(Renderer::GetInstance()->GetRenderer(), m_pTexture->GetTextureObj(), &srcRect, &dstRect, m_angle, nullptr, m_flip);
 		

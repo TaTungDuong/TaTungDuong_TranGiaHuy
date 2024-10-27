@@ -18,8 +18,7 @@ public:
 	LTexture gCrosshairTexture;
 	//UI textures
 	LTexture gHealthIconTexture;
-	LTexture gPistolIconTexture;
-	LTexture gRifleIconTexture;
+	LTexture gWeaponIconTexture[PLAYER_WEAPON_SLOT];
 	//background texture for menu
 	LTexture gMenuTexture;
 	//backdrop texture used for pause screen

@@ -55,7 +55,8 @@ void Game::Run()
 				
 				Uint32 current = SDL_GetTicks();
 
-				float dT = (current - lastUpdate) / 1000.0f; // to convert to seconds
+				float dT;
+				dT = (current - lastUpdate) / 1000.0f; // to convert to seconds
 
 				lastUpdate = current;
 				////Limit FPS
