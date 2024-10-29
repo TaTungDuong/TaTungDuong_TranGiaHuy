@@ -36,7 +36,7 @@ void GSIntroMenu::Init()
 
 	// Animation 
 	m_listAnimation.clear();
-	auto texture = ResourceManagers::GetInstance()->GetTexture("assets-main/sprites/[cutscenes]/menu_1.png");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("assets-main/sprites/[cutscenes]/menu/menu_1.png");
 	obj = std::make_shared<SpriteAnimation>(texture, 1, 10, 1, 0.075f);
 	obj->SetFlip(SDL_FLIP_NONE);
 	obj->SetSize(SCREEN_WIDTH, SCREEN_HEIDHT);
@@ -104,7 +104,7 @@ void GSIntroMenu::Update(float deltaTime)
 				currentAnimation++;
 				printf("INTRO_MENU: %d\n", currentAnimation);
 
-				auto texture = ResourceManagers::GetInstance()->GetTexture("assets-main/sprites/[cutscenes]/menu_2.png");
+				auto texture = ResourceManagers::GetInstance()->GetTexture("assets-main/sprites/[cutscenes]/menu/menu_2.png");
 				it = std::make_shared<SpriteAnimation>(texture, 1, 10, 1, 0.075f);
 				it->SetFlip(SDL_FLIP_NONE);
 				it->SetSize(SCREEN_WIDTH, SCREEN_HEIDHT);

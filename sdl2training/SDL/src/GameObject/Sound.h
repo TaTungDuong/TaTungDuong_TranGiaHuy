@@ -12,7 +12,7 @@ public:
 	Sound();
 	~Sound();
 	bool Init();
-	void PlaySound(const std::string& name);
+	void PlaySound(const std::string& name, int loop);
 	void PauseSound();
 	void ResumeSound();
 	void StopSound();
@@ -23,8 +23,11 @@ public:
 
 	//Bgm
 	void playMenuMusic();
+	void playStoryMusic();
 	void playMainMusic();
 	void playBossMusic();
+	void playGameLose();
+	void playGameWin();
 
 	//Voicelines
 	void playVoiceIntro(int voiceline);
@@ -41,8 +44,6 @@ public:
 	void playCollectObject();
 	void playDrinkMilk();
 	void playExplosion();
-	void playGameLose();
-	void playGameWin();
 	void playZombieAttack();
 	void playZombieShoot();
 	void playHitZombie();
@@ -60,6 +61,7 @@ private:
 	const std::string p_MenuMusic = "bgm/blue.mp3";
 	const std::string p_MainMusic = "bgm/silence.mp3";
 	const std::string p_BossMusic = "bgm/crypt.mp3";
+	const std::string p_StoryMusic = "bgm/control.mp3";
 	//Voicelines
 	const std::string p_VoiceIntro[2] = { 
 		"voicelines/intro.mp3", 

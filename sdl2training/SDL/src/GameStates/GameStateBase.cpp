@@ -3,6 +3,8 @@
 #include "GSIntroMenu.h"
 #include "GSMenu.h"
 #include "GSIntroCutscene.h"
+#include "GSIntroStory.h"
+#include "GSLoading.h"
 #include "GSPlay.h"
 
 GameStateBase::GameStateBase(StateType stateType) : m_stateType(stateType)
@@ -30,6 +32,14 @@ std::shared_ptr<GameStateBase> GameStateBase::CreateState(StateType stt)
 	case StateType::STATE_INTRO_CUTSCENE:
 		gs = std::make_shared<GSIntroCutscene>();
 		//GSINTRO_CUTSCENE;
+		break;
+	case StateType::STATE_INTRO_STORY:
+		gs = std::make_shared<GSIntroStory>();
+		//GSINTRO_STORY;
+		break;
+	case StateType::STATE_LOADING:
+		gs = std::make_shared<GSLoading>();
+		//GSLOADING;
 		break;
 	case StateType::STATE_PLAY:
 		gs = std::make_shared<GSPlay>();

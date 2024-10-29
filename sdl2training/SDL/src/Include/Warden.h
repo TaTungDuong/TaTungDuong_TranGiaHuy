@@ -56,7 +56,7 @@ public:
 
 	bool canCollide(); // return true if warden can collide with objects
 
-	const int number_of_fires = 3;
+	const int number_of_fires = 5;
 	const int number_of_turrets = 8;
 	const int number_of_clones = 8;
 
@@ -84,8 +84,8 @@ private:
 	const float fireTimeInterval = 0.5f;
 	float fireCooldownCounter;
 	float fireCooldownInterval;
-	const float minFireCooldownTimepoint = 5.0f;
-	const float maxFireCooldownTimepoint = 7.5f;
+	const float minFireCooldownTimepoint = 3.0f;
+	const float maxFireCooldownTimepoint = 6.0f;
 	void initFire();
 	void attackFire(std::vector<zombieBullet>& zombieBullets);
 

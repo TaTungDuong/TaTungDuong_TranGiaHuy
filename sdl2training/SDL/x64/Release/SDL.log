@@ -1,9 +1,281 @@
 ﻿cl : command line  warning D9035: option 'Zc:forScope-' has been deprecated and will be removed in a future release
-  GSIntro.cpp
+  CallOfTheForgeGod.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(17,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(28,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(29,8): warning C4553: '==': result of expression not used; did you intend '='?
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(40,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(68,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(69,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(70,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(71,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(72,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(93,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(94,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\CallOfTheForgeGod.cpp(107,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Dominus.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Dominus.cpp(29,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  EmperorDivide.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/EmperorDivide.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(38,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(39,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(45,45): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(52,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(53,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(54,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(55,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(56,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(69,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(70,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(71,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(72,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(73,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\EmperorDivide.cpp(83,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  GameEnvironment.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/GameEnvironment.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\Turret.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/GameEnvironment.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameEnvironment.cpp(106,45): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameEnvironment.cpp(106,38): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameEnvironment.cpp(185,10): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'unsigned __int64'
+      D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameEnvironment.cpp(185,10):
+      consider using '%zi' in the format string
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameEnvironment.cpp(436,70): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameEnvironment.cpp(609,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameEnvironment.cpp(609,20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameEnvironment.cpp(620,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameEnvironment.cpp(620,21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  GameObjective.cpp
+  GameUI.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/GameUI.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\Turret.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/GameUI.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\GameResource.h(18,42): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+  (compiling source file 'src/GameFeatures/GameUI.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(113,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(114,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(121,12): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(120,12): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(130,12): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(129,12): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(142,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(143,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(150,4): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(149,4): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(159,4): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(158,4): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(330,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(388,21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(423,21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(455,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\GameUI.cpp(455,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Player.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Player.cpp(8,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Player.cpp(45,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Player.cpp(46,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  PlayerAnimation.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\PlayerAnimation.cpp(35,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\PlayerAnimation.cpp(36,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  PlayerEffect.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\PlayerEffect.cpp(54,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\PlayerEffect.cpp(55,26): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\PlayerEffect.cpp(89,67): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  PlayerSkill.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/PlayerSkill.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\PlayerSkill.cpp(119,50): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\PlayerSkill.cpp(126,47): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  Signal.cpp
+  SpriteSheet.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/SpriteSheet.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\Turret.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/SpriteSheet.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\SpriteSheet.cpp(1264,22): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\SpriteSheet.cpp(1265,22): warning C4244: '*=': conversion from 'double' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\SpriteSheet.cpp(1273,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\SpriteSheet.cpp(1274,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\SpriteSheet.cpp(1362,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\SpriteSheet.cpp(1361,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\SpriteSheet.cpp(1362,47): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  Turret.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\Turret.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/Turret.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(28,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(29,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(40,14): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(41,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(42,11): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(43,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(44,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(55,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(56,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(57,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(58,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(59,49): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Turret.cpp(78,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  Warden.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\Turret.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameFeatures/Warden.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(71,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(71,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(89,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(90,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(91,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(92,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(93,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(176,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(177,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(178,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(179,50): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(213,44): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(228,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(228,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(241,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(242,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(256,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(256,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(269,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(270,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(355,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(367,46): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(388,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(388,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(400,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Warden.cpp(401,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  WardenClone.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(35,49): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(36,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(36,15): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(41,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(42,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(43,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(44,57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(45,57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(52,45): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(62,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(63,15): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(92,13): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(93,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(94,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(99,57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(100,57): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(121,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(121,15): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(127,7): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(128,7): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(132,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\WardenClone.cpp(132,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Zombie.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Zombie.cpp(25,24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Zombie.cpp(25,15): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Zombie.cpp(67,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Zombie.cpp(67,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Zombie.cpp(78,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Zombie.cpp(79,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Zombie.cpp(80,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Zombie.cpp(81,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Zombie.cpp(82,56): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\Zombie.cpp(97,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  ZombieEffect.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieEffect.cpp(17,16): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieEffect.cpp(32,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieEffect.cpp(32,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieEffect.cpp(60,67): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  ZombieWeapon.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(66,31): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(66,20): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(85,40): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(134,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(135,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(166,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(167,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(207,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(212,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(217,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(222,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(227,33): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(232,31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(246,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(247,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(255,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(256,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(264,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(265,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(273,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(274,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(278,51): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(284,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(285,12): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(294,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(324,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(324,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(329,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameFeatures\ZombieWeapon.cpp(330,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Sound.cpp
+  GSIntroCutscene.cpp
+  Compiling...
+  GSIntroMenu.cpp
+  GSIntroStory.cpp
+  GSLoading.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameStates\GSLoading.cpp(151,43): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  GSMenu.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\GameResource.h(18,42): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+  (compiling source file 'src/GameStates/GSMenu.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GSMenu.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\Turret.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GSMenu.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameStates\GSMenu.cpp(55,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  GSPlay.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GSPlay.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\Turret.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GSPlay.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\GameResource.h(18,42): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+  (compiling source file 'src/GameStates/GSPlay.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameStates\GSPlay.cpp(171,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameStates\GSPlay.cpp(197,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameStates\GSPlay.cpp(444,15): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameStates\GSPlay.cpp(606,64): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameStates\GSPlay.cpp(741,39): warning C4305: '=': truncation from 'int' to 'float'
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameStates\GSPlay.cpp(1076,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameStates\GSPlay.cpp(1077,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\GameStates\GSPlay.cpp(1478,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  GameStateBase.cpp
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\GameResource.h(18,42): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+  (compiling source file 'src/GameStates/GameStateBase.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\EmperorDivide.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GameStateBase.cpp')
+  
+D:\Projects\C++\[test]\sdl2training-darkzone-test-10\SDL\src\Include\Turret.h(22,37): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  (compiling source file 'src/GameStates/GameStateBase.cpp')
+  
   Generating code
-  2 of 4575 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  6 of 4699 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    9 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  SDL.vcxproj -> D:\Projects\C++\[test]\sdl2training-darkzone-test-9\x64\Release\SDL.exe
+  SDL.vcxproj -> D:\Projects\C++\[test]\sdl2training-darkzone-test-10\x64\Release\SDL.exe
   0 File(s) copied

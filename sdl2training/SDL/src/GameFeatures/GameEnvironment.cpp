@@ -421,6 +421,7 @@ void GameEnvironment::updateBullet(
 					//remove signal if it's health is below 0
 					if (signals[j].health <= 0 && collised)
 					{
+						Sound::GetInstance()->playExplosion();
 						m_GameObjective.obj_zones--;
 					}
 					if (collised) break;

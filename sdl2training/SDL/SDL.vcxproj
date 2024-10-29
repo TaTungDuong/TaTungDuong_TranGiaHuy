@@ -38,6 +38,8 @@
     <ClInclude Include="src\GameStates\GSIntro.h" />
     <ClInclude Include="src\GameStates\GSIntroCutscene.h" />
     <ClInclude Include="src\GameStates\GSIntroMenu.h" />
+    <ClInclude Include="src\GameStates\GSIntroStory.h" />
+    <ClInclude Include="src\GameStates\GSLoading.h" />
     <ClInclude Include="src\GameStates\GSMenu.h" />
     <ClInclude Include="src\GameStates\GSPlay.h" />
     <ClInclude Include="src\Game\Game.h" />
@@ -112,6 +114,8 @@
     <ClCompile Include="src\GameStates\GSIntro.cpp" />
     <ClCompile Include="src\GameStates\GSIntroCutscene.cpp" />
     <ClCompile Include="src\GameStates\GSIntroMenu.cpp" />
+    <ClCompile Include="src\GameStates\GSIntroStory.cpp" />
+    <ClCompile Include="src\GameStates\GSLoading.cpp" />
     <ClCompile Include="src\GameStates\GSMenu.cpp" />
     <ClCompile Include="src\GameStates\GSPlay.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />

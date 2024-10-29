@@ -42,6 +42,15 @@ TTF_Font* ResourceManagers::GetFont(const std::string& name, int ptsize)
 		return it->second;
 	}
 	std::string fontPath = m_FontPath + name;
+	if (name.find("assets-main") == std::string::npos)
+	{
+		fontPath = m_FontPath + name;
+	}
+	else
+	{
+		fontPath = name;
+	}
+
 	TTF_Font* font = TTF_OpenFont(fontPath.c_str(), ptsize);
 	if (font != nullptr)
 	{

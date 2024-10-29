@@ -31,7 +31,7 @@ bool Sound::Init()
     return ret;
 }
 
-void Sound::PlaySound(const std::string& name)
+void Sound::PlaySound(const std::string& name, int loop)
 {
 
     Mix_Music* music = NULL;
@@ -46,7 +46,7 @@ void Sound::PlaySound(const std::string& name)
         //Play the music
         if (music != nullptr)
         {
-            Mix_PlayMusic(music, -1); // The first argument is the music we want to play and the last argument is the number of times to repeat it. -1 for loop it util stop
+            Mix_PlayMusic(music, loop); // The first argument is the music we want to play and the last argument is the number of times to repeat it. -1 for loop it util stop
         }
         else
         {
@@ -175,7 +175,15 @@ void Sound::playMenuMusic()
     //Play the menu music
     StopSound();
     LoadSound(p_MenuMusic);
-    PlaySound(p_MenuMusic);
+    PlaySound(p_MenuMusic, -1);
+}
+
+void Sound::playStoryMusic()
+{
+    //Play the menu music
+    StopSound();
+    LoadSound(p_StoryMusic);
+    PlaySound(p_StoryMusic, -1);
 }
 
 void Sound::playMainMusic()
@@ -183,7 +191,7 @@ void Sound::playMainMusic()
     //Play the game music
     StopSound();
     LoadSound(p_MainMusic);
-    PlaySound(p_MainMusic);
+    PlaySound(p_MainMusic, -1);
 }
 
 void Sound::playBossMusic()
@@ -191,15 +199,16 @@ void Sound::playBossMusic()
     //Play the boss music
     StopSound();
     LoadSound(p_BossMusic);
-    PlaySound(p_BossMusic);
+    PlaySound(p_BossMusic, -1);
 }
 #pragma endregion
 
 #pragma region Voicelines
 void Sound::playVoiceIntro(int voiceline)
 {
-    LoadSfx(p_VoiceIntro[voiceline]);
-    PlaySfx(p_VoiceIntro[voiceline]);
+    StopSound();
+    LoadSound(p_VoiceIntro[voiceline]);
+    PlaySound(p_VoiceIntro[voiceline], 0);
 }
 #pragma endregion
 
@@ -367,13 +376,13 @@ void Sound::playGameLose()
 {
     StopSound();
     LoadSound(p_GameLose);
-    PlaySound(p_GameLose);
+    PlaySound(p_GameLose, -1);
 }
 
 void Sound::playGameWin()
 {  
     StopSound();
     LoadSound(p_GameWin);
-    PlaySound(p_GameWin);
+    PlaySound(p_GameWin, -1);
 }
 #pragma endregion

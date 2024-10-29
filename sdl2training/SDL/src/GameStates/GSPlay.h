@@ -19,7 +19,7 @@
 #include "Include/GameUI.h"
 #include "GameStates/GSMenu.h"
 
-enum class confirmState { FALSE, RETRY, QUIT, QUIT_TO_MENU };
+enum class confirmState { FALSE, RETRY, QUIT, QUIT_TO_MENU, CREDITS };
 enum class endState { FALSE, WIN, LOSE, TIME_OVER };
 
 struct StateStruct
@@ -77,6 +77,9 @@ public:
 	void hideConfirmScreen();
 	bool confirmScreen = false; //flag
 	void handleConfirmEvent(int& choice);
+
+	//credits screen
+	void Credits();
 
 	//end game screen
 	void EndGame();

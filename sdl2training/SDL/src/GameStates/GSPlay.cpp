@@ -147,6 +147,11 @@ void GSPlay::handlePauseEvent()
 			{
 				showConfirmScreen(confirmState::QUIT_TO_MENU);
 			}
+			//credits button
+			if (buttons[3].checkInside(mouseX, mouseY))
+			{
+				showConfirmScreen(confirmState::CREDITS);
+			}
 			break;
 		}
 	}
@@ -163,7 +168,7 @@ void GSPlay::Pause()
 	//SDL_WarpMouseInWindow(gWindow, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); //set the cursor to center of the window
 
 	//set text positions
-	int pausedOffset = SCREEN_HEIGHT / 3.5;
+	int pausedOffset = SCREEN_HEIGHT / 3.0;
 	int pausedX = SCREEN_WIDTH / 2;
 	int pausedY = SCREEN_HEIGHT / 2 - pausedOffset;
 	int tipsX = SCREEN_WIDTH / 2;
@@ -179,8 +184,12 @@ void GSPlay::Pause()
 	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Retry", m_GameResource.regularFont);
 	buttons.push_back(myButton);
 	//quit to menu button
-	buttonpy += 75;
+	buttonpy += 75 * 2;
 	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Quit to menu", m_GameResource.regularFont);
+	buttons.push_back(myButton);
+	//credits button
+	buttonpy -= 75;
+	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Credits", m_GameResource.regularFont);
 	buttons.push_back(myButton);
 
 	//set tips
@@ -405,10 +414,12 @@ void GSPlay::handleMenuEvent(int& choice)
 	if (setting_Music)
 	{
 		Mix_ResumeMusic();
+		Mix_Volume(-1, 128);
 	}
 	else if (!setting_Music)
 	{
 		Mix_PauseMusic();
+		Mix_Volume(-1, 0);
 	}
 }
 
@@ -431,7 +442,7 @@ void GSPlay::Menu()
 	//add buttons
 	//start button
 	int buttonpy = textY + SCREEN_HEIGHT / 7.5 + 100;
-	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Start", m_GameResource.regularFont);
+	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Replay", m_GameResource.regularFont);
 	buttons.push_back(myButton);
 	//toggle music button
 	buttonpy += 75;
@@ -1102,7 +1113,75 @@ void GSPlay::Game()
 }
 #pragma endregion
 
+#pragma region Credits
+void GSPlay::Credits()
+{
+	//set text positions
+	int textOffset = SCREEN_HEIGHT / 2 - 20;
+	int textX = SCREEN_WIDTH / 2;
+	int textY = SCREEN_HEIGHT / 2 - textOffset;
+	
+	int textStepTitle = 50;
+	int textStep = 35;
 
+	std::string creditText;
+	//credits
+	creditText = "Credits";
+	drawText(textX, textY, m_GameResource.boldFontLarge, m_GameResource.UIColor, creditText, 1);
+	
+	//studio name
+	textY += textStepTitle;
+	creditText = "RITO ENTERTAINMENT";
+	drawText(textX, textY, m_GameResource.boldFont, m_GameResource.UIColor, creditText, 1);
+	
+	textY += textStep;
+	creditText = "Presents";
+	drawText(textX, textY, m_GameResource.regularFont, m_GameResource.UIColor, creditText, 1);
+
+	//gd team
+	textY += textStepTitle;
+	creditText = "Game Development Team";
+	drawText(textX, textY, m_GameResource.boldFont, m_GameResource.UIColor, creditText, 1);
+	textY += textStep;
+	creditText = "TA Tung Duong (the Lao)";
+	drawText(textX, textY, m_GameResource.regularFont, m_GameResource.UIColor, creditText, 1);
+	textY += textStep;
+	creditText = "TRAN Gia Huy";
+	drawText(textX, textY, m_GameResource.regularFont, m_GameResource.UIColor, creditText, 1);
+
+	//art contributors
+	textY += textStepTitle;
+	creditText = "Art Contributors";
+	drawText(textX, textY, m_GameResource.boldFont, m_GameResource.UIColor, creditText, 1);
+	textY += textStep;
+	creditText = "TA Tung Duong (the Lao)";
+	drawText(textX, textY, m_GameResource.regularFont, m_GameResource.UIColor, creditText, 1);
+	textY += textStep;
+	creditText = "BDragon1727 (itch.io)";
+	drawText(textX, textY, m_GameResource.regularFont, m_GameResource.UIColor, creditText, 1);
+	textY += textStep;
+	creditText = "ChillyRoom";
+	drawText(textX, textY, m_GameResource.regularFont, m_GameResource.UIColor, creditText, 1);
+
+	//music
+	textY += textStepTitle;
+	creditText = "Music";
+		drawText(textX, textY, m_GameResource.boldFont, m_GameResource.UIColor, creditText, 1);
+	textY += textStep;
+	creditText = "Of Far Different Nature";
+	drawText(textX, textY, m_GameResource.regularFont, m_GameResource.UIColor, creditText, 1);
+
+	//copyright
+	textY += textStepTitle;
+	creditText = "© 2024 RITO ENTERTAINMENT. All Rights Reserved.";
+	drawText(textX, textY, m_GameResource.boldFont, m_GameResource.UIColor, creditText, 1);
+
+	//thanks for playing
+	textY += textStepTitle;
+	creditText = "Thanks for playing!";
+	drawText(textX, textY, m_GameResource.boldFontLarge, m_GameResource.UIColor, creditText, 1);
+}
+#pragma endregion
 
 #pragma region Confirm_Screen
 void GSPlay::showConfirmScreen(confirmState m)
@@ -1186,6 +1265,19 @@ void GSPlay::Confirm()
 	myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "No", m_GameResource.regularFont);
 	buttons.push_back(myButton);
 
+	if (confirmMode == confirmState::CREDITS)
+	{
+		buttons.clear();
+		//resume button
+		buttonpy = SCREEN_HEIGHT - 75;
+		myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "Back", m_GameResource.regularFont);
+		buttons.push_back(myButton);
+		//no button
+		buttonpy += 7500;
+		myButton.init(SCREEN_WIDTH / 2, buttonpy, 50, "xddShrug", m_GameResource.regularFont);
+		buttons.push_back(myButton);
+	}
+
 	int choice = -1; //0 for yes, 1 for no
 
 	while (choice == -1)
@@ -1211,15 +1303,20 @@ void GSPlay::Confirm()
 		{
 		case confirmState::RETRY:
 			confirmText = "Are you sure you want to retry the level?";
+			drawText(textX, textY, m_GameResource.boldFontLarge, m_GameResource.UIColor, confirmText, 1);
 			break;
 		case confirmState::QUIT:
 			confirmText = "Are you sure you want to quit?";
+			drawText(textX, textY, m_GameResource.boldFontLarge, m_GameResource.UIColor, confirmText, 1);
 			break;
 		case confirmState::QUIT_TO_MENU:
 			confirmText = "Are you sure you want to quit to menu?";
+			drawText(textX, textY, m_GameResource.boldFontLarge, m_GameResource.UIColor, confirmText, 1);
+			break;
+		case confirmState::CREDITS:
+			Credits();
 			break;
 		}
-		drawText(textX, textY, m_GameResource.boldFontLarge, m_GameResource.UIColor, confirmText, 1);
 
 		//Render buttons
 		for (int i = 0; i < buttons.size(); i++)
@@ -1262,6 +1359,10 @@ void GSPlay::Confirm()
 			g_StateStack.swap(emptyStack);
 			temp.StatePointer = std::bind(&GSPlay::Menu, this); //.StatePointer = Menu;
 			g_StateStack.push(temp);
+		}
+		if (confirmMode == confirmState::CREDITS) // credits
+		{
+			hideConfirmScreen();
 		}
 		break;
 	case 1:

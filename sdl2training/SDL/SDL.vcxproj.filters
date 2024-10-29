@@ -219,6 +219,12 @@
     <ClInclude Include="src\GameStates\GSIntroMenu.h">
       <Filter>Source Files\GameStates\MainStates</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameStates\GSLoading.h">
+      <Filter>Source Files\GameStates\SubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStates\GSIntroStory.h">
+      <Filter>Source Files\GameStates\MainStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameManager\ResourceManagers.cpp">
@@ -357,6 +363,12 @@
       <Filter>Source Files\GameStates\MainStates</Filter>
     </ClCompile>
     <ClCompile Include="src\GameStates\GSIntroMenu.cpp">
+      <Filter>Source Files\GameStates\MainStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStates\GSLoading.cpp">
+      <Filter>Source Files\GameStates\SubStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStates\GSIntroStory.cpp">
       <Filter>Source Files\GameStates\MainStates</Filter>
     </ClCompile>
   </ItemGroup>
